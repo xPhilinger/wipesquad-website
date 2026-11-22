@@ -9,3 +9,6 @@ WIPESQUAD – komplette Webseite
 Enthalten: Startseite, Gilde, Raidkader, Raid Manager, Kontakt, Nutzungsbedingungen, Datenschutz, Impressum, Styles, SVG-Logo.
 Vor Veröffentlichung: Platzhalter in kontakt.html, datenschutz.html, impressum.html und nutzungsbedingungen.html ausfüllen und rechtlich prüfen.
 Die Webseite zeigt keine Live-Daten des Discord-Bots und enthält noch keinen Discord-Einladungslink.
+
+NEU: Discord-Beitrittsbuttons auf Startseite und Kontaktseite: https://discord.gg/Wipesquadforever
+Um deine bestehende Seite zu aktualisieren: Alle entpackten Dateien im bestehenden GitHub-Repository wipesquad-website hochladen und vorhandene Dateien ersetzen. Kein neues Repository erstellen.
