@@ -1,0 +1,11 @@
+WIPESQUAD – komplette Webseite
+================================
+1. ZIP entpacken.
+2. ALLE Dateien und den Ordner assets direkt in dein GitHub-Repository xPhilinger/wipesquad-raid-manager hochladen.
+3. index.html MUSS direkt im Hauptverzeichnis liegen.
+4. GitHub Settings > Pages > Deploy from a branch > main > /(root) > Save.
+5. Nach der Veröffentlichung: https://xphilinger.github.io/wipesquad-raid-manager/
+
+Enthalten: Startseite, Gilde, Raidkader, Raid Manager, Kontakt, Nutzungsbedingungen, Datenschutz, Impressum, Styles, SVG-Logo.
+Vor Veröffentlichung: Platzhalter in kontakt.html, datenschutz.html, impressum.html und nutzungsbedingungen.html ausfüllen und rechtlich prüfen.
+Die Webseite zeigt keine Live-Daten des Discord-Bots und enthält noch keinen Discord-Einladungslink.
