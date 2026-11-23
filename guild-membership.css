@@ -1,0 +1,13 @@
+/* WIPESQUAD V5.3 – preserves existing Horde Epic V4.7 backgrounds */
+.ws-member-welcome{padding:26px 30px!important;border:1px solid #8e4b40!important;background:linear-gradient(145deg,#291820,#151014)!important;box-shadow:0 16px 36px #0006!important}
+.ws-member-welcome[hidden]{display:none!important}
+.ws-member-welcome-head{display:flex;align-items:center;gap:20px;margin:15px 0 23px}
+.ws-member-welcome-icon{width:64px;height:64px;flex:0 0 64px;display:grid;place-items:center;font-size:30px;color:#ffc17a;border:1px solid #a75d41;border-radius:16px;background:#3c1b22;box-shadow:inset 0 0 22px #9a3b2d30}
+.ws-member-welcome h2{margin:0 0 7px;color:#ffe1b6;font-family:Cinzel,Georgia,serif}
+.ws-member-welcome p{margin:0 0 10px;color:#e2d0c9}
+.ws-member-verified{display:inline-block;color:#9ee0a4;font-size:13px;font-weight:700}
+.ws-member-shortcuts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.ws-member-shortcuts a{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;border:1px solid #79413f;border-radius:10px;background:linear-gradient(120deg,#402027,#24151c);color:#ffe3c5!important;text-decoration:none;font-weight:700;transition:border-color .2s,transform .2s}
+.ws-member-shortcuts a:hover{border-color:#e39b65;transform:translateY(-2px)}
+@media(max-width:650px){.ws-member-welcome{padding:20px!important}.ws-member-welcome-head{align-items:flex-start;gap:13px}.ws-member-welcome-icon{width:48px;height:48px;flex-basis:48px}.ws-member-shortcuts{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.ws-member-shortcuts a{transition:none}}

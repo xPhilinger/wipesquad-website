@@ -1,3 +1,16 @@
-WIPESQUAD Diagnose-Fix V1.1
-GitHub: mitglied.html und mitglied.js ersetzen. Backend v9_oauth.py aus V1 beibehalten. Strg+F5.
-Falls die Gildenzentrale nicht erscheint, zeigt das Dashboard nun die API-Fehlermeldung sichtbar an. Bitte diese melden.
+WIPESQUAD V5.3 – Gildenmitgliedschaft / Bewerbungsfenster
+
+1. Auf GitHub im Hauptverzeichnis hochladen/ersetzen:
+   - mitglied.html
+   - guild-membership.js (neu)
+   - guild-membership.css (neu)
+2. Die funktionierende mitglied.js V1.2, account-portal.js, armory.js und Bot-Dateien NICHT ersetzen.
+3. Nach GitHub Pages Deployment mit Strg+F5 neu laden.
+
+Die neue Ansicht wird NUR nach erfolgreichem /api/auth/me mit der bestehenden
+Account-Session eingeblendet. Ohne bestaetigte Mitgliedschaft bleibt das
+Bewerbungsformular sichtbar. Die Mitgliedschaft wird beim Laden neu geprueft.
+
+Hinweis: mitglied.html basiert auf der zuletzt bereitgestellten Diagnose V1.1.
+Falls seitdem weitere Aenderungen an mitglied.html gemacht wurden, vor dem
+Ersetzen vergleichen, um diese nicht zu verlieren.
