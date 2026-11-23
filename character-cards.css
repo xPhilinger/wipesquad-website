@@ -43,3 +43,9 @@
 .ws-member-dashboard .ws-character-tile .ws-armory-stat small{font-size:.72rem!important}
 .ws-member-dashboard .ws-character-tile .ws-armory-card>a{display:inline-block;margin-top:4px}
 @media(max-width:520px){.ws-member-dashboard .ws-character-tile{padding:12px}.ws-member-dashboard .ws-character-row{gap:8px}.ws-member-dashboard .ws-class-emblem{flex-basis:36px;width:36px;height:36px}.ws-member-dashboard .ws-character-row button{padding:6px 9px!important}}
+
+/* V2.1: Armory embedded in each class-colored tile */
+.ws-member-dashboard .ws-character-armory-holder{min-width:0;width:100%}
+.ws-member-dashboard .ws-character-armory-holder .ws-armory-card{width:100%;box-sizing:border-box}
+.ws-member-dashboard .ws-character-armory-holder .ws-armory-stats{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+@media(max-width:390px){.ws-member-dashboard .ws-character-armory-holder .ws-armory-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}}

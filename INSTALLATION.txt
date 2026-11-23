@@ -1,7 +1,6 @@
-WIPESQUAD Charakterkarten V2
+WIPESQUAD Charakterkarten V2.1 – Armory-Anzeige repariert
 
-Auf GitHub ersetzen: mitglied.html, mitglied.js, character-cards.css
-armory.js ist unveraendert und nur zur Vollstaendigkeit enthalten.
-Bot-Hosting unveraendert lassen. Nach GitHub Pages Deployment Strg+F5.
-
-Neu: WoW-Klassenfarben, Klassensymbole, kompaktere Karten und 3-spaltige Armory-Werte.
+GitHub: mitglied.html, armory.js, character-cards.css ersetzen.
+mitglied.js ist unveraendert aus V2 beigefuegt und muss nicht ersetzt werden.
+Bot-Hosting: keine Aenderung.
+Danach Strg+F5 auf wipesquad.de/mitglied.html.
