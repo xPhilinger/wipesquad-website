@@ -1,3 +1,4 @@
+(()=>{
 'use strict';
 const base=(window.WIPESQUAD_API_BASE||'').replace(/\/$/,'');const $=id=>document.getElementById(id);
 const token=sessionStorage.getItem('ws_account_session');
@@ -9,3 +10,19 @@ $('link-discord').onclick=async()=>{try{const d=await api('/api/account/discord/
 $('unlink-discord').onclick=async()=>{if(!confirm('Discord-Verknüpfung aufheben?'))return;try{await api('/api/account/discord/unlink','POST');await refresh()}catch(e){status(e.message)}};
 $('account-logout').onclick=async()=>{try{await api('/api/account/logout','POST')}catch{}sessionStorage.removeItem('ws_account_session');location.href='login.html'};
 (async()=>{if(!token){location.href='login.html';return}const hash=new URLSearchParams(location.hash.slice(1));history.replaceState(null,'',location.pathname);if(hash.has('link'))status(hash.get('link')==='erfolg'?'Discord erfolgreich verknüpft.':'Discord-Verknüpfung fehlgeschlagen.');try{await refresh()}catch(e){status(e.message)}})();
+
+// Datenschutz-Selbstverwaltung: keine HTML-Änderungen erforderlich.
+const accountFooter=document.querySelector('.ws-account-footer');
+if(accountFooter){
+  const privacy=document.createElement('section');privacy.className='ws-privacy-settings';
+  privacy.innerHTML='<h3>Datenschutz &amp; Account</h3><p>Du kannst deine Accountdaten herunterladen oder deinen WIPESQUAD-Account endgültig löschen.</p><div class="ws-privacy-actions"><button type="button" id="ws-export-data">Meine Daten herunterladen</button><button type="button" id="ws-delete-open">Account löschen</button></div><div id="ws-delete-panel" hidden><p><strong>Achtung:</strong> Dein Account, alle Anmeldesitzungen und Bewerbungen werden unwiderruflich gelöscht. Discord-eigene Raid-/Charakterdaten werden dadurch nicht automatisch entfernt.</p><label>Passwort erneut eingeben <input id="ws-delete-password" type="password" autocomplete="current-password"></label><label>Zur Bestätigung ACCOUNT LOESCHEN eingeben <input id="ws-delete-confirm" autocomplete="off"></label><button type="button" id="ws-delete-final">Endgültig löschen</button><button type="button" id="ws-delete-cancel">Abbrechen</button><p id="ws-delete-message" role="alert"></p></div>';
+  accountFooter.after(privacy);
+  const css=document.createElement('style');css.textContent='.ws-privacy-settings{margin-top:22px;padding:20px;border:1px solid #6d392e;border-radius:12px;background:rgba(30,16,13,.76);color:#f5e9dc}.ws-privacy-settings h3{margin:0 0 10px;color:#f0bd76}.ws-privacy-settings p{line-height:1.6}.ws-privacy-actions{display:flex;flex-wrap:wrap;gap:12px}.ws-privacy-settings button{padding:10px 14px;border:1px solid #9d5b39;border-radius:8px;background:#4c241c;color:#fff;cursor:pointer}.ws-privacy-settings label{display:block;margin:12px 0}.ws-privacy-settings input{display:block;width:min(100%,440px);padding:10px;margin-top:6px;background:#1b1515;color:white;border:1px solid #8d6c57;border-radius:6px}#ws-delete-open,#ws-delete-final{border-color:#bd4b42;background:#6d2525}#ws-delete-panel{margin-top:16px;border-top:1px solid #794238;padding-top:14px}#ws-delete-panel[hidden]{display:none}';document.head.append(css);
+  const get=id=>document.getElementById(id);
+  get('ws-delete-open').onclick=()=>{get('ws-delete-panel').hidden=false;};
+  get('ws-delete-cancel').onclick=()=>{get('ws-delete-panel').hidden=true;get('ws-delete-password').value='';get('ws-delete-confirm').value='';};
+  get('ws-export-data').onclick=async()=>{try{const data=await api('/api/account/export');const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='wipesquad-meine-daten.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),3000)}catch(e){status(e.message)}};
+  get('ws-delete-final').onclick=async()=>{const msg=get('ws-delete-message');msg.textContent='';if(get('ws-delete-confirm').value!=='ACCOUNT LOESCHEN'){msg.textContent='Bestätigung stimmt nicht überein.';return}if(!confirm('WIPESQUAD-Account und Bewerbungen wirklich unwiderruflich löschen?'))return;try{await api('/api/account/delete','POST',{password:get('ws-delete-password').value,confirmation:get('ws-delete-confirm').value});sessionStorage.removeItem('ws_account_session');sessionStorage.removeItem('ws_session');location.replace('login.html?account=deleted')}catch(e){msg.textContent=e.message}};
+}
+
+})();
