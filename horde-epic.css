@@ -284,3 +284,26 @@ body>main .panel,body>main form,body>main button,body>main a,
 body>footer .wrap{position:relative;z-index:5!important}
 /* Sections with a completely opaque image/gradient can still obscure background
    embers; this is intentional rather than drawing them over buttons or text. */
+
+/* V3.8: Correct middle layer – do NOT put whole sections above the effect.
+   Sections' backgrounds paint first, then the fire/embers, then readable content.
+   This also prevents the effect appearing only below the footer. */
+body{isolation:isolate!important}
+body>main,body>footer,body>.shell{
+ position:relative!important;z-index:1!important;isolation:auto!important;
+}
+body>main{background:transparent!important}
+.ws-firelight{z-index:2!important}
+.ws-ember-field{z-index:3!important}
+/* Do not force sections above the particle layer. */
+body>main>section,body>main>.hero,body>main>.page-hero,
+body>main>.raid-hero,body>main>.raid-content{isolation:auto!important}
+/* Readable content is the top layer. */
+body>main .wrap,body>main .container,body>main .hero-content,
+body>main .card,body>main .step,body>main .panel,
+body>main .raid-panel,body>main .raid-overview,body>main .raid-summary-side,
+body>main .raid-role,body>main .raid-role-card,body>main .raid-list,
+body>main .raid-full,body>main form,body>main button,body>main a,
+body>footer .wrap,body>.shell{position:relative!important;z-index:5!important}
+body>header{position:relative!important;z-index:500!important}
+/* Keep exact V3.6 ember sizes, glow and animation settings. */
