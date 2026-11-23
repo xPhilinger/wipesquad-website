@@ -1,6 +1,9 @@
-WIPESQUAD Charakterkarten V2.1 – Armory-Anzeige repariert
+WIPESQUAD Charakterkarten V3 – GitHub Pages
 
-GitHub: mitglied.html, armory.js, character-cards.css ersetzen.
-mitglied.js ist unveraendert aus V2 beigefuegt und muss nicht ersetzt werden.
-Bot-Hosting: keine Aenderung.
-Danach Strg+F5 auf wipesquad.de/mitglied.html.
+Ersetze auf GitHub: mitglied.html, mitglied.js, character-cards.css.
+armory.js aus V2.1 unverändert lassen.
+Danach Strg+F5. Keine Backend-Aenderung.
+
+Main-Status wird pro Discord-Nutzer nur in diesem Browser gespeichert (localStorage), nicht serverseitig synchronisiert.
+Klassen-Symbol ist ein stilisiertes Portraet, kein echtes Charakterfoto.
+Ausrüstungsslots zeigen absichtlich keine Items: Die bestehende Armory-API liefert keine Itemliste.

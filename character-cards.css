@@ -49,3 +49,21 @@
 .ws-member-dashboard .ws-character-armory-holder .ws-armory-card{width:100%;box-sizing:border-box}
 .ws-member-dashboard .ws-character-armory-holder .ws-armory-stats{grid-template-columns:repeat(3,minmax(0,1fr))!important}
 @media(max-width:390px){.ws-member-dashboard .ws-character-armory-holder .ws-armory-stats{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+
+/* V3: main character, portrait emblem and honest equipment slot overview */
+.ws-member-dashboard .ws-character-tile.ws-is-main{border-color:rgba(239,189,96,.8);box-shadow:inset 3px 0 0 #e8b75f,0 0 20px rgba(225,152,52,.13)}
+.ws-member-dashboard .ws-character-tile.ws-is-main .ws-character-identity strong::after{content:"  ★ MAIN";font-size:.65rem;letter-spacing:.06em;color:#f0c879;white-space:nowrap}
+.ws-member-dashboard .ws-class-emblem{border-radius:50%;width:48px;height:48px;flex-basis:48px;box-shadow:0 0 0 3px rgba(0,0,0,.2),inset 0 0 12px rgba(0,0,0,.25);font-size:1.65rem}
+.ws-member-dashboard .ws-character-actions{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:7px}
+.ws-member-dashboard .ws-character-actions .ws-main-toggle{font-size:.76rem!important;min-height:32px!important;padding:6px 9px!important;color:#efc987!important;background:rgba(78,53,30,.35)!important;border:1px solid rgba(215,166,84,.45)!important;border-radius:8px}
+.ws-member-dashboard .ws-character-actions .ws-main-toggle[aria-pressed="true"]{background:rgba(140,91,29,.5)!important}
+.ws-member-dashboard .ws-character-actions button{white-space:nowrap}
+.ws-member-dashboard .ws-equipment-details{margin-top:2px;padding:9px 11px;border:1px solid rgba(189,117,84,.3);border-radius:10px;background:rgba(12,9,13,.36)}
+.ws-member-dashboard .ws-equipment-details summary{cursor:pointer;color:#eac58b;font-weight:650;font-size:.86rem}
+.ws-member-dashboard .ws-equipment-details p{color:#cdb9b0;font-size:.78rem;line-height:1.5;margin:10px 0}
+.ws-member-dashboard .ws-equipment-slots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin:10px 0}
+.ws-member-dashboard .ws-equipment-slot{padding:8px;border:1px solid rgba(192,133,90,.22);border-radius:7px;background:rgba(12,10,14,.55);display:flex;flex-direction:column;gap:3px;min-width:0}
+.ws-member-dashboard .ws-equipment-slot span{color:#e2c9aa;font-size:.76rem}
+.ws-member-dashboard .ws-equipment-slot small{color:#978783;font-size:.69rem}
+.ws-member-dashboard .ws-equipment-details a{font-size:.82rem;color:#efbd7d}
+@media(max-width:620px){.ws-member-dashboard .ws-character-row{flex-wrap:wrap}.ws-member-dashboard .ws-character-actions{width:100%;justify-content:space-between}}
