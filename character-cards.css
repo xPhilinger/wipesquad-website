@@ -67,3 +67,10 @@
 .ws-member-dashboard .ws-equipment-slot small{color:#978783;font-size:.69rem}
 .ws-member-dashboard .ws-equipment-details a{font-size:.82rem;color:#efbd7d}
 @media(max-width:620px){.ws-member-dashboard .ws-character-row{flex-wrap:wrap}.ws-member-dashboard .ws-character-actions{width:100%;justify-content:space-between}}
+
+/* V3.2: compact collapsed equipment panel; no empty item slots */
+.ws-member-dashboard .ws-equipment-details{margin-top:8px;padding:8px 12px}
+.ws-member-dashboard .ws-equipment-details:not([open]){background:rgba(12,9,13,.2)}
+.ws-member-dashboard .ws-equipment-details[open] p{margin:9px 0 7px}
+.ws-member-dashboard .ws-equipment-details[open] a{display:inline-block;margin:2px 0 4px}
+.ws-member-dashboard .ws-equipment-slots,.ws-member-dashboard .ws-equipment-slot{display:none}

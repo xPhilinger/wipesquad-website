@@ -1,5 +1,4 @@
-WIPESQUAD Gildenzentrale V3.1
-1. mitglied.html und guild-hub.css ins Hauptverzeichnis des GitHub-Repositories hochladen.
-2. Bestehende mitglied.html ersetzen.
-3. Nach GitHub-Pages-Veröffentlichung Strg+F5 drücken.
-Keine Bot-Dateien ändern. Die Charakterdateien bleiben unverändert.
+WIPESQUAD V3.2 – kompakte Ausruestung
+GitHub: mitglied.html, mitglied.js und character-cards.css ersetzen.
+armory.js, guild-hub.css und Bot-Dateien unveraendert lassen.
+Danach Strg+F5.

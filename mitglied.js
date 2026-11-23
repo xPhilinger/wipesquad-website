@@ -11,11 +11,9 @@ const actions=document.createElement('div');actions.className='ws-character-acti
 row.append(emblem,info,actions);card.append(row);
 const details=document.createElement('details');details.className='ws-equipment-details';
 const summary=document.createElement('summary');summary.textContent='Ausrüstung ansehen';
-const hint=document.createElement('p');hint.textContent='Die Armory-API liefert aktuell keine einzelnen Ausrüstungsgegenstände. Die Slots sind daher nur eine Übersicht – keine erfundenen Items.';
-const slots=document.createElement('div');slots.className='ws-equipment-slots';
-for(const label of ['Kopf','Hals','Schultern','Rücken','Brust','Handgelenke','Hände','Taille','Beine','Füße','Ring 1','Ring 2','Schmuck 1','Schmuck 2','Waffenhand','Nebenhand']){const slot=document.createElement('div');slot.className='ws-equipment-slot';const name=document.createElement('span');name.textContent=label;const unknown=document.createElement('small');unknown.textContent='Nicht verfügbar';slot.append(name,unknown);slots.append(slot)}
-const full=document.createElement('a');full.href='https://armorywowforever.com/de/c/forever/eu/pvp/'+encodeURIComponent(ch.name.trim().replace(/\s+/g,'-'));full.target='_blank';full.rel='noopener noreferrer';full.textContent='Ausrüstung in der vollständigen Armory prüfen ↗';
-details.append(summary,hint,slots,full);card.append(details);root.append(card)}if(!d.characters.length)root.textContent='Noch keine Charaktere gespeichert.'}
+const hint=document.createElement('p');hint.textContent='Einzelne Ausrüstungsgegenstände sind derzeit nicht über die WIPESQUAD-Armory-API verfügbar.';
+const full=document.createElement('a');full.href='https://armorywowforever.com/de/c/forever/eu/pvp/'+encodeURIComponent(ch.name.trim().replace(/\s+/g,'-'));full.target='_blank';full.rel='noopener noreferrer';full.textContent='Ausrüstung in der vollständigen Armory ansehen ↗';
+details.append(summary,hint,full);card.append(details);root.append(card)}if(!d.characters.length)root.textContent='Noch keine Charaktere gespeichert.'}
 $('save').onclick=async()=>{try{await req('/api/me/characters','POST',{action:'save',name:$('name').value,class_name:$('class').value,spec:$('spec').value});$('status').textContent='Gespeichert';await load()}catch(e){$('status').textContent=e.message}};
 (async()=>{if(!token){location.href='login.html';return}try{const d=await req('/api/auth/me');wsUserId=String(d.user.id||'discord');$('who').textContent='Willkommen, '+d.user.name;$('admin-link').hidden=!['admin','officer','raidlead'].includes(d.user.level);await load()}catch(e){$('status').textContent=e.message}})();
 
