@@ -54,17 +54,20 @@
  // Subtle decorative embers; deterministic positions, no external assets or libraries.
  if(!document.querySelector('.ws-ember-field') && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
    const field=document.createElement('div');field.className='ws-ember-field';field.setAttribute('aria-hidden','true');
-   for(let i=0;i<48;i++){
+   for(let i=0;i<76;i++){
      const p=document.createElement('i');p.className='ws-ember';
      p.style.setProperty('--x',((i*37+13)%97+1)+'%');
-     p.style.setProperty('--size',(2.2+(i%4)*1.05)+'px');
-     p.style.setProperty('--duration',(12+(i*7)%15)+'s');
+     p.style.setProperty('--size',(2.5+(i%5)*1.15)+'px');
+     p.style.setProperty('--duration',(10+(i*7)%16)+'s');
      p.style.setProperty('--delay',(-((i*11)%25))+'s');
      p.style.setProperty('--drift',(-65+(i*29)%130)+'px');
-     p.style.setProperty('--alpha',(.48+(i%5)*.095).toFixed(2));
+     p.style.setProperty('--alpha',(.60+(i%5)*.075).toFixed(2));
      field.appendChild(p);
    }
    document.body.prepend(field);
+   // Low, soft flame-light across every page, not only the homepage.
+   const fire=document.createElement('div');fire.className='ws-firelight';fire.setAttribute('aria-hidden','true');
+   document.body.prepend(fire);
  }
  document.body.classList.add('ws-entering');
  document.body.classList.add('ws-ready');

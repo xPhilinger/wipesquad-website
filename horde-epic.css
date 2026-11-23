@@ -128,3 +128,29 @@ body.ws-entering main{animation:ws-page-enter .42s ease-out both}
 .ws-ember{background:#ffad52;box-shadow:0 0 8px 2px #ff8b3bc9,0 0 24px 5px #f04b284d}
 @media(max-width:760px){.ws-ember-field{opacity:.8!important}}
 @media(prefers-reduced-motion:reduce){.ws-ember-field{display:none!important}}
+
+/* HORDE EPIC V3.2: visible embers + subtle living firelight on ALL pages. */
+.ws-firelight{
+ position:fixed!important;inset:0!important;z-index:39!important;
+ pointer-events:none!important;overflow:hidden!important;
+ background:
+ radial-gradient(ellipse 44% 24% at 20% 104%,rgba(255,83,25,.20),transparent 75%),
+ radial-gradient(ellipse 50% 26% at 79% 106%,rgba(227,44,17,.15),transparent 77%),
+ linear-gradient(to top,rgba(141,33,16,.095),transparent 38%);
+ mix-blend-mode:screen;opacity:.78;
+ animation:ws-fire-breathe 7s ease-in-out infinite alternate;
+}
+.ws-firelight::before,.ws-firelight::after{
+ content:"";position:absolute;bottom:-13vh;height:40vh;width:62vw;
+ border-radius:50%;filter:blur(65px);transform-origin:center bottom;
+ background:radial-gradient(ellipse at center,rgba(255,103,27,.22),rgba(196,29,13,.08) 45%,transparent 75%);
+ animation:ws-flame-sway 9s ease-in-out infinite alternate;
+}
+.ws-firelight::before{left:-9vw}
+.ws-firelight::after{right:-12vw;animation-duration:12s;animation-delay:-4s}
+.ws-ember-field{position:fixed!important;inset:0!important;z-index:40!important;opacity:1!important;pointer-events:none!important;mix-blend-mode:screen}
+.ws-ember{background:#ffb15b;box-shadow:0 0 9px 2px #ff8d39c7,0 0 24px 4px #f04c2952}
+@keyframes ws-fire-breathe{0%{opacity:.53;filter:brightness(.88)}50%{opacity:.77}100%{opacity:.94;filter:brightness(1.12)}}
+@keyframes ws-flame-sway{0%{transform:translateX(-3vw) scale(.92,1)}50%{transform:translateX(2vw) scale(1.08,.95)}100%{transform:translateX(5vw) scale(1,1.12)}}
+@media(max-width:760px){.ws-firelight{opacity:.6}.ws-firelight::before,.ws-firelight::after{filter:blur(38px)}}
+@media(prefers-reduced-motion:reduce){.ws-firelight{animation:none!important;opacity:.4}.ws-firelight::before,.ws-firelight::after{animation:none!important}.ws-ember-field{display:none!important}}
