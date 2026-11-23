@@ -1,16 +1,19 @@
-WIPESQUAD V5.3 – Gildenmitgliedschaft / Bewerbungsfenster
+WIPESQUAD – Gildenabzeichen V5.4
 
-1. Auf GitHub im Hauptverzeichnis hochladen/ersetzen:
-   - mitglied.html
-   - guild-membership.js (neu)
-   - guild-membership.css (neu)
-2. Die funktionierende mitglied.js V1.2, account-portal.js, armory.js und Bot-Dateien NICHT ersetzen.
-3. Nach GitHub Pages Deployment mit Strg+F5 neu laden.
+INSTALLATION (GitHub Pages, Repo xPhilinger/wipesquad-website):
+1. Vorher Sicherung deiner aktuellen mitglied.html machen.
+2. mitglied.html im Hauptverzeichnis durch diese Datei ersetzen, falls du seit V5.3 keine eigenen HTML-Änderungen gemacht hast.
+   ALTERNATIVE, falls du eigene Änderungen hast: Füge vor </head> ein:
+   <link rel="stylesheet" href="guild-badges.css?v=54">
+   <script src="guild-badges.js?v=54" defer></script>
+3. guild-badges.js und guild-badges.css ins Hauptverzeichnis hochladen.
+4. Nach Deployment mit Strg+F5 neu laden.
 
-Die neue Ansicht wird NUR nach erfolgreichem /api/auth/me mit der bestehenden
-Account-Session eingeblendet. Ohne bestaetigte Mitgliedschaft bleibt das
-Bewerbungsformular sichtbar. Die Mitgliedschaft wird beim Laden neu geprueft.
+Unverändert lassen: mitglied.js, account-portal.js, armory.js, guild-membership.js, Bot/Backend.
 
-Hinweis: mitglied.html basiert auf der zuletzt bereitgestellten Diagnose V1.1.
-Falls seitdem weitere Aenderungen an mitglied.html gemacht wurden, vor dem
-Ersetzen vergleichen, um diese nicht zu verlieren.
+VERHALTEN:
+- Abzeichen erscheinen nur, wenn /api/auth/me die Gildenmitgliedschaft bestätigt.
+- Automatisch: Gildenmitglied, erster Charakter, Hauptcharakter, drei Charaktere.
+- Raid-Veteran und Schlachtfeld-Legende sind als gesperrte Vorschau sichtbar.
+- Keine erfundenen Raid-/PvP-Erfolge und keine Änderung an der Datenbank.
+- Der Hauptcharakter wird wie bisher nur in localStorage dieses Browsers gespeichert; sein Abzeichen kann daher auf einem anderen Gerät abweichen.

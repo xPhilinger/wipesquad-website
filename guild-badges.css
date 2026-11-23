@@ -1,0 +1,19 @@
+/* WIPESQUAD V5.4 · Horde Epic badges */
+.ws-badges{grid-column:1/-1;padding:26px 30px!important;border:1px solid #704039!important;background:linear-gradient(145deg,#28171d,#110d12)!important}
+.ws-badges[hidden]{display:none!important}
+.ws-badges-heading{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:20px}
+.ws-badges-kicker{font-size:10px;letter-spacing:.18em;color:#dca46e;font-weight:800}
+.ws-badges h2{margin:7px 0;color:#ffe0b9;font-family:Cinzel,Georgia,serif}
+.ws-badges-heading p,.ws-badges-note{color:#bca9a7;font-size:13px;margin:0}
+.ws-badges-counter{white-space:nowrap;padding:9px 13px;border:1px solid #75463e;border-radius:9px;color:#f6c48d;font-weight:700;background:#2c171c}
+.ws-badges-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.ws-badge{min-width:0;display:flex;align-items:flex-start;gap:13px;padding:17px 14px;border:1px solid #68413b;border-radius:11px;background:linear-gradient(135deg,#342027,#20141b)}
+.ws-badge-icon{width:47px;height:47px;flex:0 0 47px;display:grid;place-items:center;border-radius:50%;border:1px solid #b47b42;background:radial-gradient(circle,#6b3425,#311c20);color:#ffd28c;font-size:25px;box-shadow:0 0 14px #c67b3430}
+.ws-badge strong{display:block;color:#ffe2bb;margin-bottom:5px;font-size:15px}
+.ws-badge small{display:block;color:#c7b4ae;line-height:1.45;min-height:36px}
+.ws-badge-state{display:block;margin-top:10px;font-size:12px;font-weight:700;color:#a4e0a9}
+.ws-badge.is-locked{opacity:.63;filter:saturate(.55)}
+.ws-badge.is-locked .ws-badge-state{color:#b8a5a3}
+.ws-badges-note{margin-top:16px;line-height:1.5}
+@media(max-width:850px){.ws-badges-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:550px){.ws-badges{padding:20px!important}.ws-badges-heading{align-items:flex-start;flex-direction:column}.ws-badges-grid{grid-template-columns:1fr}}
