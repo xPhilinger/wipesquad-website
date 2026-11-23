@@ -1,0 +1,15 @@
+/* WIPESQUAD V5.12: clearer dashboard; existing scripts and badges retained */
+.ws-member-dashboard{max-width:1320px!important;width:min(100% - 28px,1320px)!important;margin-inline:auto!important;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr)!important;gap:22px!important}
+.ws-member-dashboard>.panel{min-width:0!important}
+#discord-characters-area{display:block!important;grid-column:1/-1!important;order:3!important}
+#account-main{order:1!important}#account-application{order:2!important}#ws-guild-badges{order:4!important;grid-column:1/-1!important}
+.ws-armory-login-hint{padding:22px;border:1px solid rgba(229,146,98,.36);border-radius:14px;background:linear-gradient(130deg,rgba(116,40,40,.22),rgba(20,17,24,.7));margin:20px 0;color:#f2d9c7}
+.ws-armory-login-hint[hidden],.ws-character-editor[hidden]{display:none!important}
+.ws-armory-login-hint p{line-height:1.6;color:#d7bdb2}
+.ws-armory-login-hint a{display:inline-block;background:#963d43;border-radius:9px;color:#fff!important;padding:11px 17px;text-decoration:none;font-weight:700}
+.ws-character-editor{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto;align-items:end;gap:12px;margin-top:20px}
+.ws-character-editor label{min-width:0}.ws-character-editor input,.ws-character-editor select{width:100%;box-sizing:border-box}
+#characters{display:grid;gap:14px;margin-top:18px}#characters>.ws-armory-card,#characters .ws-armory-card{width:100%}
+.ws-profile-header{margin-bottom:20px!important}
+@media(max-width:850px){.ws-member-dashboard{grid-template-columns:minmax(0,1fr)!important}#discord-characters-area,#ws-guild-badges{grid-column:1!important}.ws-character-editor{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.ws-character-editor{grid-template-columns:1fr}}
