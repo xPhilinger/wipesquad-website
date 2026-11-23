@@ -1,3 +1,4 @@
+(()=>{
 "use strict";
 const api=(window.WIPESQUAD_API_BASE||'').replace(/\/$/,'');const $=id=>document.getElementById(id);const token=sessionStorage.getItem('ws_account_session')||sessionStorage.getItem('ws_session');let classes={};let wsUserId="";
 const mainKey=()=>"ws_main_character_"+wsUserId;
@@ -29,4 +30,6 @@ $('save').onclick=async()=>{try{await req('/api/me/characters','POST',{action:'s
  const toggle=document.createElement('button');toggle.type='button';toggle.id='ws-add-character';toggle.className='ws-add-character';toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-controls',form.id);toggle.textContent='+ Charakter hinzufügen';
  root.after(toggle,form);
  toggle.addEventListener('click',()=>{form.hidden=!form.hidden;toggle.setAttribute('aria-expanded',String(!form.hidden));toggle.textContent=form.hidden?'+ Charakter hinzufügen':'− Formular schließen';if(!form.hidden)document.getElementById('name')?.focus();});
+})();
+
 })();
