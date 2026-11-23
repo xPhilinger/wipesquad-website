@@ -1,0 +1,9 @@
+/* V5.36: Gildencharaktere und externe Armory */
+.ws-armory-tools{display:grid;grid-template-columns:minmax(0,2fr) minmax(160px,1fr);gap:14px;margin:20px 0 12px}
+.ws-armory-tools label{display:block}.ws-armory-tools input,.ws-armory-tools select{width:100%;box-sizing:border-box}
+.ws-armory-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:14px;margin-top:16px}
+.ws-armory-card{min-width:0;background:linear-gradient(145deg,rgba(83,40,48,.28),rgba(24,19,25,.9));border:1px solid rgba(197,117,95,.24);border-radius:12px;padding:17px;display:flex;flex-direction:column;gap:12px}
+.ws-armory-card-head{display:flex;flex-direction:column;gap:5px}.ws-armory-card-head strong{font-size:1.15rem;color:#f2e2d4}
+.ws-armory-external{display:inline-flex;align-items:center;min-height:36px;color:#e6b37b!important;text-decoration:none;font-weight:700;font-size:.88rem}
+.ws-armory-external:hover{text-decoration:underline;color:#ffd9a1!important}
+@media(max-width:680px){.ws-armory-tools{grid-template-columns:1fr}}
