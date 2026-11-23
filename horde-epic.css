@@ -89,3 +89,36 @@ body>header .ws-menu-trigger:hover {text-shadow:0 0 12px #ed784966}
 @keyframes ws-wappen-glow {from{filter:drop-shadow(0 0 18px #bc362966) drop-shadow(0 14px 28px #0009)}to{filter:drop-shadow(0 0 35px #e75b3a99) drop-shadow(0 14px 28px #0009)}}
 @media(max-width:760px){body:not(:has(.shell)) .hero{min-height:580px}body:not(:has(.shell)) .hero .hero-content{padding:65px 20px 105px}body:not(:has(.shell)) .hero .hero-wappen{width:min(100%,380px)}body:not(:has(.shell)) .page-hero:after{background-size:155px auto;opacity:.15}body:not(:has(.shell)) .hero .lead{font-size:16px}}
 @media(prefers-reduced-motion:reduce){body:not(:has(.shell)) .hero .hero-wappen{animation:none}}
+
+/* WIPESQUAD HORDE EPIC V3 — navigation repair + cinematic embers */
+:root{--ws-fire:#f26838;--ws-gold:#ffc17a}
+body{overflow-x:hidden}
+body>header{z-index:500!important;overflow:visible!important;background:linear-gradient(180deg,rgba(14,9,13,.98),rgba(9,8,12,.96))!important;border-bottom:1px solid #853638!important;box-shadow:0 8px 32px #000a,0 1px 0 #ff7b3d22!important}
+body>header .nav{overflow:visible!important;position:relative;min-height:76px}
+body>header .nav nav{position:relative;display:flex;align-items:center;gap:12px;overflow:visible!important}
+body>header .nav nav .ws-menu{display:block;position:relative;flex:0 0 auto;min-width:0}
+body>header .nav nav .ws-menu-trigger{appearance:none!important;display:inline-flex!important;align-items:center;justify-content:center;gap:8px;background:transparent!important;border:1px solid transparent!important;border-radius:8px!important;padding:13px 15px!important;color:#f3dfd2!important;font:800 12px/1.2 Inter,Arial,sans-serif!important;white-space:nowrap!important;cursor:pointer}
+body>header .nav nav .ws-menu-trigger:hover,body>header .nav nav .ws-menu.is-open .ws-menu-trigger{background:#451c23!important;border-color:#8f4141!important;color:#ffd092!important}
+body>header .nav nav .ws-menu-panel{position:absolute!important;top:calc(100% + 9px)!important;left:0!important;z-index:9999!important;min-width:230px!important;width:max-content!important;max-width:min(310px,90vw)!important;padding:9px!important;margin:0!important;border:1px solid #a64c42!important;border-radius:11px!important;background:linear-gradient(155deg,#321820,#130c11 85%)!important;box-shadow:0 22px 52px #000e,0 0 25px #b33b302c!important;flex-direction:column!important;gap:3px!important;align-items:stretch!important;white-space:normal!important}
+body>header .nav nav .ws-menu:not(.is-open) .ws-menu-panel{display:none!important}
+body>header .nav nav .ws-menu.is-open .ws-menu-panel{display:flex!important;animation:ws-drop .18s ease both}
+body>header .nav nav .ws-menu-panel a{display:block!important;width:100%!important;box-sizing:border-box!important;padding:12px 14px!important;margin:0!important;line-height:1.45!important;white-space:normal!important;font-size:12px!important;color:#f7e3d5!important;text-transform:none!important;letter-spacing:.025em!important;border-radius:6px!important}
+body>header .nav nav .ws-menu-panel a:hover,body>header .nav nav .ws-menu-panel a[aria-current=page]{background:linear-gradient(90deg,#812b30,#492029)!important;color:#ffd29b!important}
+body>header .nav nav .ws-login-link{white-space:nowrap!important}
+/* decorative ember particles, behind content */
+.ws-ember-field{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;contain:layout paint;opacity:.82}
+.ws-ember{position:absolute;bottom:-25px;left:var(--x);width:var(--size);height:var(--size);border-radius:50%;background:#ff9a42;box-shadow:0 0 7px 2px #f66c2e8c,0 0 20px #c32b1e44;opacity:0;animation:ws-ember-rise var(--duration) linear var(--delay) infinite;will-change:transform,opacity}
+@keyframes ws-ember-rise{0%{transform:translate3d(0,0,0) scale(.6);opacity:0}12%{opacity:var(--alpha)}70%{opacity:calc(var(--alpha) * .7)}100%{transform:translate3d(var(--drift),-105vh,0) scale(.15);opacity:0}}
+body>header,body>main,body>footer,body>.shell{position:relative;z-index:1}
+body>header{position:sticky;z-index:500}
+body:not(:has(.shell)) .hero{background:radial-gradient(ellipse at 50% 35%,#8d271d8c,transparent 53%),radial-gradient(ellipse at 18% 85%,#4c131d9e,transparent 55%),linear-gradient(115deg,#0c080d,#2a0f18 52%,#0a090d)!important}
+body:not(:has(.shell)) .hero .hero-wappen{filter:drop-shadow(0 0 28px #e14b32aa) drop-shadow(0 20px 36px #000a)}
+body:not(:has(.shell)) .page-hero{background:radial-gradient(ellipse at 20% 48%,#72211d9c,transparent 58%),linear-gradient(115deg,#2a0f17,#100b10 80%)!important}
+body:not(:has(.shell)) .page-hero::after{opacity:.28!important;filter:drop-shadow(0 0 25px #c43829)!important}
+body:not(:has(.shell)) .card,body:not(:has(.shell)) .step,body:not(:has(.shell)) .signup-panel{border-color:#81413d!important;box-shadow:0 14px 40px #0009,inset 0 1px #ffbd7630!important}
+body:not(:has(.shell)) .card:hover{border-color:#d36b45!important;box-shadow:0 17px 44px #000a,0 0 25px #d044282b!important}
+body:not(:has(.shell)) footer{background:linear-gradient(180deg,#1a0d12,#09080c)!important}
+body.ws-entering main{animation:ws-page-enter .42s ease-out both}
+@keyframes ws-page-enter{from{opacity:.45;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:760px){body>header .nav nav{display:none;flex-direction:column;align-items:stretch;width:100%;gap:3px}body>header .nav nav.open{display:flex}body>header .nav nav .ws-menu{width:100%}body>header .nav nav .ws-menu-trigger{width:100%;justify-content:space-between!important}body>header .nav nav .ws-menu-panel{position:static!important;top:auto!important;left:auto!important;max-width:100%!important;width:100%!important;box-sizing:border-box;margin:4px 0 10px!important}body>header .nav nav .ws-login-link{align-self:stretch!important;text-align:center} .ws-ember-field{opacity:.5}}
+@media(prefers-reduced-motion:reduce){.ws-ember{animation:none!important;display:none!important}body.ws-entering main{animation:none!important}}

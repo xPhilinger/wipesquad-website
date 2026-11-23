@@ -1,5 +1,8 @@
-WIPESQUAD Website mit Raid-Anmeldeseite
-Alle Dateien (inklusive assets) in das bestehende GitHub-Repository wipesquad-website hochladen, Commit changes. GitHub Pages aktualisiert die Seite.
-Neue Seite: /anmeldung.html
-Die Auswahl ist eine Vorbereitung; die eigentliche Anmeldung und Live-Speicherung erfolgt im Discord-Bot.
-Datenschutz- und Impressums-Platzhalter vor Veröffentlichung ergänzen.
+WIPESQUAD Horde Epic V3 – Glut & Navigation
+
+1. ZIP entpacken.
+2. Für das Update nur horde-epic.css und site-ui.js im GitHub-Repository ersetzen.
+3. GitHub Pages Deployment abwarten, anschließend Strg+F5.
+4. Dropdown-Menüs auf Desktop und Mobilgeräten prüfen.
+
+Alle übrigen Dateien sind als vollständige Sicherung der V2-Webseite enthalten. Bot-/OAuth-/API-Dateien wurden nicht geändert.

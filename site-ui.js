@@ -50,6 +50,23 @@
  if(adminSidebar&&!adminSidebar.querySelector('.ws-admin-login')){
    const a=document.createElement('a');a.href='mitglied.html';a.className='ws-admin-login';a.textContent='↗ Mitgliederportal';adminSidebar.prepend(a);
  }
+
+ // Subtle decorative embers; deterministic positions, no external assets or libraries.
+ if(!document.querySelector('.ws-ember-field') && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+   const field=document.createElement('div');field.className='ws-ember-field';field.setAttribute('aria-hidden','true');
+   for(let i=0;i<28;i++){
+     const p=document.createElement('i');p.className='ws-ember';
+     p.style.setProperty('--x',((i*37+13)%97+1)+'%');
+     p.style.setProperty('--size',(1.4+(i%4)*.8)+'px');
+     p.style.setProperty('--duration',(12+(i*7)%15)+'s');
+     p.style.setProperty('--delay',(-((i*11)%25))+'s');
+     p.style.setProperty('--drift',(-65+(i*29)%130)+'px');
+     p.style.setProperty('--alpha',(.22+(i%5)*.075).toFixed(2));
+     field.appendChild(p);
+   }
+   document.body.prepend(field);
+ }
+ document.body.classList.add('ws-entering');
  document.body.classList.add('ws-ready');
  document.addEventListener('click',event=>{
    const a=event.target.closest('a[href]');
