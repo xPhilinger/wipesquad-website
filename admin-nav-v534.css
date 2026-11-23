@@ -1,0 +1,24 @@
+/* WIPESQUAD V5.34: dashboard-aligned command navigation */
+body{background:radial-gradient(ellipse at 50% 110%,rgba(103,34,36,.26),transparent 65%),#0d0b10!important}
+.shell{display:block;min-height:100vh}
+.sidebar{position:relative;top:auto;height:auto;display:flex;flex-direction:column;padding:0 max(22px,calc((100vw - 1280px)/2));background:linear-gradient(180deg,#21151c 0%,#150f15 100%);border:0;border-bottom:1px solid rgba(187,97,86,.32);box-shadow:0 14px 45px rgba(0,0,0,.22);z-index:5}
+.sidebar .brand{padding:17px 5px 12px;gap:11px}
+.sidebar .brand-mark{width:39px;height:39px;font-size:20px}
+.sidebar .brand strong{font-size:15px}.sidebar .brand small{font-size:9px}
+.side-nav{display:flex;align-items:center;flex-wrap:wrap;gap:6px;padding:0 0 13px}
+.side-nav .ws-side-group{margin:0 5px 0 12px;padding:0;border:0;white-space:nowrap;font-size:9px;letter-spacing:.13em}
+.side-nav .ws-side-group:first-child{margin-left:0}
+.side-nav button{flex:0 0 auto;min-height:37px;border-radius:8px;padding:8px 11px;font-size:12px;gap:7px;white-space:nowrap}
+.side-nav button span{width:auto;font-size:15px}
+.side-nav button:hover{background:#35202a;border-color:rgba(184,91,91,.24)}
+.side-nav button.active{background:linear-gradient(135deg,#91323e,#67252e);border-color:#b45a57;color:#fff;box-shadow:0 2px 12px #0004}
+.sidebar .side-bottom{display:flex;flex-wrap:wrap;align-items:center;gap:15px;margin:0;padding:0 0 12px;border:0}
+.sidebar .side-bottom a{font-size:11px;color:#c9aa9d}.sidebar .version{margin-left:auto;font-size:9px}
+.main{max-width:1280px;margin:0 auto;padding:34px 24px 45px}
+.topbar{padding-bottom:18px}.panel{background:linear-gradient(145deg,#21171d,#171319);border-color:#52313c}
+.ws-ember-field{position:fixed!important;inset:0!important;pointer-events:none!important;z-index:1!important;opacity:.85!important}
+.ws-firelight{pointer-events:none!important;z-index:0!important}
+.shell,.toast{position:relative;z-index:2}.toast{position:fixed;z-index:20}
+@media(max-width:1100px){.sidebar{padding:0 20px}.side-nav .ws-side-group{width:100%;margin:10px 0 0}.side-nav{gap:5px}.side-nav button{font-size:11px}}
+@media(max-width:750px){.sidebar{position:relative;padding:0 12px}.sidebar .brand{padding:12px 2px}.side-nav{display:flex;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:thin;padding-bottom:12px}.side-nav .ws-side-group{display:none}.side-nav button{flex-shrink:0}.sidebar .side-bottom{display:flex;padding-bottom:10px}.sidebar .version{display:none}.main{padding:20px 14px}.topbar{gap:12px}}
+@media(prefers-reduced-motion:reduce){.ws-ember-field{display:none!important}}
