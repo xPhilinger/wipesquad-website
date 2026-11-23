@@ -357,3 +357,47 @@ body.portal-page > main > section.panel {
 }
 body.portal-page > main > p {position:relative!important;z-index:1!important}
 /* Preserve the original ember/glow visual strength from V3.6. */
+
+/* V4.3 – Portal without rectangular compositing backdrop.
+   Keep the whole portal above the effects, but avoid an isolated main
+   compositing layer that creates a dark rectangle against screen-blended embers. */
+body.portal-page > main {
+  position:relative!important;
+  z-index:25!important;
+  isolation:auto!important;
+  background:none!important;
+  background-color:transparent!important;
+  background-image:none!important;
+  box-shadow:none!important;
+  border:0!important;
+  outline:0!important;
+  filter:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+  transform:none!important;
+  opacity:1!important;
+}
+body.portal-page > main::before,
+body.portal-page > main::after {
+  content:none!important;
+  display:none!important;
+}
+/* Individual portal panels are the only opaque surfaces; their children
+   are above the ambient particles, while the surrounding space stays open. */
+body.portal-page > main > .panel,
+body.portal-page > main > section.panel {
+  position:relative!important;
+  z-index:26!important;
+  isolation:auto!important;
+  background:linear-gradient(155deg,rgba(42,24,31,.97),rgba(18,15,21,.97))!important;
+  box-shadow:0 16px 42px rgba(0,0,0,.32),inset 0 1px rgba(255,185,118,.10)!important;
+}
+body.portal-page > main > p {position:relative!important;z-index:26!important}
+/* Crest remains a soft watermark behind the portal and below its content. */
+body.portal-page::before {
+  background-position:center 46%!important;
+  background-size:min(55vw,500px) auto!important;
+  opacity:.16!important;
+  z-index:0!important;
+}
+@media(max-width:760px){body.portal-page::before{background-size:82vw auto!important}}
