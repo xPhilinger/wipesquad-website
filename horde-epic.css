@@ -267,3 +267,68 @@ body>.shell,body>footer .wrap{position:relative!important;z-index:5!important}
  -webkit-mask-repeat:no-repeat!important;mask-repeat:no-repeat!important;
 }
 .ws-firelight{-webkit-mask-image:none!important;mask-image:none!important}
+
+
+/* V4.1 – ECHTE EBENEN, KEINE MASKEN ODER SCHWARZEN KACHELN.
+   Hintergrund der Seite < Feuer/Glut < Inhaltscontainer.
+   Entscheidend: main darf KEINEN eigenen Stacking Context erzeugen.
+   Die alte Page-Enter-Animation nutzte transform + fill-mode:both und
+   sperrte damit sämtliche Kinder unterhalb des fixed Ember-Layers ein. */
+.ws-ember-field{
+ position:fixed!important;inset:0!important;z-index:3!important;
+ opacity:.93!important;pointer-events:none!important;
+ -webkit-mask-image:none!important;mask-image:none!important;
+ mix-blend-mode:screen!important;
+}
+.ws-firelight{
+ position:fixed!important;inset:0!important;z-index:2!important;
+ pointer-events:none!important;-webkit-mask-image:none!important;mask-image:none!important;
+}
+/* Kein transform/opacity/contain/isolation auf main: sonst entsteht ein
+   unüberwindbarer Stacking Context, selbst wenn Kinder z-index:9999 haben. */
+body>main,body.ws-entering>main,body.ws-leaving>main{
+ position:relative!important;z-index:auto!important;isolation:auto!important;
+ transform:none!important;filter:none!important;opacity:1!important;
+ animation:none!important;contain:none!important;
+}
+body:not(:has(.shell)) main>.hero,
+body:not(:has(.shell)) main>.page-hero,
+body:not(:has(.shell)) main>section{
+ position:relative!important;z-index:auto!important;isolation:auto!important;
+ transform:none!important;filter:none!important;
+}
+/* Nur tatsächliche Inhaltsgruppen nach vorn. Die Abschnitts-Hintergründe
+   bleiben hinter den Partikeln, daher Glut auch zwischen den Karten sichtbar. */
+body>main .hero-content,
+body>main .page-hero>.wrap,
+body>main>section>.wrap,
+body>main>section>.container,
+body>main>.wrap,
+body>main>.container,
+body>main>.dashboard-wrap,
+body>main>.raid-container,
+body>main>.raid-content,
+body>main>.content,
+body>main>.panel,
+body>main>.card,
+body>main>.grid,
+body>main>form,
+body>main>.auth-container,
+body>main>.login-container,
+body>main>.portal-container,
+body>.shell,
+body>footer>.wrap{
+ position:relative!important;z-index:20!important;
+}
+/* Karten sind selbst deckend und überdecken Partikel zuverlässig. */
+body>main .card,body>main .step,body>main .panel,
+body>main .raid-card,body>main .raid-panel,
+body>main .raid-role-card,body>main .raid-summary,
+body>main .raid-overview,body>main .signup-panel,
+body>main .raid-full,body>main .raid-list{
+ position:relative!important;z-index:21!important;
+}
+body>header{position:relative!important;z-index:500!important}
+body>footer{position:relative!important;z-index:auto!important;isolation:auto!important}
+/* Verhindert das Übermalen des Menüs und respektiert Bewegungsreduktion. */
+@media(prefers-reduced-motion:reduce){.ws-ember-field{display:none!important}}
