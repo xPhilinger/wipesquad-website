@@ -18,7 +18,6 @@
          <a href="dashboard.html">Live-Dashboard</a><a href="anmeldung.html">Raid-Anmeldung</a><a href="raidbot.html">Raid Manager</a>
        </div>
      </div>
-     <a class="ws-member-link" href="mitglied.html">Mitgliederbereich</a>
      <a class="ws-login-link" href="login.html">Login</a>`;
    // Both existing login methods use sessionStorage on this origin.
    // Keep credentials where the account system expects them; never copy tokens into HTML.
