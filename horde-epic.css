@@ -214,3 +214,47 @@ body>header{z-index:500!important}
 body:not(:has(.shell)) .raid-page{background:radial-gradient(ellipse 70% 35% at 50% 100%,#30121a 0%,#130c11 55%,#0d0b0e 100%)!important}
 body:not(:has(.shell)) main:not(.raid-page){background:radial-gradient(ellipse 65% 25% at 50% 100%,#281016 0%,#0c0a0e 80%)!important}
 @media(prefers-reduced-motion:reduce){.ws-firelight{animation:none!important}.ws-ember-field{display:none!important}}
+
+
+/* V3.6 – larger embers, warm firelight, no flame tongues.
+   Decorative effects occupy layer 2; controls and content occupy layer 5+. */
+.ws-flames,.ws-flame-tongue{display:none!important}
+.ws-firelight{
+ position:fixed!important;inset:0!important;z-index:2!important;
+ pointer-events:none!important;opacity:.92!important;filter:none!important;
+ mix-blend-mode:screen!important;
+ background:
+  radial-gradient(ellipse 75% 34% at 50% 110%,rgba(242,75,25,.37) 0%,rgba(168,39,19,.22) 38%,transparent 83%),
+  radial-gradient(ellipse 38% 28% at 8% 102%,rgba(252,113,32,.26),transparent 85%),
+  radial-gradient(ellipse 38% 28% at 93% 103%,rgba(236,65,25,.27),transparent 85%)!important;
+ animation:ws-v36-glow 6.5s ease-in-out infinite alternate!important;
+}
+.ws-firelight::before,.ws-firelight::after{
+ content:""!important;position:absolute!important;bottom:-10vh!important;
+ width:65vw!important;height:48vh!important;border-radius:50%!important;
+ opacity:.72!important;filter:blur(52px)!important;
+ background:radial-gradient(ellipse at center,rgba(248,100,36,.29),rgba(173,36,22,.13) 43%,transparent 76%)!important;
+ animation:ws-v36-sway 10s ease-in-out infinite alternate!important;
+}
+.ws-firelight::before{left:-12vw!important}
+.ws-firelight::after{right:-12vw!important;left:auto!important;animation-delay:-5s!important}
+.ws-ember-field{z-index:3!important;opacity:.93!important;mix-blend-mode:screen!important}
+.ws-ember{
+ width:var(--size)!important;height:var(--size)!important;
+ background:radial-gradient(circle at 35% 35%,#ffe4a0 0%,#ff9c40 46%,#e44a22 100%)!important;
+ box-shadow:0 0 8px 2px rgba(255,130,46,.55),0 0 19px 3px rgba(226,65,27,.22)!important;
+}
+/* Text, controls, dashboard and portal content remain above effects. */
+body>header{position:relative!important;z-index:500!important}
+body>main{position:relative!important;z-index:auto!important}
+body>main .wrap,body>main .container,body>main .hero-content,
+body>main .shell,body>main .panel,body>main .card,
+body>main .raid-toolbar,body>main .raid-summary,body>main .raid-section-heading,
+body>main .raid-roles,body>main .raid-grid,body>main .raid-bottom,
+body>main .raid-privacy,body>main .raid-list,body>main .raid-full,
+body>main form,body>main button,body>main a,
+body>.shell,body>footer .wrap{position:relative!important;z-index:5!important}
+@keyframes ws-v36-glow{0%{opacity:.72;transform:scale(1)}100%{opacity:1;transform:scale(1.035)}}
+@keyframes ws-v36-sway{0%{transform:translateX(-2vw) scale(.94)}100%{transform:translateX(3vw) scale(1.07)}}
+@media(max-width:760px){.ws-firelight{opacity:.7!important}.ws-ember-field{opacity:.78!important}}
+@media(prefers-reduced-motion:reduce){.ws-firelight,.ws-firelight::before,.ws-firelight::after{animation:none!important}.ws-ember-field{display:none!important}}
