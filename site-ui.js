@@ -71,51 +71,40 @@
 
  }
 
- // V3.9: Cut transparent holes in the decorative overlay exactly where visible
- // foreground cards and text appear. This is independent of CSS stacking contexts
- // and continues to work for dynamically rendered raid-dashboard content.
+ // V4.0: soft, feathered occlusion ONLY for glowing particles.
+ // This prevents square black holes while leaving the firelight uninterrupted.
  (()=>{
-   const layers=[document.querySelector('.ws-ember-field'),document.querySelector('.ws-firelight')].filter(Boolean);
-   if(!layers.length)return;
-   const selectors=[
-     '.card','.step','.panel','.raid-panel','.raid-role','.raid-role-card',
-     '.raid-summary','.raid-overview','.raid-summary-side','.raid-full',
-     '.raid-list','.raid-toolbar','.raid-bottom','.raid-privacy',
-     '.ws-menu-panel','article','details','form','input','select','textarea',
-     'button','.btn','.badge','h1','h2','h3','h4','h5','h6','p','li','label',
-     '.eyebrow','.section-title','.hero-wappen','img','a'
-   ].join(',');
-   let pending=false,last=0;
-   const update=()=>{
-     pending=false;last=performance.now();
+   const layer=document.querySelector('.ws-ember-field');
+   if(!layer)return;
+   const selectors='.card,.step,.panel,.raid-panel,.raid-role,.raid-role-card,.raid-summary,.raid-overview,.raid-summary-side,.raid-full,.raid-list,.raid-toolbar,.raid-bottom,.raid-privacy,.ws-menu-panel,article,details,form,.btn,button,input,select,textarea,.hero-wappen';
+   let scheduled=false;
+   const render=()=>{
+     scheduled=false;
      const w=innerWidth,h=innerHeight;
      if(w<1||h<1)return;
-     const scale=.5,canvas=document.createElement('canvas');
-     canvas.width=Math.max(1,Math.round(w*scale));canvas.height=Math.max(1,Math.round(h*scale));
-     const ctx=canvas.getContext('2d');if(!ctx)return;
-     ctx.fillStyle='#fff';ctx.fillRect(0,0,canvas.width,canvas.height);
-     const nodes=document.querySelectorAll(selectors);
-     for(const el of nodes){
-       if(el.closest('.ws-ember-field,.ws-firelight,script,style'))continue;
-       const style=getComputedStyle(el);
-       if(style.display==='none'||style.visibility==='hidden'||Number(style.opacity)===0)continue;
-       const r=el.getBoundingClientRect();
-       if(r.width<2||r.height<2||r.bottom<0||r.top>h||r.right<0||r.left>w)continue;
-       // Skip page-sized containers: only foreground objects should occlude.
-       if(r.width>w*.91&&r.height>h*.65)continue;
-       const pad=el.matches('h1,h2,h3,h4,h5,h6,p,li,label,.eyebrow,a')?3:5;
-       ctx.clearRect(Math.max(0,(r.left-pad)*scale),Math.max(0,(r.top-pad)*scale),
-         Math.min(canvas.width,(r.right+pad)*scale)-Math.max(0,(r.left-pad)*scale),
-         Math.min(canvas.height,(r.bottom+pad)*scale)-Math.max(0,(r.top-pad)*scale));
+     const scale=.5,cv=document.createElement('canvas');
+     cv.width=Math.ceil(w*scale);cv.height=Math.ceil(h*scale);
+     const ctx=cv.getContext('2d');if(!ctx)return;
+     ctx.fillStyle='#fff';ctx.fillRect(0,0,cv.width,cv.height);
+     for(const el of document.querySelectorAll(selectors)){
+       if(el.closest('.ws-ember-field,.ws-firelight'))continue;
+       const s=getComputedStyle(el),r=el.getBoundingClientRect();
+       if(s.display==='none'||s.visibility==='hidden'||Number(s.opacity)===0||r.width<4||r.height<4||r.bottom<0||r.top>h||r.right<0||r.left>w)continue;
+       if(r.width>w*.9&&r.height>h*.65)continue;
+       // Feather at the perimeter; never create hard rectangular cut-outs.
+       const feather=Math.min(32,Math.max(14,Math.min(r.width,r.height)*.16));
+       const x=r.left*scale,y=r.top*scale,ww=r.width*scale,hh=r.height*scale,f=feather*scale;
+       ctx.save();ctx.globalCompositeOperation='destination-out';
+       ctx.filter=`blur(${f}px)`;ctx.fillStyle='#fff';
+       ctx.fillRect(x+f,y+f,Math.max(0,ww-2*f),Math.max(0,hh-2*f));
+       ctx.restore();
      }
-     const mask='url("'+canvas.toDataURL('image/png')+'")';
-     for(const layer of layers)layer.style.setProperty('--ws-occlusion-mask',mask);
+     layer.style.setProperty('--ws-soft-ember-mask',`url("${cv.toDataURL('image/png')}")`);
    };
-   const schedule=()=>{if(pending)return;pending=true;requestAnimationFrame(update)};
+   const schedule=()=>{if(scheduled)return;scheduled=true;requestAnimationFrame(render)};
    addEventListener('scroll',schedule,{passive:true});addEventListener('resize',schedule,{passive:true});
-   const main=document.querySelector('main')||document.body;
-   const observer=new MutationObserver(schedule);
-   observer.observe(main,{childList:true,subtree:true,characterData:true});
+   const root=document.querySelector('main')||document.body;
+   new MutationObserver(schedule).observe(root,{subtree:true,childList:true,characterData:true});
    schedule();
  })();
 

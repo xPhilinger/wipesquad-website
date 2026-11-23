@@ -259,19 +259,11 @@ body>.shell,body>footer .wrap{position:relative!important;z-index:5!important}
 @media(max-width:760px){.ws-firelight{opacity:.7!important}.ws-ember-field{opacity:.78!important}}
 @media(prefers-reduced-motion:reduce){.ws-firelight,.ws-firelight::before,.ws-firelight::after{animation:none!important}.ws-ember-field{display:none!important}}
 
-
-/* V3.9 – viewport-aware occlusion: the visual effects retain V3.6 intensity
-   but are masked wherever actual text, buttons or opaque cards are painted.
-   No fragile stacking-context changes to main, sections or dashboard. */
-.ws-ember-field,.ws-firelight{
-  z-index:12!important;
-  pointer-events:none!important;
-  -webkit-mask-image:var(--ws-occlusion-mask,none)!important;
-  mask-image:var(--ws-occlusion-mask,none)!important;
-  -webkit-mask-size:100% 100%!important;
-  mask-size:100% 100%!important;
-  -webkit-mask-repeat:no-repeat!important;
-  mask-repeat:no-repeat!important;
+/* V4.0 – no hard rectangular mask; particles fade gently behind cards. */
+.ws-ember-field{
+ -webkit-mask-image:var(--ws-soft-ember-mask,none)!important;
+ mask-image:var(--ws-soft-ember-mask,none)!important;
+ -webkit-mask-size:100% 100%!important;mask-size:100% 100%!important;
+ -webkit-mask-repeat:no-repeat!important;mask-repeat:no-repeat!important;
 }
-body>header{z-index:500!important}
-/* Keep dropdown and interactive content unaffected by masks. */
+.ws-firelight{-webkit-mask-image:none!important;mask-image:none!important}
