@@ -67,3 +67,11 @@ html body.portal-page > main.ws-member-dashboard {
 /* When the account panel is hidden, put the characters in the first column. */
 body:not(.account-logged) .ws-member-dashboard .ws-discord-characters{grid-column:1;grid-row:1}
 @media(max-width:860px){.ws-member-dashboard .ws-account-hint,body:not(.account-logged) .ws-member-dashboard .ws-discord-characters{grid-column:1;grid-row:auto}}
+
+/* V3: Dashboard always visible; protected forms only for account sessions. */
+.ws-member-dashboard #ws-account-required[hidden],.ws-member-dashboard #ws-apply-required[hidden]{display:none!important}
+.ws-member-dashboard #ws-account-required,.ws-member-dashboard #ws-apply-required{padding:18px;margin:16px 0;border:1px solid rgba(210,123,95,.38);background:rgba(75,24,30,.24);border-radius:10px;line-height:1.65}
+body:not(.account-logged) .ws-member-dashboard .ws-profile{grid-column:1;grid-row:1}
+body:not(.account-logged) .ws-member-dashboard .ws-apply{grid-column:2;grid-row:1 / span 2}
+body:not(.account-logged) .ws-member-dashboard .ws-discord-characters{grid-column:1;grid-row:2}
+@media(max-width:860px){body:not(.account-logged) .ws-member-dashboard .ws-profile,body:not(.account-logged) .ws-member-dashboard .ws-apply,body:not(.account-logged) .ws-member-dashboard .ws-discord-characters{grid-column:1;grid-row:auto}}
