@@ -54,3 +54,38 @@ body.portal-page main input,body.portal-page main select{border-color:#70434a}
  body.portal-page::before{background-size:85vw auto}
 }
 @media(prefers-reduced-motion:reduce){.ws-menu.is-open .ws-menu-panel{animation:none}body:not(:has(.shell)) .card{transition:none}}
+
+
+/* EPIC V2 – zentriertes Wappen, Feuerlicht und durchgängige Horde-Ästhetik */
+:root { --ws-gold:#f5bf73; --ws-fire:#f05b38; }
+body:not(:has(.shell)) .hero {min-height:680px;isolation:isolate;background:radial-gradient(ellipse at 50% 38%,#75251c88 0%,#35131b80 35%,transparent 68%),linear-gradient(125deg,#0b090d,#281017 50%,#0b090d);}
+body:not(:has(.shell)) .hero:before {background:repeating-linear-gradient(117deg,transparent 0 115px,#f38a3011 116px 118px);opacity:.8;}
+body:not(:has(.shell)) .hero:after {height:125px;background:linear-gradient(transparent,#09090d)}
+body:not(:has(.shell)) .hero .hero-content {width:100%;max-width:1160px;display:flex;flex-direction:column;align-items:center;text-align:center;padding:78px 24px 128px;}
+body:not(:has(.shell)) .hero .eyebrow {text-align:center;letter-spacing:.24em;color:#f7c77f;text-shadow:0 0 16px #a52e20}
+body:not(:has(.shell)) .hero .hero-wappen {width:min(100%,510px);height:auto;max-height:470px;object-fit:contain;margin:14px auto 12px;display:block;filter:drop-shadow(0 0 25px #dc3d287a) drop-shadow(0 14px 28px #0009);animation:ws-wappen-rise .8s ease-out both,ws-wappen-glow 5s ease-in-out 1s infinite alternate;}
+body:not(:has(.shell)) .hero .lead {margin:4px auto 0;text-align:center;max-width:700px;font-size:18px;color:#f2dfd7;text-shadow:0 2px 10px #000}
+body:not(:has(.shell)) .hero .actions {justify-content:center;margin-top:28px}
+body:not(:has(.shell)) .page-hero {isolation:isolate;min-height:340px;background:radial-gradient(ellipse at 22% 50%,#6e2025aa,transparent 55%),linear-gradient(105deg,#2d1019,#0c090e 80%);border-bottom:1px solid #8b343b;box-shadow:inset 0 -45px 55px #08070a55;}
+body:not(:has(.shell)) .page-hero:before {content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(118deg,transparent 0 125px,#ed5d2910 126px 128px)}
+body:not(:has(.shell)) .page-hero:after {background-position:89% 50%;background-size:min(25vw,310px) auto;opacity:.24;filter:drop-shadow(0 0 18px #dc3827)}
+body:not(:has(.shell)) .page-hero h1 {font-size:clamp(36px,5vw,66px);letter-spacing:.025em;text-shadow:0 3px 22px #000,0 0 35px #b3333330}
+body:not(:has(.shell)) .page-hero .eyebrow {color:#f3b66e}
+body:not(:has(.shell)) .section-title {text-shadow:0 3px 20px #0006}
+body:not(:has(.shell)) section {border-color:#60303a}
+body:not(:has(.shell)) .card,body:not(:has(.shell)) .step {position:relative;overflow:hidden;border-color:#774047;background:linear-gradient(150deg,#321c23,#181015 72%);box-shadow:0 16px 40px #0006,inset 0 1px #f1ad7230}
+body:not(:has(.shell)) .card:before,body:not(:has(.shell)) .step:after {content:"";position:absolute;top:0;left:18px;width:66px;height:2px;background:linear-gradient(90deg,#ffb56a,#a62e35);box-shadow:0 0 15px #ed703877}
+body:not(:has(.shell)) .card h3 {color:#f4c184}
+body:not(:has(.shell)) .btn:not(.secondary) {background:linear-gradient(135deg,#c64037,#84202a);border-color:#ef7958;box-shadow:0 5px 25px #b5313544,inset 0 1px #ffc28b55}
+body:not(:has(.shell)) .btn:hover {box-shadow:0 8px 28px #c84d3c66;transform:translateY(-2px)}
+body:not(:has(.shell)) .stripe {background:radial-gradient(ellipse at center,#421b22,#180d12 70%)}
+body:not(:has(.shell)) footer {box-shadow:inset 0 1px #b24e4438}
+body.portal-page {background:radial-gradient(ellipse at 50% 18%,#401923,#0b090d 74%)}
+body.portal-page main .panel {border-color:#80434b;box-shadow:0 22px 55px #0008,inset 0 1px #f3ad6930}
+body.portal-page::before {opacity:.13}
+body>header .ws-menu-panel {border-color:#9b4846;box-shadow:0 20px 50px #000c,0 0 28px #7e202833}
+body>header .ws-menu-trigger:hover {text-shadow:0 0 12px #ed784966}
+@keyframes ws-wappen-rise {from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes ws-wappen-glow {from{filter:drop-shadow(0 0 18px #bc362966) drop-shadow(0 14px 28px #0009)}to{filter:drop-shadow(0 0 35px #e75b3a99) drop-shadow(0 14px 28px #0009)}}
+@media(max-width:760px){body:not(:has(.shell)) .hero{min-height:580px}body:not(:has(.shell)) .hero .hero-content{padding:65px 20px 105px}body:not(:has(.shell)) .hero .hero-wappen{width:min(100%,380px)}body:not(:has(.shell)) .page-hero:after{background-size:155px auto;opacity:.15}body:not(:has(.shell)) .hero .lead{font-size:16px}}
+@media(prefers-reduced-motion:reduce){body:not(:has(.shell)) .hero .hero-wappen{animation:none}}
