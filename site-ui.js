@@ -1,25 +1,64 @@
 
 (() => {
-  const nav = document.querySelector('header .nav nav');
-  if (nav) {
-    nav.querySelectorAll('a[href="login.html"], a[href="/login.html"], .portal-nav-link, .ws-login-link').forEach(a => a.remove());
-    const a = document.createElement('a');
-    a.href = 'login.html'; a.className = 'ws-login-link'; a.textContent = 'Login';
-    nav.appendChild(a);
-  }
-  const adminSidebar = document.querySelector('.sidebar .side-bottom');
-  if (adminSidebar && !adminSidebar.querySelector('.ws-admin-login')) {
-    const a=document.createElement('a');a.href='mitglied.html';a.className='ws-admin-login';a.textContent='↗ Mitgliederportal';
-    adminSidebar.prepend(a);
-  }
-  document.body.classList.add('ws-ready');
-  document.addEventListener('click', (event) => {
-    const a = event.target.closest('a[href]');
-    if (!a || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || a.target === '_blank' || a.hasAttribute('download')) return;
-    const url = new URL(a.href, location.href);
-    if (url.origin !== location.origin || url.pathname === location.pathname && url.hash || !url.pathname.endsWith('.html')) return;
-    event.preventDefault();
-    document.body.classList.add('ws-leaving');
-    setTimeout(() => { location.href = url.href; }, 180);
-  });
+ const header=document.querySelector('body > header');
+ const nav=header?.querySelector('.nav nav');
+ if(nav){
+   nav.setAttribute('aria-label','Hauptnavigation');
+   nav.innerHTML=`
+     <a class="ws-home-link" href="index.html">Start</a>
+     <div class="ws-menu">
+       <button class="ws-menu-trigger" type="button" aria-expanded="false" aria-haspopup="true">Die Gilde <span aria-hidden="true">⌄</span></button>
+       <div class="ws-menu-panel">
+         <a href="gilde.html">Über WIPESQUAD</a><a href="raidkader.html">Raidkader</a><a href="kontakt.html">Kontakt</a>
+       </div>
+     </div>
+     <div class="ws-menu">
+       <button class="ws-menu-trigger" type="button" aria-expanded="false" aria-haspopup="true">Raids & Events <span aria-hidden="true">⌄</span></button>
+       <div class="ws-menu-panel">
+         <a href="dashboard.html">Live-Dashboard</a><a href="anmeldung.html">Raid-Anmeldung</a><a href="raidbot.html">Raid Manager</a>
+       </div>
+     </div>
+     <a class="ws-login-link" href="login.html">Login</a>`;
+   const menus=[...nav.querySelectorAll('.ws-menu')];
+   const closeAll=(except)=>menus.forEach(m=>{
+     if(m!==except){m.classList.remove('is-open');m.querySelector('button').setAttribute('aria-expanded','false');}
+   });
+   menus.forEach(m=>{
+     const btn=m.querySelector('button');
+     btn.addEventListener('click',()=>{
+       const open=!m.classList.contains('is-open');closeAll(m);
+       m.classList.toggle('is-open',open);btn.setAttribute('aria-expanded',String(open));
+     });
+   });
+   document.addEventListener('click',e=>{if(!e.target.closest('.ws-menu'))closeAll();});
+   document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeAll();nav.querySelector('.ws-menu-trigger:focus')?.blur();}});
+   const toggle=header.querySelector('.nav-toggle');
+   if(toggle){
+     // Prevent legacy handler from toggling twice; use a new independent toggle.
+     const replacement=toggle.cloneNode(true);toggle.replaceWith(replacement);
+     replacement.setAttribute('aria-expanded','false');
+     replacement.addEventListener('click',()=>{
+       const open=nav.classList.toggle('open');
+       replacement.setAttribute('aria-expanded',String(open));
+       replacement.textContent=open?'✕ Schließen':'☰ Menü';
+     });
+   }
+   const current=location.pathname.split('/').pop()||'index.html';
+   nav.querySelectorAll('a').forEach(a=>{if(a.getAttribute('href')===current)a.setAttribute('aria-current','page')});
+ }
+ const adminSidebar=document.querySelector('.sidebar .side-bottom');
+ if(adminSidebar&&!adminSidebar.querySelector('.ws-admin-login')){
+   const a=document.createElement('a');a.href='mitglied.html';a.className='ws-admin-login';a.textContent='↗ Mitgliederportal';adminSidebar.prepend(a);
+ }
+ document.body.classList.add('ws-ready');
+ document.addEventListener('click',event=>{
+   const a=event.target.closest('a[href]');
+   if(!a||event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey||a.target==='_blank'||a.hasAttribute('download'))return;
+   const url=new URL(a.href,location.href);
+   if(url.origin!==location.origin||(url.pathname===location.pathname&&url.hash)||!url.pathname.endsWith('.html'))return;
+   event.preventDefault();
+   if(matchMedia('(prefers-reduced-motion: reduce)').matches){location.href=url.href;return;}
+   document.body.classList.add('ws-leaving');
+   setTimeout(()=>{location.href=url.href},170);
+ });
 })();

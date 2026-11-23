@@ -26,3 +26,29 @@ body.ws-leaving main {opacity:0;transform:translateY(7px);transition:opacity .18
 @media(prefers-reduced-motion:reduce){body.ws-ready main{animation:none}body.ws-leaving main{transition:none;transform:none}}
 
 .page-hero {background-image:linear-gradient(100deg,#2d1218ed,#0b0b0ef0),url('assets/wipesquad-wappen.webp');background-position:center,right 8% center;background-repeat:no-repeat;background-size:cover,220px}
+
+/* Dezentes Horde-Wappen hinter dem Login, ohne das Formular zu überdecken */
+body.portal-page:has(#message) {
+  position:relative;
+  min-height:100vh;
+  background:radial-gradient(ellipse at 65% 30%,#3c171c 0%,#150d12 44%,#09090c 78%);
+}
+body.portal-page:has(#message)::before {
+  content:"";
+  position:fixed;
+  inset:80px 0 0;
+  pointer-events:none;
+  z-index:0;
+  background:url("assets/wipesquad-wappen.webp") center 44% / min(56vw,560px) auto no-repeat;
+  opacity:.105;
+  filter:saturate(.85);
+}
+body.portal-page:has(#message) > header,
+body.portal-page:has(#message) > main {position:relative;z-index:1}
+body.portal-page:has(#message) main .panel {
+  background:linear-gradient(145deg,rgba(33,20,25,.92),rgba(17,14,18,.91));
+  backdrop-filter:blur(6px);
+}
+@media(max-width:760px){
+  body.portal-page:has(#message)::before {background-size:88vw auto;background-position:center 35%;opacity:.08}
+}

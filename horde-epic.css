@@ -1,0 +1,56 @@
+
+/* WIPESQUAD – Horde Epic: ein Designsystem für alle öffentlichen Seiten */
+:root{--ws-bg:#09090d;--ws-panel:#1d1419;--ws-border:#66333a;--ws-fire:#d94b37;--ws-gold:#f0bb77}
+body:not(:has(.shell)){background:#09090d;color:#f9eee5}
+body>header{background:rgba(9,8,12,.95);border-bottom:1px solid #6c3039;box-shadow:0 9px 36px #0009}
+body>header .nav{min-height:76px;gap:24px}
+body>header .brand{font-family:Cinzel,serif;color:#fff1df}
+body>header .brand img{filter:drop-shadow(0 0 8px #b32427aa)}
+body>header .nav nav{display:flex;align-items:center;gap:14px}
+body>header .nav nav a,body>header .ws-menu-trigger{font:800 12px Inter,Arial,sans-serif;letter-spacing:.065em;text-transform:uppercase}
+body>header .nav nav a:not(.ws-login-link),body>header .ws-menu-trigger{color:#ead7ce}
+body>header .nav nav a:hover,body>header .ws-menu-trigger:hover{color:var(--ws-gold)}
+.ws-menu{position:relative}
+.ws-menu-trigger{display:flex;align-items:center;gap:8px;border:0;background:transparent;cursor:pointer;padding:12px 10px}
+.ws-menu-trigger span{font-size:18px;color:#f0bb77;line-height:0}
+.ws-menu-panel{position:absolute;top:calc(100% + 8px);left:0;z-index:100;min-width:215px;display:none;padding:9px;border:1px solid #713840;border-radius:11px;background:linear-gradient(155deg,#29181e,#100e12);box-shadow:0 18px 45px #000c}
+.ws-menu.is-open .ws-menu-panel{display:grid;gap:4px;animation:ws-drop .18s ease both}
+.ws-menu-panel a{display:block;padding:12px 13px;border-radius:7px;white-space:nowrap}
+.ws-menu-panel a:hover{background:#62252d;color:#fff!important}
+body>header .nav nav a.ws-login-link{background:linear-gradient(135deg,#b7393e,#7c202c);border:1px solid #c05b5d;padding:11px 22px;color:white!important;box-shadow:0 3px 16px #a62d3555}
+body>header .nav nav a[aria-current=page]:not(.ws-login-link){color:var(--ws-gold)}
+body:not(:has(.shell)) .page-hero{position:relative;overflow:hidden;min-height:310px;padding:88px 0 75px;background:radial-gradient(ellipse at 22% 30%,#5d1924aa,transparent 60%),linear-gradient(105deg,#240f17,#0a090d)}
+body:not(:has(.shell)) .page-hero:after{content:"";position:absolute;inset:0;pointer-events:none;background:url('assets/wipesquad-wappen.webp') no-repeat 89% 50%/min(24vw,280px) auto;opacity:.19;filter:drop-shadow(0 0 18px #b73135)}
+body:not(:has(.shell)) .page-hero .wrap{position:relative;z-index:1}
+body:not(:has(.shell)) .page-hero h1{color:#fff0df;text-shadow:0 3px 20px #000b}
+body:not(:has(.shell)) section{position:relative}
+body:not(:has(.shell)) section:not(.stripe){background:radial-gradient(ellipse at 50% -15%,#28121b66,transparent 65%)}
+body:not(:has(.shell)) .card,body:not(:has(.shell)) .step,body:not(:has(.shell)) .signup-panel,body:not(:has(.shell)) .faq details{background:linear-gradient(155deg,#291a20,#131015);border:1px solid #603139;box-shadow:0 12px 35px #0005;border-radius:12px}
+body:not(:has(.shell)) .card{transition:transform .22s,border-color .22s,box-shadow .22s}
+body:not(:has(.shell)) .card:hover{transform:translateY(-5px);border-color:#b34b4c;box-shadow:0 15px 36px #7e24272b}
+body:not(:has(.shell)) .section-title{color:#fff0e1}
+body:not(:has(.shell)) .eyebrow{color:#efb66f}
+body:not(:has(.shell)) .btn{border-radius:7px;box-shadow:0 5px 20px #a72b2b33}
+body:not(:has(.shell)) footer{background:linear-gradient(180deg,#170d12,#09090c);border-top:1px solid #63313b}
+body:not(:has(.shell)) .hero{background:radial-gradient(ellipse at 75% 45%,#8b281f80,transparent 50%),radial-gradient(ellipse at 16% 90%,#6e1b1b80,transparent 55%),linear-gradient(115deg,#0c0b0e 20%,#25151a 70%,#100b0d)}
+body:not(:has(.shell)) .hero-wappen{max-height:440px;filter:drop-shadow(0 0 30px #d84a3a66)}
+body.portal-page{background:radial-gradient(ellipse at 60% 25%,#421722,#09090d 72%)}
+body.portal-page::before{content:"";position:fixed;inset:76px 0 0;z-index:0;pointer-events:none;background:url('assets/wipesquad-wappen.webp') center 43%/min(55vw,560px) auto no-repeat;opacity:.10}
+body.portal-page>header,body.portal-page>main{position:relative;z-index:1}
+body.portal-page main .panel{background:linear-gradient(155deg,#29181fe8,#110f15eb);border:1px solid #67353e;box-shadow:0 20px 55px #0007;border-radius:14px}
+body.portal-page main{padding-top:70px!important}
+body.portal-page main button{background:linear-gradient(135deg,#b93e40,#78252e);border:1px solid #c75c5e}
+body.portal-page main input,body.portal-page main select{border-color:#70434a}
+@keyframes ws-drop{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:760px){
+ body>header .nav nav{display:none;flex-basis:100%;flex-direction:column;align-items:stretch;gap:3px;padding:0 0 18px}
+ body>header .nav nav.open{display:flex}
+ body>header .ws-menu{width:100%}
+ body>header .ws-menu-trigger{width:100%;justify-content:space-between;padding:14px 10px}
+ .ws-menu-panel{position:static;min-width:0;margin:0 0 8px 12px;box-shadow:none}
+ body>header .nav nav a.ws-login-link{align-self:stretch;text-align:center}
+ body:not(:has(.shell)) .page-hero:after{background-size:160px;opacity:.12;background-position:94% 50%}
+ body:not(:has(.shell)) .page-hero{padding:70px 0 55px;min-height:250px}
+ body.portal-page::before{background-size:85vw auto}
+}
+@media(prefers-reduced-motion:reduce){.ws-menu.is-open .ws-menu-panel{animation:none}body:not(:has(.shell)) .card{transition:none}}
