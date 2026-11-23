@@ -57,3 +57,13 @@ html body.portal-page > main.ws-member-dashboard {
 .ws-member-dashboard .ws-discord-characters label{display:block;margin:14px 0 8px}
 .ws-member-dashboard .ws-discord-characters input,.ws-member-dashboard .ws-discord-characters select{width:100%;box-sizing:border-box;min-height:42px}
 @media(max-width:860px){html body.portal-page > main.ws-member-dashboard{width:min(700px,calc(100vw - 28px))!important;grid-template-columns:minmax(0,1fr)!important;margin:24px auto 60px!important}.ws-member-dashboard .ws-profile,.ws-member-dashboard .ws-apply,.ws-member-dashboard .ws-discord-characters{grid-column:1;grid-row:auto}}
+
+/* V2: Discord-only visitors get a clear route to the application form. */
+.ws-member-dashboard #account-login-hint[hidden]{display:none!important}
+.ws-member-dashboard .ws-account-hint{grid-column:2;grid-row:1 / span 2}
+.ws-member-dashboard .ws-account-hint p{line-height:1.7;color:#e0cec5}
+.ws-member-dashboard .ws-hint-button{display:inline-flex;align-items:center;justify-content:center;padding:13px 18px;margin-top:12px;border-radius:8px;background:#94323c;color:#fff;text-decoration:none;font-weight:750;border:1px solid #c45d61}
+.ws-member-dashboard .ws-hint-button:hover{background:#b83b46}
+/* When the account panel is hidden, put the characters in the first column. */
+body:not(.account-logged) .ws-member-dashboard .ws-discord-characters{grid-column:1;grid-row:1}
+@media(max-width:860px){.ws-member-dashboard .ws-account-hint,body:not(.account-logged) .ws-member-dashboard .ws-discord-characters{grid-column:1;grid-row:auto}}
