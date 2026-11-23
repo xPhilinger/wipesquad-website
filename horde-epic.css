@@ -163,3 +163,29 @@ body.ws-entering main{animation:ws-page-enter .42s ease-out both}
 @keyframes ws-real-flame{0%{transform:translateX(-8px) rotate(-43deg) skewY(-9deg) scale(.75,.76);opacity:.42}50%{transform:translateX(8px) rotate(-25deg) skewY(-12deg) scale(1.12,1.1);opacity:.92}100%{transform:translateX(-4px) rotate(-37deg) skewY(-6deg) scale(.84,1.22);opacity:.63}}
 @media(max-width:760px){.ws-flames{height:110px;opacity:.56}.ws-flame-tongue{filter:blur(5px);scale:.75;transform-origin:bottom center}}
 @media(prefers-reduced-motion:reduce){.ws-flames{display:none!important}}
+
+
+/* V3.4: Feuer und Glut zwischen Seitenhintergrund und interaktiven Inhalten.
+   Keine separate stacking context auf main/hero, sonst bleibt der Text hinter den Effekten. */
+.ws-firelight{z-index:12!important;mix-blend-mode:screen;opacity:.52!important}
+.ws-ember-field{z-index:13!important;mix-blend-mode:screen;opacity:.70!important}
+.ws-flames{z-index:14!important;opacity:.48!important}
+/* Hintergrundflächen liegen unter dem Feuer, ihre Inhalte darüber. */
+body>main{z-index:auto!important;position:relative!important;isolation:auto!important}
+body:not(:has(.shell)) main .hero,
+body:not(:has(.shell)) main .page-hero,
+body:not(:has(.shell)) main>section{isolation:auto!important;z-index:auto!important}
+body:not(:has(.shell)) main .hero .hero-content,
+body:not(:has(.shell)) main .page-hero .wrap,
+body:not(:has(.shell)) main>section>.wrap,
+body:not(:has(.shell)) main>section>.container,
+body:not(:has(.shell)) main>.wrap,
+body:not(:has(.shell)) main>.container,
+body.portal-page>main>*{position:relative!important;z-index:30!important}
+/* Auf Dashboard/Admin alle Inhalte oberhalb der Dekoration. */
+body>.shell{position:relative!important;z-index:30!important}
+body>footer{position:relative!important;z-index:auto!important}
+body>footer>.wrap{position:relative!important;z-index:30!important}
+/* Dropdowns bleiben über allem. */
+body>header{z-index:500!important}
+@media(max-width:760px){.ws-flames{opacity:.34!important}.ws-ember-field{opacity:.55!important}}
