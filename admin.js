@@ -33,8 +33,10 @@ $('overview-refresh').onclick=()=>load().catch(e=>status(e.message));
 $('quick-create').onclick=()=>document.querySelector('[data-tab="create"]').click();
 $('quick-plan').onclick=()=>document.querySelector('[data-tab="setup"]').click();
 
-// V5.37 – eigenständige Armory-Ansicht ohne sichtbare Discord-IDs.
-// Die Statistiken basieren ausschließlich auf gespeicherten Charakteren.
+// V5.38 – Guild Armory: read-only, no Discord IDs, no main markers or deletion.
+// Values come from the existing /api/armory endpoint, not from sample data.
+const wsArmoryCache=new Map();
+let wsArmoryGeneration=0;
 function renderArmory(){
  const root=$('armory-list'),counter=$('armory-count'),search=$('armory-search'),filter=$('armory-class');
  const stats=$('armory-stats'),bars=$('armory-classes');
@@ -45,8 +47,40 @@ function renderArmory(){
  filter.replaceChildren();const all=document.createElement('option');all.value='';all.textContent='Alle Klassen';filter.append(all);
  for(const name of names){const o=document.createElement('option');o.value=name;o.textContent=name;filter.append(o)}
  filter.value=names.includes(previous)?previous:'';
+ const icons={'Druide':'☾','Jäger':'➶','Krieger':'⚔','Paladin':'✦','Schurke':'◆','Priester':'✚','Schamane':'ϟ','Magier':'✧','Hexenmeister':'◈'};
+ const classIds={'Druide':'druid','Jäger':'hunter','Krieger':'warrior','Paladin':'paladin','Schurke':'rogue','Priester':'priest','Schamane':'shaman','Magier':'mage','Hexenmeister':'warlock'};
+ function armoryUrl(name){return 'https://armorywowforever.com/de/c/forever/eu/pvp/'+encodeURIComponent(String(name).trim().replace(/\s+/g,'-'))}
+ function displayStats(holder,data){
+  holder.replaceChildren();
+  const entries=[['Level',data.level],['Gearscore',data.gearscore],['Itemlevel',data.itemlevel],['Talente',data.talents],['Gesundheit',data.health],['Mana',data.mana]]
+   .filter(([,value])=>value!==null&&value!==undefined&&value!=='');
+  if(!entries.length){holder.append(el('p','Keine Charakterwerte verfügbar.','muted'));return}
+  const grid=el('div',undefined,'ws-guild-armory-metrics');
+  for(const [label,value] of entries){const item=el('div',undefined,'ws-guild-armory-metric');item.append(el('strong',String(value)),el('small',label));grid.append(item)}
+  holder.append(grid);
+ }
+ async function hydrate(ch,host,details,generation){
+  const name=String(ch.name||'').trim();
+  if(!name)return;
+  try{
+   let promise=wsArmoryCache.get(name);
+   if(!promise){
+    promise=(async()=>{const response=await fetch(base+'/api/armory?name='+encodeURIComponent(name),{cache:'no-store'});const d=await response.json();if(!response.ok)throw Error(d.error||'Armory nicht verfügbar');return d})();
+    wsArmoryCache.set(name,promise);
+    promise.catch(()=>{if(wsArmoryCache.get(name)===promise)wsArmoryCache.delete(name)});
+   }
+   const data=await promise;
+   if(generation!==wsArmoryGeneration||!host.isConnected)return;
+   if(data.race)details.textContent=String(data.race);
+   displayStats(host,data);
+  }catch(error){
+   if(generation!==wsArmoryGeneration||!host.isConnected)return;
+   host.replaceChildren(el('p','Armory-Daten derzeit nicht verfügbar.','muted'));
+  }
+ }
  function update(){
-  const q=search.value.trim().toLocaleLowerCase('de');const cl=filter.value;
+  const generation=++wsArmoryGeneration;
+  const q=search.value.trim().toLocaleLowerCase('de'),cl=filter.value;
   const matches=characters.filter(x=>(!cl||x.class_name===cl)&&(!q||[x.name,x.class_name,x.spec].join(' ').toLocaleLowerCase('de').includes(q)));
   counter.textContent=matches.length+' von '+characters.length+' gespeicherten Charakteren';root.replaceChildren();
   const counts=new Map();for(const ch of matches)counts.set(ch.class_name||'Unbekannt',(counts.get(ch.class_name||'Unbekannt')||0)+1);
@@ -60,13 +94,19 @@ function renderArmory(){
   for(const [name,count] of sorted){const line=el('div',undefined,'ws-armory-class-line');const heading=el('div',undefined,'ws-armory-class-label');heading.append(el('span',name),el('strong',String(count)));const track=el('div',undefined,'ws-armory-class-track');const fill=el('div',undefined,'ws-armory-class-fill');fill.style.width=(matches.length?count/matches.length*100:0)+'%';track.append(fill);line.append(heading,track);bars.append(line)}
   if(!sorted.length)bars.append(el('p','Keine Charaktere in dieser Auswahl.','muted'));
   if(!matches.length){root.append(el('p',characters.length?'Keine passenden Charaktere gefunden.':'Noch keine Charaktere gespeichert.','muted'));return}
+  const jobs=[];
   for(const ch of matches){
-   const card=el('article',undefined,'ws-armory-card');const heading=el('div',undefined,'ws-armory-card-head');
-   heading.append(el('strong',ch.name),el('span',ch.class_name+' · '+(ch.spec||'Ohne Spezialisierung'),'muted'));card.append(heading);
-   const a=el('a','Ausrüstung in der WoW Forever Armory ansehen ↗','ws-armory-external');
-   a.href='https://armorywowforever.com/de/c/forever/eu/pvp/'+encodeURIComponent(String(ch.name).trim().replace(/\s+/g,'-'));
-   a.target='_blank';a.rel='noopener noreferrer';card.append(a);root.append(card);
+   const card=el('article',undefined,'ws-armory-card ws-guild-character');card.dataset.wowClass=classIds[ch.class_name]||'default';
+   const heading=el('div',undefined,'ws-guild-character-head');const emblem=el('span',icons[ch.class_name]||'✦','ws-guild-character-emblem');emblem.setAttribute('aria-hidden','true');
+   const identity=el('div',undefined,'ws-guild-character-identity');identity.append(el('strong',ch.name),el('small',ch.class_name+' · '+(ch.spec||'Keine Spezialisierung')));heading.append(emblem,identity);card.append(heading);
+   const disclosure=document.createElement('details');disclosure.className='ws-guild-character-details';const summary=document.createElement('summary');summary.textContent='Ausrüstung ansehen';disclosure.append(summary,el('p','Die vollständige Ausrüstung findest du in der externen Armory.','muted'));card.append(disclosure);
+   const body=el('div',undefined,'ws-guild-character-body');const race=el('p','Armory wird geladen …','ws-guild-character-race');const metrics=el('div','Charakterwerte werden geladen …','ws-guild-armory-loading');body.append(race,metrics);
+   const a=el('a','Vollständige Armory öffnen ↗','ws-armory-external');a.href=armoryUrl(ch.name);a.target='_blank';a.rel='noopener noreferrer';body.append(a);card.append(body);root.append(card);
+   jobs.push(()=>hydrate(ch,metrics,race,generation));
   }
+  // Limit simultaneous requests to avoid overwhelming the existing Armory proxy.
+  let next=0;const worker=async()=>{while(generation===wsArmoryGeneration&&next<jobs.length){const i=next++;await jobs[i]()}};
+  for(let i=0;i<Math.min(4,jobs.length);i++)worker();
  }
  search.oninput=update;filter.onchange=update;update();
 }
