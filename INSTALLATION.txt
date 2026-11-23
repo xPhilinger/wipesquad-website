@@ -1,15 +1,3 @@
-WIPESQUAD Navigation V5.1 – Mitgliederbereich & Loginstatus
-
-Dateien auf GitHub im Hauptverzeichnis ersetzen:
-  1. site-ui.js
-  2. horde-epic.css
-
-Alle HTML-Dateien, das Dashboard und der Bot bleiben unverändert.
-Auf allen Seiten muss site-ui.js eingebunden sein (wie in der bestehenden Website).
-Danach GitHub Pages abwarten und Strg+F5 drücken.
-
-Loginstatus: Die vorhandenen sessionStorage-Schlüssel ws_account_session und ws_session
-werden auf derselben Website/Origin gelesen. Diese bleiben beim Navigieren
-im selben Tab bestehen, jedoch nicht zuverlässig über neue Tabs oder nach
-Schließen der Sitzung. Eine dauerhafte Anmeldung benötigt Backend-Anpassungen.
-Eine serverseitige Prüfung der Sessiongültigkeit erfolgt hier nicht.
+WIPESQUAD Diagnose-Fix V1.1
+GitHub: mitglied.html und mitglied.js ersetzen. Backend v9_oauth.py aus V1 beibehalten. Strg+F5.
+Falls die Gildenzentrale nicht erscheint, zeigt das Dashboard nun die API-Fehlermeldung sichtbar an. Bitte diese melden.
