@@ -1,0 +1,24 @@
+/* V5.32 – Gildenverwaltung optisch wie Passwort/Datenschutz */
+html body.portal-page #account-main > #ws-account-admin.ws-admin-accordion {
+  display:block; margin:0 0 12px!important; padding:0!important;
+  border:1px solid rgba(151,69,74,.42)!important;
+  border-radius:12px!important;
+  background:linear-gradient(110deg,rgba(80,36,43,.28),rgba(29,17,25,.55))!important;
+  box-shadow:none!important; overflow:hidden;
+}
+html body.portal-page #account-main > #ws-account-admin.ws-admin-accordion[hidden] {display:none!important;}
+html body.portal-page #ws-account-admin.ws-admin-accordion > summary {
+  display:list-item; cursor:pointer; padding:17px 20px;
+  color:#f3e5dc; font-size:inherit; font-weight:700;
+  list-style:none; position:relative;
+}
+html body.portal-page #ws-account-admin.ws-admin-accordion > summary::-webkit-details-marker {display:none;}
+html body.portal-page #ws-account-admin.ws-admin-accordion > summary::after {
+  content:'+'; position:absolute; right:18px; top:50%; transform:translateY(-50%);
+  color:#e3a08c; font-size:20px; font-weight:600;
+}
+html body.portal-page #ws-account-admin.ws-admin-accordion[open] > summary::after {content:'−';}
+html body.portal-page #ws-account-admin.ws-admin-accordion > summary:focus-visible {outline:2px solid #e6a077;outline-offset:-3px;}
+html body.portal-page #ws-account-admin .ws-admin-accordion-content {padding:0 20px 18px;}
+html body.portal-page #ws-account-admin .ws-admin-accordion-content p {margin:0 0 14px;opacity:.82;}
+html body.portal-page #ws-account-admin .ws-admin-accordion-content a {display:inline-flex;align-items:center;min-height:36px;}
