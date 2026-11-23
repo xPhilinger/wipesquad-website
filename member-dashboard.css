@@ -41,3 +41,19 @@ body.portal-page > main.ws-member-dashboard, .ws-member-dashboard {
 .ws-application-history #applications p{padding:12px 14px;background:rgba(0,0,0,.17);border-radius:8px;margin:8px 0}
 @media(max-width:860px){body.portal-page > main.ws-member-dashboard,.ws-member-dashboard{width:min(680px,calc(100% - 28px))!important;grid-template-columns:minmax(0,1fr);gap:16px;margin:24px auto 60px!important}.ws-member-dashboard .ws-profile,.ws-member-dashboard .ws-apply,.ws-member-dashboard .ws-discord-member,.ws-member-dashboard .ws-discord-characters{grid-column:1;grid-row:auto}}
 @media(max-width:520px){.ws-member-dashboard > .panel{padding:22px!important}.ws-application-form{grid-template-columns:1fr}.ws-application-form label{grid-column:1/-1}.ws-avatar{width:52px;height:52px}}
+
+/* V2: single unified portal, no duplicate Discord summary card. */
+html body.portal-page > main.ws-member-dashboard {
+  box-sizing:border-box!important; width:min(1360px,calc(100vw - 64px))!important;
+  max-width:1360px!important; margin:54px auto 90px!important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.15fr)!important;
+}
+.ws-member-dashboard .ws-profile{grid-column:1;grid-row:1}
+.ws-member-dashboard .ws-apply{grid-column:2;grid-row:1 / span 2}
+.ws-member-dashboard .ws-discord-characters{grid-column:1;grid-row:2}
+.ws-discord-inline{margin-top:20px;padding-top:14px;border-top:1px solid rgba(219,153,120,.2)}
+.ws-discord-inline p{margin:8px 0}
+.ws-discord-inline a{color:#efb97b}
+.ws-member-dashboard .ws-discord-characters label{display:block;margin:14px 0 8px}
+.ws-member-dashboard .ws-discord-characters input,.ws-member-dashboard .ws-discord-characters select{width:100%;box-sizing:border-box;min-height:42px}
+@media(max-width:860px){html body.portal-page > main.ws-member-dashboard{width:min(700px,calc(100vw - 28px))!important;grid-template-columns:minmax(0,1fr)!important;margin:24px auto 60px!important}.ws-member-dashboard .ws-profile,.ws-member-dashboard .ws-apply,.ws-member-dashboard .ws-discord-characters{grid-column:1;grid-row:auto}}
