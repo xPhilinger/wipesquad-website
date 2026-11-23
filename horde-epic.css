@@ -332,3 +332,28 @@ body>header{position:relative!important;z-index:500!important}
 body>footer{position:relative!important;z-index:auto!important;isolation:auto!important}
 /* Verhindert das Übermalen des Menüs und respektiert Bewegungsreduktion. */
 @media(prefers-reduced-motion:reduce){.ws-ember-field{display:none!important}}
+
+/* V4.2 – Portal login.html / mitglied.html: isolate portal content above embers.
+   The portal main is a direct body child with inline layout styles. Its own
+   stacking context keeps the entire panel above the fixed particles, rather
+   than relying on nested .panel z-index rules. */
+body.portal-page > main {
+  position:relative!important;
+  z-index:25!important;
+  isolation:isolate!important;
+  transform:none!important;
+  filter:none!important;
+  opacity:1!important;
+  animation:none!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+body.portal-page > main > .panel,
+body.portal-page > main > section.panel {
+  position:relative!important;
+  z-index:1!important;
+  isolation:isolate!important;
+  background:linear-gradient(155deg,rgba(41,24,31,.96),rgba(17,15,21,.97))!important;
+}
+body.portal-page > main > p {position:relative!important;z-index:1!important}
+/* Preserve the original ember/glow visual strength from V3.6. */
