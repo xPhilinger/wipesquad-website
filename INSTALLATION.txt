@@ -1,9 +1,5 @@
-WIPESQUAD Charakterkarten V3 – GitHub Pages
-
-Ersetze auf GitHub: mitglied.html, mitglied.js, character-cards.css.
-armory.js aus V2.1 unverändert lassen.
-Danach Strg+F5. Keine Backend-Aenderung.
-
-Main-Status wird pro Discord-Nutzer nur in diesem Browser gespeichert (localStorage), nicht serverseitig synchronisiert.
-Klassen-Symbol ist ein stilisiertes Portraet, kein echtes Charakterfoto.
-Ausrüstungsslots zeigen absichtlich keine Items: Die bestehende Armory-API liefert keine Itemliste.
+WIPESQUAD Gildenzentrale V3.1
+1. mitglied.html und guild-hub.css ins Hauptverzeichnis des GitHub-Repositories hochladen.
+2. Bestehende mitglied.html ersetzen.
+3. Nach GitHub-Pages-Veröffentlichung Strg+F5 drücken.
+Keine Bot-Dateien ändern. Die Charakterdateien bleiben unverändert.
