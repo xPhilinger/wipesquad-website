@@ -1,0 +1,13 @@
+/* WIPESQUAD compact account tabs; background V4.7 intentionally untouched */
+.ws-auth-main{width:min(100% - 32px,560px);max-width:560px!important;margin:clamp(36px,7vh,80px) auto 70px!important;padding:0!important;position:relative;z-index:2}
+.ws-auth-panel{padding:clamp(22px,4vw,36px)!important;background:linear-gradient(145deg,rgba(33,19,24,.96),rgba(17,13,19,.97))!important;border:1px solid rgba(176,77,67,.48)!important;border-radius:16px!important;box-shadow:0 20px 70px rgba(0,0,0,.3)}
+.ws-auth-panel h1{font-size:clamp(27px,4vw,38px);line-height:1.15;margin:12px 0 12px}.ws-auth-panel h2{font-size:21px;margin:18px 0 18px}.ws-auth-intro{color:#d8c8c2;line-height:1.6;margin-bottom:24px}
+.ws-auth-tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:5px;background:rgba(8,8,12,.62);border:1px solid rgba(168,84,71,.34);border-radius:11px;margin:22px 0 20px}
+.ws-auth-tab{padding:12px 10px!important;border:0!important;border-radius:8px!important;background:transparent!important;color:#d3bdb7!important;font-weight:750!important;cursor:pointer}.ws-auth-tab.active{background:linear-gradient(125deg,#a93639,#6e222c)!important;color:white!important;box-shadow:0 2px 10px #0006}
+.ws-auth-panel [role=tabpanel][hidden],.ws-auth-panel #logged[hidden],.ws-auth-panel [hidden]{display:none!important}
+.ws-auth-panel form{display:grid;gap:9px}.ws-auth-panel form label{font-size:13px;margin:4px 0 0;color:#dfc7c1}.ws-auth-panel form input{box-sizing:border-box;width:100%;min-height:46px;margin:0 0 7px;background:#100e13;color:#fff;border:1px solid #72444a;border-radius:8px;padding:10px 13px}.ws-auth-panel form input:focus{outline:2px solid #d36c55;outline-offset:1px}
+.ws-auth-panel .ws-auth-primary{width:100%;min-height:47px;margin-top:8px;background:linear-gradient(110deg,#b13c40,#7e2931);border:1px solid #ca6463;border-radius:8px;font-weight:800;color:white;cursor:pointer}
+.ws-auth-divider{display:flex;align-items:center;gap:14px;margin:25px 0 20px;color:#c5a9a1;font-size:12px;letter-spacing:.13em}.ws-auth-divider:before,.ws-auth-divider:after{content:'';height:1px;background:rgba(193,121,106,.35);flex:1}
+.ws-auth-discord h2{margin:0 0 8px}.ws-auth-discord p{font-size:14px;line-height:1.55;color:#d5c5bf}.ws-auth-discord-button{width:100%;min-height:46px;background:#5865f2!important;border:1px solid #7884ff!important;border-radius:8px;color:#fff!important;font-weight:800;cursor:pointer}.ws-auth-back{text-align:center;margin:19px 0}.ws-auth-back a{color:#d9b6a9}
+#account-message:not(:empty),#message:not(:empty){margin:14px 0;padding:10px;border-radius:7px;background:#27191d;color:#f1c9b8}
+@media(max-width:520px){.ws-auth-main{width:calc(100% - 24px)}.ws-auth-panel{padding:20px!important}}
