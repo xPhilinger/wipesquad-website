@@ -1,3 +1,4 @@
+(()=>{
 'use strict';
 const base=(window.WIPESQUAD_API_BASE||'').replace(/\/$/,'');
 const $=id=>document.getElementById(id);
@@ -5,3 +6,5 @@ async function api(path,method='GET',body,admin=false){const token=sessionStorag
 function message(s){$('account-message').textContent=s}
 async function auth(mode){try{const data=mode==='register'?{username:$('username').value,email:$('email').value,password:$('password').value}:{identifier:$('identifier').value,password:$('login-password').value};const r=await api('/api/account/'+mode,'POST',data);sessionStorage.setItem('ws_account_session',r.token);location.href='mitglied.html'}catch(e){message(e.message)}}
 $('register-form').onsubmit=e=>{e.preventDefault();auth('register')};$('account-login-form').onsubmit=e=>{e.preventDefault();auth('login')};
+
+})();
