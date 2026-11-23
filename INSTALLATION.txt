@@ -1,4 +1,9 @@
-WIPESQUAD V3.2 – kompakte Ausruestung
-GitHub: mitglied.html, mitglied.js und character-cards.css ersetzen.
-armory.js, guild-hub.css und Bot-Dateien unveraendert lassen.
-Danach Strg+F5.
+WIPESQUAD Horde Epic Navigation V5
+
+1. Die drei Dateien ins Hauptverzeichnis des GitHub-Repositories hochladen und vorhandene ersetzen.
+2. GitHub Pages Deployment abwarten.
+3. Webseite mit Strg+F5 neu laden.
+
+Achtung: site-ui.js und horde-epic.css werden auf mehreren Seiten verwendet. Die Änderung gilt daher auch dort.
+Der Dashboard-Button wird auf mitglied.html angezeigt; auf anderen Seiten bleibt Login, da kein verlässlicher Loginstatus aus den bereitgestellten Dateien ermittelt werden kann.
+Andere Dateien und Bot-Backend bleiben unverändert.

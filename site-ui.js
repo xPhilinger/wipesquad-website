@@ -7,18 +7,24 @@
    nav.innerHTML=`
      <a class="ws-home-link" href="index.html">Start</a>
      <div class="ws-menu">
-       <button class="ws-menu-trigger" type="button" aria-expanded="false" aria-haspopup="true">Die Gilde <span aria-hidden="true">⌄</span></button>
-       <div class="ws-menu-panel">
+       <button class="ws-menu-trigger" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="ws-menu-guild">Die Gilde <span aria-hidden="true">⌄</span></button>
+       <div class="ws-menu-panel" id="ws-menu-guild">
          <a href="gilde.html">Über WIPESQUAD</a><a href="raidkader.html">Raidkader</a><a href="kontakt.html">Kontakt</a>
        </div>
      </div>
      <div class="ws-menu">
-       <button class="ws-menu-trigger" type="button" aria-expanded="false" aria-haspopup="true">Raids & Events <span aria-hidden="true">⌄</span></button>
-       <div class="ws-menu-panel">
+       <button class="ws-menu-trigger" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="ws-menu-raids">Raids & Events <span aria-hidden="true">⌄</span></button>
+       <div class="ws-menu-panel" id="ws-menu-raids">
          <a href="dashboard.html">Live-Dashboard</a><a href="anmeldung.html">Raid-Anmeldung</a><a href="raidbot.html">Raid Manager</a>
        </div>
      </div>
-     <a class="ws-login-link" href="login.html">Login</a>`;
+     <div class="ws-menu">
+       <button class="ws-menu-trigger" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="ws-menu-members">Mitglieder <span aria-hidden="true">⌄</span></button>
+       <div class="ws-menu-panel" id="ws-menu-members">
+         <a href="mitglied.html">Mein Mitgliederbereich</a><a href="login.html">Account-Login</a>
+       </div>
+     </div>
+     <a class="ws-login-link" href="${location.pathname.endsWith('/mitglied.html') ? 'mitglied.html' : 'login.html'}">${location.pathname.endsWith('/mitglied.html') ? 'Mein Dashboard' : 'Login'}</a>`;
    const menus=[...nav.querySelectorAll('.ws-menu')];
    const closeAll=(except)=>menus.forEach(m=>{
      if(m!==except){m.classList.remove('is-open');m.querySelector('button').setAttribute('aria-expanded','false');}
@@ -37,14 +43,20 @@
      // Prevent legacy handler from toggling twice; use a new independent toggle.
      const replacement=toggle.cloneNode(true);toggle.replaceWith(replacement);
      replacement.setAttribute('aria-expanded','false');
+     replacement.setAttribute('aria-controls','ws-primary-navigation');
+     replacement.setAttribute('aria-label','Navigation öffnen');
+     nav.id='ws-primary-navigation';
      replacement.addEventListener('click',()=>{
        const open=nav.classList.toggle('open');
        replacement.setAttribute('aria-expanded',String(open));
        replacement.textContent=open?'✕ Schließen':'☰ Menü';
+       replacement.setAttribute('aria-label',open?'Navigation schließen':'Navigation öffnen');
+       if(!open)closeAll();
      });
    }
    const current=location.pathname.split('/').pop()||'index.html';
    nav.querySelectorAll('a').forEach(a=>{if(a.getAttribute('href')===current)a.setAttribute('aria-current','page')});
+   menus.forEach(m=>{if(m.querySelector('a[aria-current=page]'))m.classList.add('has-active-page')});
  }
  const adminSidebar=document.querySelector('.sidebar .side-bottom');
  if(adminSidebar&&!adminSidebar.querySelector('.ws-admin-login')){

@@ -560,3 +560,20 @@ body.portal-page .ws-firelight {
 }
 /* Keep the page surface transparent; only the real cards are opaque. */
 body.portal-page > main {background:transparent!important;}
+
+
+/* WIPESQUAD V5 – Navigation only; V4.7 background/fire layers remain unchanged. */
+body>header .nav{width:min(100% - 48px,1380px)!important;max-width:1380px!important;min-height:94px!important;margin-inline:auto!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:32px!important}
+body>header .brand{display:inline-flex!important;align-items:center!important;gap:13px!important;flex-shrink:0!important;font-size:clamp(21px,1.65vw,29px)!important;font-weight:800!important;letter-spacing:.045em!important;white-space:nowrap!important;text-shadow:0 2px 18px #000b}
+body>header .brand img{width:43px!important;height:48px!important;object-fit:contain!important;filter:drop-shadow(0 0 11px #d13a35a0)!important}
+body>header .nav nav{margin-left:auto!important;gap:7px!important;align-items:center!important}
+body>header .nav nav>a:not(.ws-login-link),body>header .nav nav .ws-menu-trigger{font:800 13px/1.3 Inter,Arial,sans-serif!important;letter-spacing:.045em!important;text-transform:uppercase!important;white-space:nowrap!important}
+body>header .nav nav>a:not(.ws-login-link){padding:15px 14px!important;border-radius:8px!important;text-decoration:none!important}
+body>header .nav nav .ws-menu-trigger{padding:15px 14px!important}
+body>header .nav nav>a:not(.ws-login-link):hover{background:#451c23!important;color:#ffd092!important}
+body>header .nav nav>a[aria-current=page]:not(.ws-login-link),body>header .nav nav .ws-menu.has-active-page>.ws-menu-trigger{color:#ffc17a!important;box-shadow:inset 0 -2px #f0a95e}
+body>header .nav nav a.ws-login-link{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:46px!important;box-sizing:border-box!important;margin-left:12px!important;padding:12px 23px!important;border-radius:8px!important;font:800 13px/1.2 Inter,Arial,sans-serif!important;text-decoration:none!important;letter-spacing:.04em!important}
+body>header .nav nav .ws-menu-panel{top:calc(100% + 7px)!important}
+body>header .nav-toggle{border:1px solid #824043!important;border-radius:8px!important;background:#351820!important;color:#ffe3cb!important;padding:11px 15px!important;font-weight:800!important;cursor:pointer}
+@media(max-width:1050px){body>header .nav{width:min(100% - 32px,1380px)!important;gap:14px!important}body>header .brand{font-size:21px!important}body>header .brand img{width:36px!important;height:40px!important}body>header .nav nav{gap:0!important}body>header .nav nav>a:not(.ws-login-link),body>header .nav nav .ws-menu-trigger{font-size:11px!important;padding:12px 9px!important}body>header .nav nav a.ws-login-link{margin-left:5px!important;padding:11px 13px!important;font-size:11px!important}}
+@media(max-width:760px){body>header .nav{min-height:76px!important;flex-wrap:wrap!important;gap:8px!important;padding:10px 0!important}body>header .nav-toggle{display:inline-flex!important;margin-left:auto!important}body>header .nav nav{width:100%!important;flex-basis:100%!important;margin:0!important;flex-direction:column!important;align-items:stretch!important;gap:4px!important;padding:8px 0 12px!important}body>header .nav nav:not(.open){display:none!important}body>header .nav nav.open{display:flex!important}body>header .nav nav>a:not(.ws-login-link),body>header .nav nav .ws-menu-trigger{font-size:14px!important;padding:15px 14px!important;width:100%!important;box-sizing:border-box!important;text-align:left!important}body>header .nav nav .ws-menu-trigger{justify-content:space-between!important}body>header .nav nav .ws-menu-panel{position:static!important;width:100%!important;max-width:100%!important;min-width:0!important;margin:2px 0 8px!important}body>header .nav nav a.ws-login-link{margin:9px 0 0!important;width:100%!important;min-height:48px!important}}
