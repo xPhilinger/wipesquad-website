@@ -259,51 +259,19 @@ body>.shell,body>footer .wrap{position:relative!important;z-index:5!important}
 @media(max-width:760px){.ws-firelight{opacity:.7!important}.ws-ember-field{opacity:.78!important}}
 @media(prefers-reduced-motion:reduce){.ws-firelight,.ws-firelight::before,.ws-firelight::after{animation:none!important}.ws-ember-field{display:none!important}}
 
-/* V3.7 – actual background layering. Keep V3.6 particle size, opacity and glow unchanged.
-   Prior versions put fixed effects at z=2/3 while sections were z=auto;
-   elevating individual text elements cannot fix an ancestor stacking context. */
-html{background:#0c090e}
-body{isolation:isolate!important;background:#0c090e!important}
-.ws-firelight{z-index:0!important}
-.ws-ember-field{z-index:1!important}
-/* Entire content regions are above both ambient layers. Their translucent surfaces
-   allow the existing firelight and embers to remain visible BEHIND content. */
-body>main,body>footer,body>.shell{position:relative!important;z-index:4!important;isolation:isolate!important}
-body>header{position:relative!important;z-index:500!important}
-body>main{background:rgba(11,8,13,.16)!important}
-body>main>section,body>main>.hero,body>main>.page-hero,
-body>main>.raid-hero,body>main>.raid-content,body>main>.calendar-section,
-body>footer{background-color:rgba(12,8,13,.12)!important}
-/* All interactive and readable blocks are in the content layer. */
-body>main .wrap,body>main .container,body>main .hero-content,
-body>main .card,body>main .step,body>main .raid-panel,
-body>main .raid-overview,body>main .raid-summary-side,
-body>main .raid-role,body>main .raid-role-card,
-body>main .raid-list,body>main .raid-full,
-body>main .panel,body>main form,body>main button,body>main a,
-body>footer .wrap{position:relative;z-index:5!important}
-/* Sections with a completely opaque image/gradient can still obscure background
-   embers; this is intentional rather than drawing them over buttons or text. */
 
-/* V3.8: Correct middle layer – do NOT put whole sections above the effect.
-   Sections' backgrounds paint first, then the fire/embers, then readable content.
-   This also prevents the effect appearing only below the footer. */
-body{isolation:isolate!important}
-body>main,body>footer,body>.shell{
- position:relative!important;z-index:1!important;isolation:auto!important;
+/* V3.9 – viewport-aware occlusion: the visual effects retain V3.6 intensity
+   but are masked wherever actual text, buttons or opaque cards are painted.
+   No fragile stacking-context changes to main, sections or dashboard. */
+.ws-ember-field,.ws-firelight{
+  z-index:12!important;
+  pointer-events:none!important;
+  -webkit-mask-image:var(--ws-occlusion-mask,none)!important;
+  mask-image:var(--ws-occlusion-mask,none)!important;
+  -webkit-mask-size:100% 100%!important;
+  mask-size:100% 100%!important;
+  -webkit-mask-repeat:no-repeat!important;
+  mask-repeat:no-repeat!important;
 }
-body>main{background:transparent!important}
-.ws-firelight{z-index:2!important}
-.ws-ember-field{z-index:3!important}
-/* Do not force sections above the particle layer. */
-body>main>section,body>main>.hero,body>main>.page-hero,
-body>main>.raid-hero,body>main>.raid-content{isolation:auto!important}
-/* Readable content is the top layer. */
-body>main .wrap,body>main .container,body>main .hero-content,
-body>main .card,body>main .step,body>main .panel,
-body>main .raid-panel,body>main .raid-overview,body>main .raid-summary-side,
-body>main .raid-role,body>main .raid-role-card,body>main .raid-list,
-body>main .raid-full,body>main form,body>main button,body>main a,
-body>footer .wrap,body>.shell{position:relative!important;z-index:5!important}
-body>header{position:relative!important;z-index:500!important}
-/* Keep exact V3.6 ember sizes, glow and animation settings. */
+body>header{z-index:500!important}
+/* Keep dropdown and interactive content unaffected by masks. */
