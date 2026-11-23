@@ -489,3 +489,43 @@ body.portal-page > header {z-index:500!important}
 @media(prefers-reduced-motion:reduce){
   .ws-firelight{animation:none!important}
 }
+
+/* V4.6 – Portal: harte horizontale Naht entfernen.
+   Statt mehrerer begrenzter und animiert skalierter Glow-Flächen wird
+   EIN durchgehender Viewport-Verlauf verwendet. Keine Masken-Kante,
+   kein Blur-Clipping, kein separater Pseudo-Element-Horizont. */
+body.portal-page {
+  background:linear-gradient(180deg,#0b090e 0%,#100b11 28%,#1b0d13 62%,#32130f 100%)!important;
+  background-attachment:fixed!important;
+  min-height:100vh;
+}
+body.portal-page .ws-firelight {
+  position:fixed!important;
+  inset:0!important;
+  width:100vw!important;
+  height:100vh!important;
+  overflow:visible!important;
+  z-index:2!important;
+  opacity:1!important;
+  transform:none!important;
+  filter:none!important;
+  animation:none!important;
+  mix-blend-mode:normal!important;
+  -webkit-mask-image:none!important;
+  mask-image:none!important;
+  background:radial-gradient(ellipse 105% 92% at 50% 132%,
+    rgba(229,79,31,.27) 0%,
+    rgba(155,41,23,.17) 37%,
+    rgba(99,24,27,.06) 66%,
+    rgba(99,24,27,0) 100%)!important;
+}
+body.portal-page .ws-firelight::before,
+body.portal-page .ws-firelight::after {
+  content:none!important;
+  display:none!important;
+}
+/* Glut bleibt zwischen Hintergrund und vollständig deckenden Karten. */
+body.portal-page .ws-ember-field{z-index:3!important}
+body.portal-page>main{background:transparent!important;box-shadow:none!important}
+body.portal-page>main>.panel,
+body.portal-page>main>section.panel{z-index:30!important}
