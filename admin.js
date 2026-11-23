@@ -65,7 +65,7 @@ function renderArmory(){
   try{
    let promise=wsArmoryCache.get(name);
    if(!promise){
-    promise=(async()=>{const response=await fetch(base+'/api/armory?name='+encodeURIComponent(name),{cache:'no-store'});const d=await response.json();if(!response.ok)throw Error(d.error||'Armory nicht verfügbar');return d})();
+    promise=(async()=>{const response=await fetch(api+'/api/armory?name='+encodeURIComponent(name),{cache:'no-store'});const d=await response.json();if(!response.ok)throw Error(d.error||'Armory nicht verfügbar');return d})();
     wsArmoryCache.set(name,promise);
     promise.catch(()=>{if(wsArmoryCache.get(name)===promise)wsArmoryCache.delete(name)});
    }
