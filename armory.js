@@ -13,7 +13,7 @@ async function loadCard(name,host){
   const fields=[['Level',data.level],['Gearscore',data.gearscore],['Itemlevel',data.itemlevel],['Talente',data.talents],['Gesundheit',data.health],['Mana',data.mana]];
   const stats=fields.filter(x=>x[1]!==null&&x[1]!==undefined&&x[1]!=='').map(([k,v])=>'<div class="ws-armory-stat"><strong>'+esc(v)+'</strong><small>'+esc(k)+'</small></div>').join('');
   box.innerHTML='<div class="ws-armory-name">'+esc(data.name||name)+'</div><p class="ws-armory-sub">'+esc([data.race,data.class_name].filter(Boolean).join(' · '))+'</p>'+(stats?'<div class="ws-armory-stats">'+stats+'</div>':'<p class="ws-armory-note">Keine Charakterwerte auslesbar.</p>')+'<a href="'+link+'" target="_blank" rel="noopener noreferrer">Vollständige Armory öffnen ↗</a>';
- }catch(e){const p=box.querySelector('.ws-armory-note');if(p){p.className='ws-armory-error';p.textContent='Live-Daten momentan nicht abrufbar.'}}
+ }catch(e){const p=box.querySelector('.ws-armory-note');if(p){p.className='ws-armory-error';p.textContent='Armory-Daten nicht verfügbar: '+String(e.message||'Verbindung fehlgeschlagen').slice(0,180)+' Der vollständige Armory-Link bleibt nutzbar.'}}
 }
 const observer=new MutationObserver(()=>{if(!root.isConnected)return;const rows=[...root.children].filter(x=>x.tagName==='P');for(const row of rows){if(row.dataset.armoryDone)continue;const label=row.querySelector('span');if(!label)continue;const name=(label.textContent||'').split(' · ')[0].trim();if(!name)continue;row.dataset.armoryDone='1';const holder=document.createElement('div');row.after(holder);loadCard(name,holder)}});
 observer.observe(root,{childList:true});
