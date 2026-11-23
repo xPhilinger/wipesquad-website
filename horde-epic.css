@@ -401,3 +401,44 @@ body.portal-page::before {
   z-index:0!important;
 }
 @media(max-width:760px){body.portal-page::before{background-size:82vw auto!important}}
+
+
+/* V4.4 – Portal: do not lift the entire main above the particles.
+   A raised main creates one large composited rectangle. Only raise its
+   actual panels and controls. Keep main transparent and unstacked. */
+body.portal-page > main,
+body.portal-page:has(#message) > main,
+body.portal-page.ws-ready > main,
+body.portal-page.ws-entering > main,
+body.portal-page.ws-leaving > main {
+  position:relative!important;
+  z-index:auto!important;
+  isolation:auto!important;
+  background:transparent!important;
+  background-color:transparent!important;
+  background-image:none!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+  opacity:1!important;
+  transform:none!important;
+  filter:none!important;
+  animation:none!important;
+  contain:none!important;
+}
+body.portal-page > main > section.panel,
+body.portal-page > main > .panel,
+body.portal-page > main > p {
+  position:relative!important;
+  z-index:30!important;
+}
+body.portal-page > main > section.panel,
+body.portal-page > main > .panel {
+  background:linear-gradient(155deg,#291820,#131015)!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+/* Avoid stacking the large portal wrapper above the glow. */
+body.portal-page .ws-ember-field {z-index:3!important}
+body.portal-page .ws-firelight {z-index:2!important}
+body.portal-page > header {z-index:500!important}
