@@ -1,0 +1,12 @@
+/* V5.37 – eigenständiger Armory-Menüpunkt und Portal-Statistiken */
+.side-nav .ws-armory-nav-link{margin:8px 0 12px;width:100%;text-align:left}
+.ws-armory-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0}
+.ws-armory-stat{padding:18px;border-radius:12px;background:linear-gradient(145deg,rgba(98,43,51,.42),rgba(28,21,28,.94));border:1px solid rgba(196,118,100,.28);display:flex;flex-direction:column;gap:6px}
+.ws-armory-stat small{color:#d5a36e;font-weight:750;text-transform:uppercase;letter-spacing:.07em}
+.ws-armory-stat strong{font-size:2rem;line-height:1.1;color:#f5e8dc}
+.ws-armory-breakdown{padding:18px;border-radius:12px;background:rgba(37,25,31,.72);border:1px solid rgba(196,118,100,.23);margin-bottom:20px}
+.ws-armory-breakdown-head,.ws-armory-class-label{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.ws-armory-breakdown-head{margin-bottom:15px}.ws-armory-class-bars{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 20px}
+.ws-armory-class-label{font-size:.86rem;margin-bottom:6px}.ws-armory-class-track{height:7px;background:rgba(255,255,255,.09);border-radius:20px;overflow:hidden}
+.ws-armory-class-fill{height:100%;background:linear-gradient(90deg,#89323d,#d6a063);border-radius:20px}
+@media(max-width:750px){.ws-armory-stats{grid-template-columns:1fr}.ws-armory-class-bars{grid-template-columns:1fr}}

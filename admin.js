@@ -33,9 +33,11 @@ $('overview-refresh').onclick=()=>load().catch(e=>status(e.message));
 $('quick-create').onclick=()=>document.querySelector('[data-tab="create"]').click();
 $('quick-plan').onclick=()=>document.querySelector('[data-tab="setup"]').click();
 
-// V5.36 – read-only guild character directory. Auth is enforced by /api/admin/v8.
+// V5.37 – eigenständige Armory-Ansicht ohne sichtbare Discord-IDs.
+// Die Statistiken basieren ausschließlich auf gespeicherten Charakteren.
 function renderArmory(){
  const root=$('armory-list'),counter=$('armory-count'),search=$('armory-search'),filter=$('armory-class');
+ const stats=$('armory-stats'),bars=$('armory-classes');
  if(!root||!state)return;
  const characters=Array.isArray(state.guild_characters)?state.guild_characters:[];
  const previous=filter.value;
@@ -45,13 +47,22 @@ function renderArmory(){
  filter.value=names.includes(previous)?previous:'';
  function update(){
   const q=search.value.trim().toLocaleLowerCase('de');const cl=filter.value;
-  const matches=characters.filter(x=>(!cl||x.class_name===cl)&&(!q||[x.name,x.class_name,x.spec,String(x.user_id)].join(' ').toLocaleLowerCase('de').includes(q)));
+  const matches=characters.filter(x=>(!cl||x.class_name===cl)&&(!q||[x.name,x.class_name,x.spec].join(' ').toLocaleLowerCase('de').includes(q)));
   counter.textContent=matches.length+' von '+characters.length+' gespeicherten Charakteren';root.replaceChildren();
+  const counts=new Map();for(const ch of matches)counts.set(ch.class_name||'Unbekannt',(counts.get(ch.class_name||'Unbekannt')||0)+1);
+  const specCount=new Set(matches.map(x=>x.spec).filter(Boolean)).size;
+  stats.replaceChildren();
+  for(const [name,value,detail] of [['Charaktere',matches.length,'Aktuelle Auswahl'],['Klassen',counts.size,'Vertretene Klassen'],['Spezialisierungen',specCount,'Unterschiedliche Specs']]){
+   const tile=el('div',undefined,'ws-armory-stat');tile.append(el('small',name),el('strong',String(value)),el('span',detail,'muted'));stats.append(tile);
+  }
+  bars.replaceChildren();
+  const sorted=[...counts].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0],'de'));
+  for(const [name,count] of sorted){const line=el('div',undefined,'ws-armory-class-line');const heading=el('div',undefined,'ws-armory-class-label');heading.append(el('span',name),el('strong',String(count)));const track=el('div',undefined,'ws-armory-class-track');const fill=el('div',undefined,'ws-armory-class-fill');fill.style.width=(matches.length?count/matches.length*100:0)+'%';track.append(fill);line.append(heading,track);bars.append(line)}
+  if(!sorted.length)bars.append(el('p','Keine Charaktere in dieser Auswahl.','muted'));
   if(!matches.length){root.append(el('p',characters.length?'Keine passenden Charaktere gefunden.':'Noch keine Charaktere gespeichert.','muted'));return}
   for(const ch of matches){
    const card=el('article',undefined,'ws-armory-card');const heading=el('div',undefined,'ws-armory-card-head');
    heading.append(el('strong',ch.name),el('span',ch.class_name+' · '+(ch.spec||'Ohne Spezialisierung'),'muted'));card.append(heading);
-   card.append(el('small','Discord-ID: '+ch.user_id,'muted'));
    const a=el('a','Ausrüstung in der WoW Forever Armory ansehen ↗','ws-armory-external');
    a.href='https://armorywowforever.com/de/c/forever/eu/pvp/'+encodeURIComponent(String(ch.name).trim().replace(/\s+/g,'-'));
    a.target='_blank';a.rel='noopener noreferrer';card.append(a);root.append(card);
