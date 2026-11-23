@@ -122,3 +122,9 @@ body.ws-entering main{animation:ws-page-enter .42s ease-out both}
 @keyframes ws-page-enter{from{opacity:.45;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:760px){body>header .nav nav{display:none;flex-direction:column;align-items:stretch;width:100%;gap:3px}body>header .nav nav.open{display:flex}body>header .nav nav .ws-menu{width:100%}body>header .nav nav .ws-menu-trigger{width:100%;justify-content:space-between!important}body>header .nav nav .ws-menu-panel{position:static!important;top:auto!important;left:auto!important;max-width:100%!important;width:100%!important;box-sizing:border-box;margin:4px 0 10px!important}body>header .nav nav .ws-login-link{align-self:stretch!important;text-align:center} .ws-ember-field{opacity:.5}}
 @media(prefers-reduced-motion:reduce){.ws-ember{animation:none!important;display:none!important}body.ws-entering main{animation:none!important}}
+
+/* V3.1 FIX: embers must be above opaque hero/main backgrounds. */
+.ws-ember-field{z-index:40!important;opacity:1!important;mix-blend-mode:screen;isolation:isolate}
+.ws-ember{background:#ffad52;box-shadow:0 0 8px 2px #ff8b3bc9,0 0 24px 5px #f04b284d}
+@media(max-width:760px){.ws-ember-field{opacity:.8!important}}
+@media(prefers-reduced-motion:reduce){.ws-ember-field{display:none!important}}
