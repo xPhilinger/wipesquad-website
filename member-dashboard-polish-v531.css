@@ -1,0 +1,38 @@
+/* V5.31 – visual layout only; no changes to roles, account operations or badge logic. */
+@media (min-width:861px) {
+  html body.portal-page .ws-member-dashboard > #account-main,
+  html body.portal-page .ws-member-dashboard > #ws-guild-member-welcome:not([hidden]) {
+    height:100%!important;
+    min-height:0!important;
+    box-sizing:border-box!important;
+  }
+  html body.portal-page #account-main {
+    display:flex!important;
+    flex-direction:column!important;
+    gap:0!important;
+  }
+  /* A clear visual hierarchy with consistent distances between account sections. */
+  html body.portal-page #account-main > .ws-profile-header {margin:16px 0 18px!important;}
+  html body.portal-page #account-main > .ws-link-box {margin:0 0 14px!important;}
+  html body.portal-page #account-main > .ws-password-panel {margin:0 0 12px!important;}
+  html body.portal-page #account-main > #ws-account-data-panel,
+  html body.portal-page #account-main > #ws-account-privacy,
+  html body.portal-page #account-main > .ws-account-data {margin-bottom:12px!important;}
+  html body.portal-page #account-main > .ws-account-admin {margin-top:0!important;margin-bottom:12px!important;}
+  html body.portal-page #account-main > .ws-account-footer {margin-top:auto!important;}
+  /* Make the honors gallery use the available card height instead of leaving a blank bottom. */
+  html body.portal-page #ws-guild-member-welcome:not([hidden]) {display:flex!important;flex-direction:column!important;}
+  html body.portal-page #ws-guild-member-welcome .ws-badges {display:flex!important;flex-direction:column!important;flex:1 1 auto!important;min-height:0!important;}
+  html body.portal-page #ws-guild-member-welcome .ws-badges-grid {flex:1 1 auto!important;grid-auto-rows:minmax(0,1fr)!important;align-content:stretch!important;}
+  html body.portal-page #ws-guild-member-welcome .ws-badge {height:100%!important;box-sizing:border-box!important;align-content:center!important;}
+  html body.portal-page #ws-guild-member-welcome .ws-badges-note {margin-top:12px!important;}
+}
+/* Consistent account controls and tidy badge typography on all screens. */
+html body.portal-page #account-main .ws-link-box,
+html body.portal-page #account-main .ws-password-panel,
+html body.portal-page #account-main .ws-account-admin {border-radius:12px!important;}
+html body.portal-page #account-main .ws-link-box {padding:16px!important;}
+html body.portal-page #account-main .ws-account-admin {padding:16px!important;}
+html body.portal-page #ws-guild-member-welcome .ws-badge {border-radius:10px!important;}
+html body.portal-page #ws-guild-member-welcome .ws-badge small {line-height:1.4!important;}
+@media(max-width:860px){html body.portal-page #ws-guild-member-welcome .ws-badges-grid{grid-auto-rows:auto!important;}}
