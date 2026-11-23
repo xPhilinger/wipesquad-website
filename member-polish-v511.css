@@ -1,0 +1,25 @@
+/* WIPESQUAD Dashboard Design Patch V5.11 - nur Darstellung */
+.ws-member-dashboard{max-width:1320px!important;margin:0 auto!important;gap:24px!important;align-items:start!important;padding:42px 22px 90px!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important}
+.ws-member-dashboard>.panel{min-width:0;box-shadow:0 18px 55px rgba(0,0,0,.24);border:1px solid rgba(223,137,97,.22)!important;border-radius:18px!important;padding:30px!important;background:linear-gradient(145deg,rgba(42,26,32,.97),rgba(20,17,25,.97))!important}
+.ws-profile h1{font-size:clamp(1.7rem,2.4vw,2.3rem)!important;line-height:1.15}
+.ws-profile-header{margin:22px 0!important;padding:18px!important;border-radius:14px!important;background:rgba(0,0,0,.18)}
+.ws-quick-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0 24px}
+.ws-quick-links a{display:flex;flex-direction:column;gap:6px;min-width:0;padding:15px 12px;text-decoration:none!important;color:#f6e7dd!important;background:rgba(132,55,53,.16);border:1px solid rgba(225,134,105,.24);border-radius:12px;transition:transform .15s,border-color .15s}
+.ws-quick-links a:hover{transform:translateY(-2px);border-color:#d88166}
+.ws-quick-links a span{font-size:1.35rem}.ws-quick-links a strong{font-size:.92rem}.ws-quick-links a small{font-size:.72rem;color:#d0b3a9}
+.ws-feature-card{display:block;margin-top:18px;padding:20px!important;border-radius:14px;border:1px solid rgba(222,143,105,.23);background:linear-gradient(140deg,rgba(120,50,53,.17),rgba(0,0,0,.14))}
+.ws-feature-card[hidden]{display:none!important}
+.ws-feature-card summary{cursor:pointer;list-style:none;font-size:1.05rem;font-weight:750;color:#f4d8c5;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.ws-feature-card summary::-webkit-details-marker{display:none}
+.ws-feature-card summary:after{content:'＋';font-size:1.3rem;color:#dc9479}
+.ws-feature-card[open] summary:after{content:'−'}
+.ws-password-panel form{margin-top:18px;display:grid;gap:12px}
+.ws-password-panel p,.ws-discord-notice p{color:#d8bfb6;line-height:1.55;font-size:.89rem}
+.ws-password-panel label{display:block}.ws-password-panel input{width:100%;box-sizing:border-box;margin-top:6px}
+.ws-discord-notice h2{margin:8px 0;font-size:1.1rem}.ws-card-eyebrow{font-size:.68rem;letter-spacing:.12em;color:#e6a36b;font-weight:800}
+.ws-feature-link{display:inline-flex;align-items:center;gap:12px;margin-top:10px;padding:10px 14px;border-radius:8px;background:#a43d42;color:white!important;text-decoration:none!important;font-weight:700}
+.ws-link-box{border-radius:14px!important;padding:18px!important}
+.ws-apply form{display:grid;gap:14px}.ws-apply input,.ws-apply textarea,.ws-apply select{max-width:100%;box-sizing:border-box}
+.ws-account-footer{margin-top:24px!important}
+@media(max-width:850px){.ws-member-dashboard{grid-template-columns:minmax(0,1fr)!important;padding:24px 14px 60px!important}.ws-member-dashboard>.panel{padding:22px!important}}
+@media(max-width:420px){.ws-quick-links{grid-template-columns:1fr}.ws-quick-links a{display:grid;grid-template-columns:32px 1fr;align-items:center}.ws-quick-links a small{grid-column:2}}
