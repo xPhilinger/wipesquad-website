@@ -68,19 +68,7 @@
    // Low, soft flame-light across every page, not only the homepage.
    const fire=document.createElement('div');fire.className='ws-firelight';fire.setAttribute('aria-hidden','true');
    document.body.prepend(fire);
-   // Actual visible flame tongues rather than just an orange glow.
-   const flames=document.createElement('div');
-   flames.className='ws-flames';flames.setAttribute('aria-hidden','true');
-   for(let i=0;i<22;i++){
-     const tongue=document.createElement('span');tongue.className='ws-flame-tongue';
-     tongue.style.setProperty('--fx',((i*47+9)%100)+'%');
-     tongue.style.setProperty('--fh',(48+(i*19)%105)+'px');
-     tongue.style.setProperty('--fw',(22+(i*11)%28)+'px');
-     tongue.style.setProperty('--ft',(1.9+(i%7)*.31)+'s');
-     tongue.style.setProperty('--fd',(-i*.31)+'s');
-     flames.appendChild(tongue);
-   }
-   document.body.prepend(flames);
+
  }
  document.body.classList.add('ws-entering');
  document.body.classList.add('ws-ready');

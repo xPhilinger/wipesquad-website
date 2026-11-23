@@ -189,3 +189,28 @@ body>footer>.wrap{position:relative!important;z-index:30!important}
 /* Dropdowns bleiben über allem. */
 body>header{z-index:500!important}
 @media(max-width:760px){.ws-flames{opacity:.34!important}.ws-ember-field{opacity:.55!important}}
+
+/* V3.5: NO foreground flames. Ambient fire is part of the page background.
+   Content wrappers are above the ember field, including dynamic dashboard panels. */
+.ws-flames,.ws-flame-tongue{display:none!important}
+.ws-firelight{z-index:0!important;opacity:.32!important;mix-blend-mode:normal!important;
+ background:radial-gradient(ellipse 62% 22% at 50% 103%,rgba(179,49,20,.18),transparent 80%)!important;
+ filter:blur(18px);animation:ws-fire-breathe 11s ease-in-out infinite alternate!important}
+.ws-firelight::before,.ws-firelight::after{opacity:.32!important;filter:blur(85px)!important}
+.ws-ember-field{z-index:1!important;opacity:.38!important;mix-blend-mode:screen!important}
+.ws-ember{width:clamp(1px,var(--size),3px)!important;height:clamp(1px,var(--size),3px)!important;
+ box-shadow:0 0 5px #ff863b70!important}
+/* A single explicit layer for all content, including live-rendered dashboard rows. */
+body>main{position:relative!important;z-index:auto!important;isolation:auto!important}
+body>main .wrap,body>main .container,body>main .hero-content,
+body>main .shell,body>main .panel,body>main .card,
+body>main .raid-toolbar,body>main .raid-summary,body>main .raid-section-heading,
+body>main .raid-roles,body>main .raid-grid,body>main .raid-bottom,
+body>main .raid-privacy,body>main .raid-list,body>main .raid-full,
+body>main form,body>main button,body>main a,
+body>.shell,body>footer .wrap{position:relative;z-index:5!important}
+body>header{z-index:500!important}
+/* Warmth comes from the background, not flame shapes in front of cards. */
+body:not(:has(.shell)) .raid-page{background:radial-gradient(ellipse 70% 35% at 50% 100%,#30121a 0%,#130c11 55%,#0d0b0e 100%)!important}
+body:not(:has(.shell)) main:not(.raid-page){background:radial-gradient(ellipse 65% 25% at 50% 100%,#281016 0%,#0c0a0e 80%)!important}
+@media(prefers-reduced-motion:reduce){.ws-firelight{animation:none!important}.ws-ember-field{display:none!important}}
