@@ -442,3 +442,50 @@ body.portal-page > main > .panel {
 body.portal-page .ws-ember-field {z-index:3!important}
 body.portal-page .ws-firelight {z-index:2!important}
 body.portal-page > header {z-index:500!important}
+
+
+/* V4.5 – weicher, nahtloser Feuerschein im unteren Bildbereich.
+   Der bisherige harte Horizont entstand durch die Kanten der
+   bildschirmgrossen, animierten Glow-Ebene und ihrer Pseudo-Elemente.
+   Der Schein wird jetzt nach oben weich ausgeblendet; Glutpartikel,
+   Portalkarten und Navigation behalten ihre bestehenden Ebenen. */
+.ws-firelight {
+  overflow:visible!important;
+  background:
+    radial-gradient(ellipse 100% 80% at 50% 125%,
+      rgba(232,72,29,.32) 0%,
+      rgba(172,43,24,.20) 34%,
+      rgba(107,25,24,.08) 60%,
+      transparent 100%)!important;
+  -webkit-mask-image:linear-gradient(to bottom,
+      transparent 0%,transparent 14%,
+      rgba(0,0,0,.10) 35%,
+      rgba(0,0,0,.42) 58%,
+      #000 100%)!important;
+  mask-image:linear-gradient(to bottom,
+      transparent 0%,transparent 14%,
+      rgba(0,0,0,.10) 35%,
+      rgba(0,0,0,.42) 58%,
+      #000 100%)!important;
+  -webkit-mask-size:100% 100%!important;
+  mask-size:100% 100%!important;
+  animation:ws-v45-glow 8s ease-in-out infinite alternate!important;
+}
+.ws-firelight::before,.ws-firelight::after {
+  bottom:-24vh!important;
+  height:64vh!important;
+  width:75vw!important;
+  filter:blur(95px)!important;
+  opacity:.46!important;
+  background:radial-gradient(ellipse at center,
+    rgba(246,98,36,.23) 0%,
+    rgba(167,39,22,.11) 44%,
+    transparent 78%)!important;
+}
+@keyframes ws-v45-glow {
+  from {opacity:.80;transform:scale(1)}
+  to {opacity:.98;transform:scale(1.018)}
+}
+@media(prefers-reduced-motion:reduce){
+  .ws-firelight{animation:none!important}
+}
