@@ -1,0 +1,9 @@
+/* V5.40: buttons in Charaktere & Armory */
+.ws-roster-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:12px 0;padding:10px 0;border-top:1px solid rgba(220,157,106,.18)}
+.ws-roster-actions>small{width:100%;font-size:12px;letter-spacing:.02em}
+.ws-roster-button{border:1px solid rgba(222,159,95,.4);background:rgba(56,30,34,.65);color:#eac19a;border-radius:9px;padding:8px 13px;font-weight:700;cursor:pointer;transition:background .18s,border-color .18s,transform .18s}
+.ws-roster-button:hover:not(:disabled){background:rgba(135,52,57,.65);transform:translateY(-1px)}
+.ws-roster-button.is-active{background:linear-gradient(135deg,#7e303b,#a3483c);border-color:#d8a26a;color:#fff3dc}
+.ws-roster-button:disabled{opacity:.45;cursor:not-allowed}
+.ws-roster-button:focus-visible{outline:2px solid #f6c57c;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.ws-roster-button{transition:none}.ws-roster-button:hover:not(:disabled){transform:none}}

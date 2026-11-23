@@ -94,12 +94,33 @@ function renderArmory(){
   for(const [name,count] of sorted){const line=el('div',undefined,'ws-armory-class-line');const heading=el('div',undefined,'ws-armory-class-label');heading.append(el('span',name),el('strong',String(count)));const track=el('div',undefined,'ws-armory-class-track');const fill=el('div',undefined,'ws-armory-class-fill');fill.style.width=(matches.length?count/matches.length*100:0)+'%';track.append(fill);line.append(heading,track);bars.append(line)}
   if(!sorted.length)bars.append(el('p','Keine Charaktere in dieser Auswahl.','muted'));
   if(!matches.length){root.append(el('p',characters.length?'Keine passenden Charaktere gefunden.':'Noch keine Charaktere gespeichert.','muted'));return}
-  const jobs=[];
-  for(const ch of matches){
+   const jobs=[];
+   const roster=Array.isArray(state.raid_roster)?state.raid_roster:[];
+   const rosterCounts=Object.fromEntries([10,20,40].map(size=>[size,roster.filter(r=>Number(r.size)===size).length]));
+   for(const ch of matches){
    const card=el('article',undefined,'ws-armory-card ws-guild-character');card.dataset.wowClass=classIds[ch.class_name]||'default';
    const heading=el('div',undefined,'ws-guild-character-head');const emblem=el('span',icons[ch.class_name]||'✦','ws-guild-character-emblem');emblem.setAttribute('aria-hidden','true');
    const identity=el('div',undefined,'ws-guild-character-identity');identity.append(el('strong',ch.name),el('small',ch.class_name+' · '+(ch.spec||'Keine Spezialisierung')));heading.append(emblem,identity);card.append(heading);
-   const disclosure=document.createElement('details');disclosure.className='ws-guild-character-details';const summary=document.createElement('summary');summary.textContent='Ausrüstung ansehen';disclosure.append(summary,el('p','Die vollständige Ausrüstung findest du in der externen Armory.','muted'));card.append(disclosure);
+    // Persistent roster membership; a character may be assigned to all three sizes.
+    const rosterActions=el('div',undefined,'ws-roster-actions');
+    rosterActions.append(el('small','Fester Raidkader','muted'));
+    for(const size of [10,20,40]){
+     const active=roster.some(r=>String(r.user_id)===String(ch.user_id)&&r.character===ch.name&&Number(r.size)===size);
+     const full=!active&&rosterCounts[size]>=size;
+     const control=btn((active?'✓ ':'＋ ')+size+'er',async()=>{
+      control.disabled=true;
+      try{
+       await req('/api/admin/v8','POST',{action:'toggle_raid_roster',user_id:ch.user_id,character:ch.name,size,enabled:!active});
+       await load();status(ch.name+' · '+size+'er-Kader '+(active?'entfernt':'zugeordnet')+'.');
+      }catch(error){control.disabled=false;status('Fehler: '+error.message)}
+     },'ws-roster-button'+(active?' is-active':'')+' compact');
+     control.setAttribute('aria-pressed',String(active));
+     control.title=full?'Kader voll':(active?'Aus '+size+'er-Kader entfernen':'Zum '+size+'er-Kader hinzufügen');
+     control.disabled=full;
+     rosterActions.append(control);
+    }
+    card.append(rosterActions);
+    const disclosure=document.createElement('details');disclosure.className='ws-guild-character-details';const summary=document.createElement('summary');summary.textContent='Ausrüstung ansehen';disclosure.append(summary,el('p','Die vollständige Ausrüstung findest du in der externen Armory.','muted'));card.append(disclosure);
    const body=el('div',undefined,'ws-guild-character-body');const race=el('p','Armory wird geladen …','ws-guild-character-race');const metrics=el('div','Charakterwerte werden geladen …','ws-guild-armory-loading');body.append(race,metrics);
    const a=el('a','Vollständige Armory öffnen ↗','ws-armory-external');a.href=armoryUrl(ch.name);a.target='_blank';a.rel='noopener noreferrer';body.append(a);card.append(body);root.append(card);
    jobs.push(()=>hydrate(ch,metrics,race,generation));
