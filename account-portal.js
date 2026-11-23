@@ -38,3 +38,17 @@ if(deleteForm)deleteForm.addEventListener('submit',async e=>{
     location.replace('login.html');
   }catch(err){privacyStatus.textContent='Accountlöschung fehlgeschlagen: '+err.message;button.disabled=false;}
 });
+
+// V5.29: Gildenverwaltung nur nach serverseitig bestätigter Discord-Rolle anzeigen.
+(async function showAccountAdminIfAuthorized(){
+  const panel=document.getElementById('ws-account-admin');
+  if(!panel || !token)return;
+  panel.hidden=true;
+  try {
+    const result=await api('/api/auth/me');
+    const level=String(result?.user?.level||'').toLowerCase();
+    panel.hidden=!['admin','officer','raidlead'].includes(level);
+  } catch (_) {
+    panel.hidden=true; // Bei Fehler oder fehlender Berechtigung geschlossen halten.
+  }
+})();
