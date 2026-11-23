@@ -1,5 +1,5 @@
 "use strict";
-const api=(window.WIPESQUAD_API_BASE||'').replace(/\/$/,'');const $=id=>document.getElementById(id);const token=sessionStorage.getItem('ws_session');let classes={};let wsUserId="";
+const api=(window.WIPESQUAD_API_BASE||'').replace(/\/$/,'');const $=id=>document.getElementById(id);const token=sessionStorage.getItem('ws_account_session')||sessionStorage.getItem('ws_session');let classes={};let wsUserId="";
 const mainKey=()=>"ws_main_character_"+wsUserId;
 const getMain=()=>{try{return localStorage.getItem(mainKey())||""}catch{return ""}};
 const setMain=name=>{try{if(name)localStorage.setItem(mainKey(),name);else localStorage.removeItem(mainKey())}catch{}};
@@ -15,7 +15,7 @@ const hint=document.createElement('p');hint.textContent='Einzelne Ausrüstungsge
 const full=document.createElement('a');full.href='https://armorywowforever.com/de/c/forever/eu/pvp/'+encodeURIComponent(ch.name.trim().replace(/\s+/g,'-'));full.target='_blank';full.rel='noopener noreferrer';full.textContent='Ausrüstung in der vollständigen Armory ansehen ↗';
 details.append(summary,hint,full);card.append(details);root.append(card)}if(!d.characters.length)root.textContent='Noch keine Charaktere gespeichert.'}
 $('save').onclick=async()=>{try{await req('/api/me/characters','POST',{action:'save',name:$('name').value,class_name:$('class').value,spec:$('spec').value});$('status').textContent='Gespeichert';await load()}catch(e){$('status').textContent=e.message}};
-(async()=>{if(!token){location.href='login.html';return}try{const d=await req('/api/auth/me');wsUserId=String(d.user.id||'discord');$('who').textContent='Willkommen, '+d.user.name;$('admin-link').hidden=!['admin','officer','raidlead'].includes(d.user.level);await load()}catch(e){$('status').textContent=e.message}})();
+(async()=>{if(!token){location.href='login.html';return}try{const d=await req('/api/auth/me');wsUserId=String(d.user.id||'discord');document.body.classList.add('discord-logged');$('who').textContent='Willkommen, '+d.user.name;$('admin-link').hidden=!['admin','officer','raidlead'].includes(d.user.level);await load()}catch(e){$('status').textContent='Gildenfunktionen derzeit nicht verfügbar: '+e.message;document.body.classList.remove('discord-logged');document.getElementById('guild-access-hint')?.removeAttribute('hidden')}})();
 
 // Collapsible character creation: existing form fields and save handler remain intact.
 (function setupCharacterForm(){
