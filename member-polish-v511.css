@@ -23,3 +23,9 @@
 .ws-account-footer{margin-top:24px!important}
 @media(max-width:850px){.ws-member-dashboard{grid-template-columns:minmax(0,1fr)!important;padding:24px 14px 60px!important}.ws-member-dashboard>.panel{padding:22px!important}}
 @media(max-width:420px){.ws-quick-links{grid-template-columns:1fr}.ws-quick-links a{display:grid;grid-template-columns:32px 1fr;align-items:center}.ws-quick-links a small{grid-column:2}}
+
+/* V5.11: wiederhergestellte Charaktere, Armory und Gildenabzeichen */
+#discord-characters-area,#ws-guild-badges{grid-column:1 / -1;min-width:0}
+#discord-characters-area .ws-armory-card{max-width:100%}
+.ws-quick-links{grid-template-columns:repeat(auto-fit,minmax(145px,1fr))!important}
+@media(max-width:800px){#discord-characters-area,#ws-guild-badges{grid-column:auto}}
