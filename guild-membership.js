@@ -12,7 +12,7 @@
   card.id = 'ws-guild-member-welcome';
   card.className = 'panel ws-member-welcome';
   card.hidden = true;
-  card.innerHTML = '<div class="ws-kicker">WIPESQUAD · GILDENSTATUS</div><div class="ws-member-welcome-head"><span class="ws-member-welcome-icon" aria-hidden="true">⚔</span><div><h2>Willkommen bei WIPESQUAD</h2><p>Du bist bereits Mitglied unserer Gilde.</p><span class="ws-member-verified">✓ Gildenmitglied bestätigt</span></div></div><div class="ws-member-shortcuts"><a href="dashboard.html">⚔ Live-Raids <span aria-hidden="true">↗</span></a><a href="#discord-characters-area">🛡 Meine Charaktere <span aria-hidden="true">↘</span></a></div>';
+  card.innerHTML = '<div class="ws-kicker">WIPESQUAD · GILDENSTATUS</div><div class="ws-member-welcome-head"><span class="ws-member-welcome-icon" aria-hidden="true">⚔</span><div><h2>Willkommen bei WIPESQUAD</h2><p>Du bist bereits Mitglied unserer Gilde.</p><span class="ws-member-verified">✓ Gildenmitglied bestätigt</span></div></div><div class="ws-member-shortcuts"><a href="dashboard.html">⚔ Live-Raids <span aria-hidden="true">↗</span></a></div>';
   application.before(card);
   async function verified(token) {
     if (!token) return false;
@@ -33,8 +33,6 @@
     application.hidden = true;
     application.style.display = 'none';
     card.hidden = false;
-    const target = document.getElementById('discord-characters-area');
-    if (!target) card.querySelector('a[href="#discord-characters-area"]')?.remove();
   }
   update();
 })();
