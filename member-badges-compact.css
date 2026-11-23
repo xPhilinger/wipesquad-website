@@ -1,0 +1,9 @@
+/* Badges now live below "Willkommen bei WIPESQUAD". */
+#ws-guild-member-welcome {min-width:0;}
+#ws-guild-member-welcome #ws-guild-badges {display:block!important;position:static!important;grid-column:auto!important;order:initial!important;width:100%;box-sizing:border-box;margin:18px 0 0!important;padding:16px 0 0!important;border:0!important;border-top:1px solid rgba(226,151,101,.22)!important;border-radius:0!important;background:none!important;box-shadow:none!important;}
+#ws-guild-member-welcome #ws-guild-badges[hidden] {display:none!important;}
+#ws-guild-member-welcome .ws-badges-heading {gap:10px;margin-bottom:12px;}
+#ws-guild-member-welcome .ws-badges-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;}
+#ws-guild-member-welcome .ws-badge {min-width:0;padding:10px!important;}
+#ws-guild-member-welcome .ws-badges-note {font-size:.78rem;line-height:1.45;}
+@media(max-width:560px){#ws-guild-member-welcome .ws-badges-grid{grid-template-columns:1fr}}
