@@ -18,13 +18,31 @@
          <a href="dashboard.html">Live-Dashboard</a><a href="anmeldung.html">Raid-Anmeldung</a><a href="raidbot.html">Raid Manager</a>
        </div>
      </div>
-     <div class="ws-menu">
-       <button class="ws-menu-trigger" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="ws-menu-members">Mitglieder <span aria-hidden="true">⌄</span></button>
-       <div class="ws-menu-panel" id="ws-menu-members">
-         <a href="mitglied.html">Mein Mitgliederbereich</a><a href="login.html">Account-Login</a>
-       </div>
-     </div>
-     <a class="ws-login-link" href="${location.pathname.endsWith('/mitglied.html') ? 'mitglied.html' : 'login.html'}">${location.pathname.endsWith('/mitglied.html') ? 'Mein Dashboard' : 'Login'}</a>`;
+     <a class="ws-member-link" href="mitglied.html">Mitgliederbereich</a>
+     <a class="ws-login-link" href="login.html">Login</a>`;
+   // Both existing login methods use sessionStorage on this origin.
+   // Keep credentials where the account system expects them; never copy tokens into HTML.
+   const authLink=nav.querySelector('.ws-login-link');
+   const updateAuthLink=()=>{
+     let signedIn=false;
+     try { signedIn=Boolean(sessionStorage.getItem('ws_account_session') || sessionStorage.getItem('ws_session')); }
+     catch(e) { signedIn=false; }
+     if(!authLink)return;
+     authLink.href=signedIn?'mitglied.html':'login.html';
+     authLink.textContent=signedIn?'Mein Dashboard':'Login';
+     authLink.setAttribute('aria-label',signedIn?'Mein Dashboard öffnen':'Anmelden');
+   };
+   updateAuthLink();
+   window.addEventListener('pageshow',updateAuthLink);
+   window.addEventListener('focus',updateAuthLink);
+   document.addEventListener('visibilitychange',()=>{if(!document.hidden)updateAuthLink()});
+   // Account logout handlers may clear the session without navigating immediately.
+   document.addEventListener('click',event=>{
+     if(event.target.closest('#account-logout, #logout, [data-action="logout"]')){
+       requestAnimationFrame(updateAuthLink);
+       setTimeout(updateAuthLink,150);
+     }
+   });
    const menus=[...nav.querySelectorAll('.ws-menu')];
    const closeAll=(except)=>menus.forEach(m=>{
      if(m!==except){m.classList.remove('is-open');m.querySelector('button').setAttribute('aria-expanded','false');}
