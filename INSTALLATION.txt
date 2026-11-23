@@ -1,0 +1,12 @@
+WIPESQUAD – Charakterkarten und aufklappbares Formular
+
+Die vier Dateien in das Hauptverzeichnis des GitHub-Repositories hochladen/ersetzen:
+- mitglied.html
+- mitglied.js
+- armory.js
+- character-cards.css (NEU)
+
+Danach GitHub Pages abwarten und mit Strg+F5 aktualisieren.
+Keine Änderungen am Bot-Hosting notwendig.
+Das Löschen nutzt weiterhin die reparierte Backend-API.
+Bestehende Accounts, Bewerbungen und das Horde-Epic-Design bleiben unangetastet.
