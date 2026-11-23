@@ -1,0 +1,8 @@
+/* WIPESQUAD: Accountverwaltung links, Gildennavigation rechts */
+#account-main .ws-quick-links{display:none!important}
+#ws-guild-member-welcome .ws-guild-navigation{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:16px 0 18px}
+#ws-guild-member-welcome .ws-guild-navigation a{min-width:0;padding:13px 10px;display:flex;flex-direction:column;gap:5px;text-decoration:none}
+#ws-guild-member-welcome .ws-guild-navigation a span{font-size:19px}
+#ws-guild-member-welcome .ws-guild-navigation a strong{font-size:13px}
+#ws-guild-member-welcome .ws-guild-navigation a small{font-size:11px;line-height:1.35}
+@media(max-width:560px){#ws-guild-member-welcome .ws-guild-navigation{grid-template-columns:1fr 1fr}}
