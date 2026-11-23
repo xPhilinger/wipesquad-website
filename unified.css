@@ -1,0 +1,28 @@
+
+/* Gemeinsames WIPESQUAD Erscheinungsbild */
+:root { --ws-red:#a6383d; --ws-gold:#e6ad67; }
+header .nav nav a.ws-login-link {
+ display:inline-flex;align-items:center;justify-content:center;
+ background:linear-gradient(135deg,#a83d40,#70252c);border:1px solid #bc565b;
+ border-radius:7px;padding:10px 16px;color:#fff;font-weight:800;white-space:nowrap;
+}
+header .nav nav a.ws-login-link:hover {background:#bd454b;color:#fff;box-shadow:0 0 18px #a6383d55}
+.hero-wappen {display:block;width:min(100%,530px);max-height:440px;object-fit:contain;filter:drop-shadow(0 0 24px #8e251f55);margin:0 0 10px}
+.visually-hidden {position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+body.ws-ready main {animation:ws-enter .36s ease both}
+body.ws-leaving main {opacity:0;transform:translateY(7px);transition:opacity .18s ease,transform .18s ease}
+@keyframes ws-enter {from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+.portal-page {background:#09090c;color:#f8f3ef}
+.portal-page main {width:min(100%,1000px);margin:0 auto!important;padding:60px 24px 90px!important;max-width:1000px!important}
+.portal-page main .panel {background:linear-gradient(150deg,#23171b,#131116);border:1px solid #513038;border-radius:12px;box-shadow:0 14px 35px #0004;margin-bottom:20px}
+.portal-page main h1,.portal-page main h2 {color:#f8e5d4}
+.portal-page main .eyebrow {color:#e6ad67}
+.portal-page main button {background:linear-gradient(135deg,#b53b3c,#78232b);color:white;border:1px solid #c35a5e;border-radius:7px;cursor:pointer}
+.portal-page main a {color:#e5b27e}
+.portal-page main a:hover {color:#fff}
+.portal-page header a {color:#f8f3ef}
+.portal-page header a:hover {color:#e6ad67}
+@media(max-width:760px){.hero-wappen{max-height:330px;margin-inline:auto}.portal-page main{padding-top:30px!important}header .nav nav a.ws-login-link{align-self:flex-start}}
+@media(prefers-reduced-motion:reduce){body.ws-ready main{animation:none}body.ws-leaving main{transition:none;transform:none}}
+
+.page-hero {background-image:linear-gradient(100deg,#2d1218ed,#0b0b0ef0),url('assets/wipesquad-wappen.webp');background-position:center,right 8% center;background-repeat:no-repeat;background-size:cover,220px}
