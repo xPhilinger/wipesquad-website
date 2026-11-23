@@ -1,0 +1,21 @@
+WIPESQUAD V5.6 – Rechtliches & Datenschutz (ENTWURF)
+
+INSTALLATION
+1. ZIP entpacken.
+2. Alle enthaltenen Website-Dateien in das Stammverzeichnis des GitHub-Repositories hochladen. Bestehende Dateien ersetzen.
+3. GitHub Pages Deployment abwarten; Impressum, Datenschutz und Registrierung in privatem Browserfenster testen.
+4. Rechtliche Seiten vor öffentlicher Freigabe durchsehen und offene [PRÜFEN]/[OFFEN]-Hinweise auflösen.
+
+WICHTIGE OFFENE PUNKTE – NICHT ALS FERTIG GEPRÜFTE RECHTSTEXTE BETRACHTEN
+- Betreibername und c/o-Zustellservice anhand des Vertrags verifizieren.
+- GitHub Pages und bot-hosting.net: Serverstandorte, Datenschutz-/AV-Unterlagen, Logs und Löschfristen prüfen.
+- Discord: Drittlandübermittlung, Bot-Berechtigungen, Datenverarbeitung klären.
+- Tatsächliche Armory-Quelle, Charakter-/Raid-Datenbank, Sichtbarkeit und Löschung prüfen.
+- Backend-Selbstlöschung entfernt laut bisherigem Stand NICHT nachweislich sämtliche Discord-gebundenen Daten.
+- Accountlöschung und Datenexport mit Testaccount überprüfen, Backups und Löschfristen festlegen.
+- Rechtliche Prüfung durch fachkundige Stelle empfohlen; keine Garantie auf Rechtssicherheit.
+- WWW-Zertifikatsfehler gesondert beheben; für Accounts HTTPS erzwingen.
+- Prüfen, ob zusätzliche Drittanbieterressourcen (z.B. externe Bilder/Fonts) geladen werden.
+
+UNVERÄNDERT
+Keine Python-/Backend-Dateien oder Funktionsskripte verändert. Charakterkarten, Abzeichen, Raid-Funktionen und Account-API bleiben technisch unberührt.
