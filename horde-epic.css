@@ -647,12 +647,6 @@ html body>header.ws-rune-header .ws-rune-band span {
 @media(max-width:900px){html body>header.ws-rune-header .ws-rune-band{height:19px;gap:14px}html body>header.ws-rune-header .ws-rune-band span{font-size:14px}}
 @media(prefers-reduced-motion:reduce){html body>header.ws-rune-header .ws-rune-band span{animation:none}}
 
-/* RC5.7 – forged wordmark, matching the crest palette */
-html body>header.ws-rune-header .ws-brand-name {
- font-weight:900; letter-spacing:.025em; line-height:1.35; padding:.08em .04em;
- color:#eac28b; background:linear-gradient(180deg,#fff0d2 12%,#b8a59a 36%,#f9e2b6 48%,#8c6244 51%,#f4bc69 76%,#d45a20 95%);
- -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
- -webkit-text-stroke:.45px #b98149; text-shadow:none;
- filter:drop-shadow(0 1px 0 #37160c) drop-shadow(0 2px 1px #000) drop-shadow(0 0 5px #c64b253b);
-}
-@media(forced-colors:active){html body>header.ws-rune-header .ws-brand-name{background:none;-webkit-text-fill-color:currentColor;-webkit-text-stroke:0;filter:none}}
+/* RC5.8 – original crest lettering, not a substitute font */
+html body>header.ws-rune-header .ws-brand-name {display:block!important; flex:none; width:clamp(160px,17vw,270px); aspect-ratio:3.4; font-size:0!important; line-height:0!important; padding:0!important; background: url("assets/wipesquad-wordmark.webp") center / contain no-repeat!important; -webkit-text-fill-color:transparent; filter:none!important; text-shadow:none!important;}
+@media(max-width:900px){html body>header.ws-rune-header .ws-brand-name{width:clamp(120px,30vw,200px)}}
