@@ -8,3 +8,25 @@
 .calendar-top{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}.calendar-card h3{font:700 23px Cinzel,Georgia,serif;color:#f4d2a0;margin:8px 0}.calendar-type{display:inline-block;background:#642830;color:#f9d9d4;border:1px solid #9b4448;border-radius:30px;padding:7px 11px;font-size:12px;font-weight:800;white-space:nowrap}
 .calendar-date{font-size:14px;color:#f1c994;font-weight:800;margin:13px 0}.calendar-desc{color:#d1bfc0;line-height:1.5;min-height:20px;overflow-wrap:anywhere}.calendar-count{font-weight:800;font-size:22px;margin:20px 0 8px}.calendar-count small{font-size:13px;color:#bdaca8}.calendar-bar{height:10px;background:#49313a;border-radius:99px;overflow:hidden}.calendar-bar>div{height:100%;background:linear-gradient(90deg,#a42a34,#e66b53);transition:width .4s}.calendar-roles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:18px 0}.calendar-role{padding:10px 12px;border:1px solid #4d303a;border-radius:7px;color:#e1d0cb;font-size:12px}.calendar-role strong{float:right;color:#f2ca91}.calendar-join{display:inline-flex;align-items:center;justify-content:center;background:#a52b34;border:1px solid #d55359;color:white;text-decoration:none;border-radius:8px;padding:13px 18px;font-weight:800;max-width:100%}.calendar-join:hover{background:#c43b44}.calendar-empty{border:1px dashed #694049;padding:32px;border-radius:12px;color:#d7bdb7}
 @media(max-width:850px){.calendar-grid{grid-template-columns:1fr}}@media(max-width:550px){.calendar-card{padding:20px}.calendar-top{flex-wrap:wrap}.calendar-roles{grid-template-columns:1fr 1fr}}
+/* RC3: scoped raid registration controls */
+#raidkalender .calendar-mine{padding:12px 14px;border:1px solid #604047;border-radius:9px;background:#1a1419;margin:18px 0;color:#e4d0c8;overflow-wrap:anywhere}
+#raidkalender .calendar-mine.confirmed{border-color:#426b50;color:#b5e6bb;background:#18251e}
+#raidkalender .calendar-mine.waiting{border-color:#927042;color:#f0ce94;background:#2c2319}
+#raidkalender .calendar-field{display:grid;gap:8px;font-size:13px;font-weight:700;color:#efc48b;margin:16px 0 12px}
+#raidkalender .calendar-select{width:100%;min-width:0;box-sizing:border-box;appearance:auto;color-scheme:dark;background:#21171d;color:#f4e6db;border:1px solid #79505a;border-radius:8px;padding:12px;font:inherit;min-height:46px}
+#raidkalender .calendar-select option{background:#21171d;color:#f4e6db}
+#raidkalender .calendar-actions{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 20px}
+#raidkalender .calendar-actions button{font:inherit;font-weight:800;cursor:pointer;min-height:44px}
+#raidkalender .calendar-leave{background:#26191f;border-color:#79505a;color:#e7c5bd}
+#raidkalender .calendar-leave:hover{background:#43232b}
+#raidkalender .calendar-roster{border:1px solid #55333d;border-radius:9px;background:#1c141a;margin-top:10px;overflow:hidden}
+#raidkalender .calendar-roster summary{padding:13px 14px;cursor:pointer;color:#efc48b;font-weight:700;font-size:14px}
+#raidkalender .calendar-roster[open] summary{border-bottom:1px solid #55333d}
+#raidkalender .calendar-player{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid #39262e;flex-wrap:wrap}
+#raidkalender .calendar-player:last-child{border-bottom:0}
+#raidkalender .calendar-player-name{display:grid;gap:4px;min-width:0;overflow-wrap:anywhere}
+#raidkalender .calendar-player-name small,#raidkalender .calendar-roster-empty{color:#c3aaa7;font-size:12px}
+#raidkalender .calendar-player-role{font-size:12px;color:#e4d0c8;background:#33232b;padding:6px 9px;border-radius:6px}
+#raidkalender .calendar-roster-empty{padding:0 14px}
+#raidkalender :is(button,select,summary,a):focus-visible{outline:2px solid #efc48b;outline-offset:3px}
+@media(max-width:550px){#raidkalender .calendar-actions button{flex:1 1 100%}}
