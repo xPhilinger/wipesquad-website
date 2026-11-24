@@ -130,3 +130,16 @@
    setTimeout(()=>{location.href=url.href},170);
  });
 })();
+
+;(() => {
+ function restoreLegalLinks(){
+  let footer=document.querySelector('body > footer');
+  if(!footer){footer=document.createElement('footer');document.body.append(footer);}
+  let links=footer.querySelector('.footer-links');
+  if(!links){links=document.createElement('div');links.className='wrap footer-links';footer.append(links);}
+  for(const [href,label] of [['datenschutz.html','Datenschutz'],['impressum.html','Impressum']]){
+   if(!footer.querySelector('a[href="'+href+'"]')){const a=document.createElement('a');a.href=href;a.textContent=label;links.append(a);}
+  }
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',restoreLegalLinks);else restoreLegalLinks();
+})();
