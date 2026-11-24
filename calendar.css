@@ -30,3 +30,5 @@
 #raidkalender .calendar-roster-empty{padding:0 14px}
 #raidkalender :is(button,select,summary,a):focus-visible{outline:2px solid #efc48b;outline-offset:3px}
 @media(max-width:550px){#raidkalender .calendar-actions button{flex:1 1 100%}}
+
+#raidkalender[hidden], #calendar-hero-link[hidden] { display: none !important; }

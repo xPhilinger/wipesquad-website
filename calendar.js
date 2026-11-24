@@ -3,7 +3,9 @@
 const base=String(window.WIPESQUAD_API_BASE||'').replace(/\/+$/,'');
 const target=document.getElementById('calendar-events'), status=document.getElementById('calendar-status'), refreshButton=document.getElementById('calendar-refresh');
 if(!target||!status||!refreshButton||!target.closest('#raidkalender'))return;
-const token=sessionStorage.getItem('ws_account_session')||sessionStorage.getItem('ws_session');
+const section=target.closest('#raidkalender'), hero=document.getElementById('calendar-hero-link');
+let token=null;
+function visible(v){section.hidden=!v;if(hero)hero.hidden=!v;if(!v){target.replaceChildren();selected.clear();}}
 const make=(tag,cls,text)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=String(text);return n;};
 const roles={'Tank':'🛡️ Tank','Heiler':'💚 Heiler','Nahkampf-DD':'⚔️ Nahkampf','Fernkampf-DD':'🔥 Fernkampf'};
 const colors={'Krieger':'#C79C6E','Paladin':'#F58CBA','Jäger':'#ABD473','Schurke':'#FFF569','Priester':'#FFFFFF','Schamane':'#69CCF0','Magier':'#69CCF0','Hexenmeister':'#9482C9','Druide':'#FF7D0A','Todesritter':'#C41F3B'};
@@ -20,8 +22,19 @@ const actions=make('div','calendar-actions');if(chars.length){const label=make('
 if(mine){const leave=make('button','calendar-join calendar-leave','Abmelden');leave.type='button';leave.onclick=()=>change(e.id,'withdraw');actions.append(leave);}card.append(actions);
 for(const [state,title] of [['confirmed','Fest angemeldete Spieler'],['waitlist','Warteliste']]){const list=people.filter(x=>x.event_id===e.id&&x.status===state);const details=make('details','calendar-roster');details.append(make('summary','',`${title} (${list.length})`));if(!list.length)details.append(make('p','calendar-roster-empty','Noch keine Spieler.'));for(const p of list){const line=make('div','calendar-player');const identity=make('div','calendar-player-name');const name=make('strong','',p.character);name.style.color=colors[p.class_name]||'inherit';identity.append(name,make('small','',`${p.class_name||'–'} · ${p.spec||'–'}`));line.append(identity,make('span','calendar-player-role',roles[p.role]||p.role));details.append(line);}card.append(details);}}
 target.append(card);}}
-async function load(){const d=await req('/api/events');let chars=[],regs=[],people=[],error='';if(token){try{const [c,r]=await Promise.all([req('/api/me/characters',true),req('/api/v6/registrations',true)]);chars=c.characters||[];regs=r.registrations||[];people=r.participants||[];}catch(e){error=e.message;}}render(d.termine||[],chars,regs,people,error);status.textContent=message||`${(d.termine||[]).length} kommende Raidtermine`;}
+async function load(){
+ token=sessionStorage.getItem('ws_account_session');
+ if(!token){visible(false);return;}
+ try {
+ const account=await req('/api/account/me',true);
+ if(!account.account?.discord_id){visible(false);return;}
+ const [d,c,r]=await Promise.all([req('/api/events',true),req('/api/me/characters',true),req('/api/v6/registrations',true)]);
+ if(sessionStorage.getItem('ws_account_session')!==token){visible(false);return;}
+ render(d.termine||[],c.characters||[],r.registrations||[],r.participants||[],'');
+ status.textContent=message||`${(d.termine||[]).length} kommende Raidtermine`;visible(true);
+ }catch(e){visible(false);}
+}
 async function run(fn){if(busy)return;busy=true;refreshButton.disabled=true;try{await fn();}catch(e){status.textContent=e.message;}finally{busy=false;refreshButton.disabled=false;}}
-function change(id,action,character){run(async()=>{const r=await req('/api/v6/registrations',true,{event_id:id,action,character});message=r.status==='confirmed'?'Anmeldung bestätigt':r.status==='waitlist'?'Auf der Warteliste':'Abmeldung bestätigt';await load();});}
+function change(id,action,character){run(async()=>{if(sessionStorage.getItem('ws_account_session')!==token){visible(false);return;}const r=await req('/api/v6/registrations',true,{event_id:id,action,character});message=r.status==='confirmed'?'Anmeldung bestätigt':r.status==='waitlist'?'Auf der Warteliste':'Abmeldung bestätigt';await load();});}
 refreshButton.onclick=()=>run(load);run(load);setInterval(()=>run(load),30000);
 })();
