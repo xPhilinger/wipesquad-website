@@ -623,26 +623,26 @@ html body>header.ws-rune-header .nav nav>a:hover,html body>header.ws-rune-header
 @media(prefers-reduced-motion:reduce){.ws-rune-band span{animation:none}}
 
 
-/* RC5.5 – Runeforged Edition */
+/* RC5.6 – Slim Runeforged Edition */
 html body>header.ws-rune-header .ws-rune-band {
-  box-sizing:border-box; height:34px; position:relative; isolation:isolate;
+  box-sizing:border-box; height:22px; position:relative; isolation:isolate;
   align-items:center; padding:0 14px; gap:20px; overflow:hidden;
-  background:linear-gradient(180deg,#0d0b0d 0%,#343033 12%,#242124 24%,#171517 55%,#292326 87%,#100d0f 100%);
+  background:linear-gradient(180deg,#0d0b0d 0%,#211d20 12%,#1b181b 24%,#141215 55%,#1d191c 87%,#100d0f 100%);
   border:0;
-  box-shadow:inset 0 1px #a47750,inset 0 3px #0b090b,inset 0 -1px #9d5935,inset 0 -3px #0a0809,0 4px 12px #a747201f;
+  box-shadow:inset 0 1px #63452f,inset 0 -1px #543021,0 2px 6px #a7472010;
 }
 html body>header.ws-rune-header .ws-rune-band::before {
-  content:""; position:absolute; inset:3px 0; z-index:-1; pointer-events:none;
-  background:repeating-linear-gradient(112deg,transparent 0 11px,#ffffff03 12px,transparent 13px 27px),linear-gradient(90deg,#0003,transparent 30%,#b8753810 50%,transparent 70%,#0003);
+  content:""; position:absolute; inset:1px 0; z-index:-1; pointer-events:none;
+  background:repeating-linear-gradient(112deg,transparent 0 11px,#ffffff02 12px,transparent 13px 27px),linear-gradient(90deg,#0003,transparent 30%,#b8753808 50%,transparent 70%,#0003);
 }
 html body>header.ws-rune-header .ws-rune-band::after {
   content:""; position:absolute; bottom:0; left:0; right:0; height:1px;
-  background:linear-gradient(90deg,#50291e,#b36c3d 25%,#edaa65 50%,#b36c3d 75%,#50291e);
-  box-shadow:0 0 7px #e76d354d; pointer-events:none;
+  background:linear-gradient(90deg,#291b17,#69422c 25%,#92603c 50%,#69422c 75%,#291b17);
+  box-shadow:0 0 3px #e76d3520; pointer-events:none;
 }
 html body>header.ws-rune-header .ws-rune-band span {
   position:relative; z-index:1; font-size:17px; color:#ffb36b;
   text-shadow:0 0 4px #ff812f,0 0 10px #f04c19;
 }
-@media(max-width:900px){html body>header.ws-rune-header .ws-rune-band{height:27px;gap:14px}html body>header.ws-rune-header .ws-rune-band span{font-size:14px}}
+@media(max-width:900px){html body>header.ws-rune-header .ws-rune-band{height:19px;gap:14px}html body>header.ws-rune-header .ws-rune-band span{font-size:14px}}
 @media(prefers-reduced-motion:reduce){html body>header.ws-rune-header .ws-rune-band span{animation:none}}
