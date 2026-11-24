@@ -1,2 +1,21 @@
-
-.ws-legal{max-width:960px;margin:auto;overflow-wrap:anywhere}.ws-legal h2{margin-top:2rem;color:#dfbd81}.ws-legal-note{padding:1rem;border:1px solid #795044;border-radius:8px;background:#24171a}.ws-legal a{color:#dfbd81;text-decoration:underline}
+/* RC5.17: nur rechtliche Seiten */
+.ws-legal-page .page-hero{padding:clamp(36px,6vw,76px) 0 32px;text-align:center;background:radial-gradient(ellipse at top,#351a19,transparent 70%),#100d0e;border-bottom:1px solid #55332b}
+.ws-legal-page .page-hero h1{font-size:clamp(30px,5vw,52px);color:#e8c28b;overflow-wrap:anywhere}
+.ws-legal-page .page-hero .lead{margin:0 auto;color:#c8b9b3}
+.ws-legal-page .ws-legal-content{padding:32px 0 64px}
+.ws-legal-page .ws-legal{max-width:960px;margin:auto;display:grid;gap:18px;overflow-wrap:anywhere}
+.ws-legal-page .ws-legal-card,.ws-legal-page .ws-legal-toc,.ws-legal-page .ws-legal-note{padding:clamp(18px,3vw,30px);background:linear-gradient(145deg,#1c1718,#151214);border:1px solid #51372e;border-radius:10px;box-shadow:0 8px 24px #0003;min-width:0}
+.ws-legal-page .ws-legal-card{scroll-margin-top:150px}
+.ws-legal-page .ws-legal h2{margin:0 0 16px;color:#e8c28b;font-size:clamp(19px,2.6vw,25px);line-height:1.4}
+.ws-legal-page .ws-legal h3{color:#dfbd81;font-size:18px;margin:20px 0 10px}
+.ws-legal-page .ws-legal p{line-height:1.75;margin:0 0 14px;color:#d1c7c4}
+.ws-legal-page .ws-legal p:last-child{margin-bottom:0}
+.ws-legal-page .ws-legal a{color:#e4bd83;text-decoration:underline;text-underline-offset:3px}
+.ws-legal-page .ws-legal a:focus-visible{outline:2px solid #e4bd83;outline-offset:4px}
+.ws-legal-page .ws-legal address{font-style:normal;line-height:1.8;color:#eee4df}
+.ws-legal-page .ws-legal address strong{font-size:21px;color:#f3d6a9}
+.ws-legal-page .ws-contact-mail{border-top:1px solid #51372e;margin-top:22px;padding-top:4px}
+.ws-legal-page .ws-legal-toc ol{columns:2;column-gap:36px;padding-left:24px;margin:0}
+.ws-legal-page .ws-legal-toc li{break-inside:avoid;padding:4px 0}
+.ws-legal-page .ws-legal-note{color:#d9c7b4;border-left:3px solid #ad7745;font-size:14px}
+@media(max-width:650px){.ws-legal-page .ws-legal-toc ol{columns:1}.ws-legal-page .ws-legal-content{padding:20px 0 40px}.ws-legal-page .ws-legal{padding-inline:16px}.ws-legal-page .ws-legal-card{scroll-margin-top:125px}}
