@@ -653,3 +653,10 @@ html body>header.ws-rune-header .brand .ws-brand-name{display:flex!important;ali
 html body>header.ws-rune-header .brand img.ws-brand-wordmark{width:clamp(180px,20vw,280px)!important;height:auto!important;max-height:80px!important;object-fit:contain!important;filter:drop-shadow(0 2px 4px #0009)!important}
 @media(max-width:1050px){html body>header.ws-rune-header .brand img.ws-brand-wordmark{width:190px!important;max-height:64px!important}}
 @media(max-width:900px){html body>header.ws-rune-header .brand img.ws-brand-wordmark{width:clamp(115px,38vw,190px)!important;max-height:54px!important}html body>header.ws-rune-header .brand{gap:8px!important}}
+
+/* RC5.12 – localized ember glow, behind the original wordmark */
+html body>header.ws-rune-header .brand .ws-brand-name{position:relative!important;isolation:isolate;overflow:visible!important}
+html body>header.ws-rune-header .brand .ws-brand-name::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:url('assets/wipesquad-embers.png?v=512') center/contain no-repeat;filter:blur(5px) drop-shadow(0 0 5px #ff4800);opacity:.65;animation:ws-wordmark-embers 4.8s ease-in-out infinite}
+html body>header.ws-rune-header .brand img.ws-brand-wordmark{position:relative;z-index:1}
+@keyframes ws-wordmark-embers{0%,100%{opacity:.42;transform:scale(1.015)}24%{opacity:.78;transform:scale(1.035)}39%{opacity:.56;transform:scale(1.02)}67%{opacity:.95;transform:scale(1.055)}83%{opacity:.63;transform:scale(1.025)}}
+@media(prefers-reduced-motion:reduce){html body>header.ws-rune-header .brand .ws-brand-name::before{animation:none;opacity:.55;transform:none}}
