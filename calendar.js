@@ -1,25 +1,27 @@
 (() => {
 'use strict';
 const base=String(window.WIPESQUAD_API_BASE||'').replace(/\/+$/,'');
-const target=document.getElementById('calendar-events');
-const status=document.getElementById('calendar-status');
-const button=document.getElementById('calendar-refresh');
-if(!target||!status||!button)return;
+const target=document.getElementById('calendar-events'), status=document.getElementById('calendar-status'), refreshButton=document.getElementById('calendar-refresh');
+if(!target||!status||!refreshButton)return;
+const token=sessionStorage.getItem('ws_account_session')||sessionStorage.getItem('ws_session');
 const make=(tag,cls,text)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=String(text);return n;};
-const roleLabels={'Tank':'🛡️ Tank','Heiler':'💚 Heiler','Nahkampf-DD':'⚔️ Nahkampf','Fernkampf-DD':'🔥 Fernkampf'};
-function render(events){target.replaceChildren();if(!events.length){target.append(make('div','calendar-empty','Noch keine kommenden Raidtermine. Die Raidleitung kann mit /raidtermin einen Termin auf Discord erstellen.'));return;}
- for(const e of events){const card=make('article','calendar-card');const top=make('div','calendar-top');const title=make('h3','',e.titel);const label=make('span','calendar-type',e.raid+'ER RAID');top.append(title,label);
- const date=new Date(e.start);const dateText=Number.isNaN(date.getTime())?'Datum nicht verfügbar':new Intl.DateTimeFormat('de-DE',{dateStyle:'full',timeStyle:'short',timeZone:'Europe/Berlin'}).format(date)+' Uhr';
- const dateEl=make('div','calendar-date','📅 '+dateText);const desc=make('p','calendar-desc',e.beschreibung||'Gemeinsamer WIPESQUAD-Raid');
- const count=make('div','calendar-count',e.angemeldet+' / '+e.gesamt+' ');count.append(make('small','','Spieler · '+e.frei+' frei'));
- const bar=make('div','calendar-bar');const fill=make('div');fill.style.width=Math.min(100,Math.max(0,100*e.angemeldet/Math.max(1,e.gesamt)))+'%';bar.append(fill);
- const roles=make('div','calendar-roles');for(const [key,label] of Object.entries(roleLabels)){const r=e.rollen?.[key]||{ist:0,soll:0};const item=make('div','calendar-role',label+' ');item.append(make('strong','',r.ist+' / '+r.soll));roles.append(item);}
- card.append(top,dateEl,desc,count,bar,roles);const link=make('a','calendar-join','⚔️ AUF DISCORD ANMELDEN');link.href=e.discord_url||'https://discord.gg/Wipesquadforever';link.target='_blank';link.rel='noopener noreferrer';card.append(link);target.append(card);}
-}
-let fetching=false;
-async function refresh(){if(fetching)return;if(!base){status.textContent='API-Adresse fehlt in dashboard-config.js';status.classList.add('error');return;}fetching=true;button.disabled=true;
- try{const r=await fetch(base+'/api/events',{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);const data=await r.json();if(!Array.isArray(data.termine))throw new Error('Ungültige Antwort');render(data.termine);status.textContent='LIVE · '+data.termine.length+' kommende Raidtermine · aktualisiert '+new Date().toLocaleTimeString('de-DE');status.classList.remove('error');}
- catch(err){status.textContent='Raidkalender nicht erreichbar ('+err.message+'). Prüfe, ob der v6-Bot läuft.';status.classList.add('error');}
- finally{fetching=false;button.disabled=false;}}
-button.addEventListener('click',refresh);refresh();setInterval(refresh,30000);
+const roles={'Tank':'🛡️ Tank','Heiler':'💚 Heiler','Nahkampf-DD':'⚔️ Nahkampf','Fernkampf-DD':'🔥 Fernkampf'};
+const colors={'Krieger':'#C79C6E','Paladin':'#F58CBA','Jäger':'#ABD473','Schurke':'#FFF569','Priester':'#FFFFFF','Schamane':'#69CCF0','Magier':'#69CCF0','Hexenmeister':'#9482C9','Druide':'#FF7D0A','Todesritter':'#C41F3B'};
+colors.Schamane='#0070DE';
+let busy=false, selected=new Map(), message='';
+async function req(path,auth=false,body){const headers={};if(auth)headers.Authorization='Bearer '+token;if(body)headers['Content-Type']='application/json';const r=await fetch(base+path,{headers,method:body?'POST':'GET',body:body?JSON.stringify(body):undefined,cache:'no-store'});const d=await r.json();if(!r.ok)throw Error(d.error||'HTTP '+r.status);return d;}
+function link(text,href){const a=make('a','calendar-join',text);a.href=href;return a;}
+function render(events,chars,regs,people,authError){target.replaceChildren();if(!events.length)target.append(make('p','calendar-empty','Keine kommenden Raidtermine.'));
+for(const e of events){const card=make('article','calendar-card');const top=make('div','calendar-top');top.append(make('h3','',e.titel),make('span','calendar-type',e.raid+'ER RAID'));const date=new Date(e.start);card.append(top,make('p','calendar-date',Number.isNaN(+date)?'Datum unbekannt':date.toLocaleString('de-DE',{timeZone:'Europe/Berlin'})+' Uhr'),make('p','calendar-desc',e.beschreibung||'Gemeinsamer WIPESQUAD-Raid'),make('div','calendar-count',`${e.angemeldet} / ${e.gesamt} Spieler · ${e.frei} frei`));
+const bar=make('div','calendar-bar'),fill=make('div');fill.style.width=Math.max(0,Math.min(100,100*e.angemeldet/Math.max(1,e.gesamt)))+'%';bar.append(fill);card.append(bar);const roleBox=make('div','calendar-roles');for(const [key,label] of Object.entries(roles)){const r=e.rollen?.[key]||{ist:0,soll:0};roleBox.append(make('div','calendar-role',`${label} ${r.ist} / ${r.soll}`));}card.append(roleBox);
+if(!token)card.append(link('Zum Anmelden einloggen','login.html'));else if(authError)card.append(make('p','',authError),link('Account / Discord prüfen','mitglied.html'));else {
+const mine=regs.find(x=>x.event_id===e.id);card.append(make('p','',mine?`Deine Anmeldung: ${mine.character} · ${mine.role} · ${mine.status==='confirmed'?'Fest angemeldet':'Warteliste'}`:'Du bist nicht angemeldet.'));
+if(chars.length){const label=make('label','','Charakter auswählen');const select=make('select','');select.style.width='100%';for(const c of chars){const opt=make('option','',`${c.name} · ${c.class_name} · ${c.spec}`);opt.value=c.name;select.append(opt);}const prior=selected.get(e.id)||mine?.character;if(chars.some(c=>c.name===prior))select.value=prior;select.onchange=()=>selected.set(e.id,select.value);label.append(select);const join=make('button','calendar-join',mine?'Anmeldung ändern':'Mit Charakter anmelden');join.type='button';join.onclick=()=>change(e.id,'signup',select.value);card.append(label,join);}else card.append(link('Charakter erstellen','mitglied.html'));
+if(mine){const leave=make('button','calendar-join','Abmelden');leave.type='button';leave.onclick=()=>change(e.id,'withdraw');card.append(leave);}
+for(const [state,title] of [['confirmed','Fest angemeldete Spieler'],['waitlist','Warteliste']]){const list=people.filter(x=>x.event_id===e.id&&x.status===state);const details=make('details','');details.append(make('summary','',`${title} (${list.length})`));for(const p of list){const line=make('p','',`${roles[p.role]||p.role} · ${p.character} · ${p.class_name||'–'} · ${p.spec||'–'}`);line.style.color=colors[p.class_name]||'inherit';details.append(line);}card.append(details);}}
+target.append(card);}}
+async function load(){const d=await req('/api/events');let chars=[],regs=[],people=[],error='';if(token){try{const [c,r]=await Promise.all([req('/api/me/characters',true),req('/api/v6/registrations',true)]);chars=c.characters||[];regs=r.registrations||[];people=r.participants||[];}catch(e){error=e.message;}}render(d.termine||[],chars,regs,people,error);status.textContent=message||`${(d.termine||[]).length} kommende Raidtermine`;}
+async function run(fn){if(busy)return;busy=true;refreshButton.disabled=true;try{await fn();}catch(e){status.textContent=e.message;}finally{busy=false;refreshButton.disabled=false;}}
+function change(id,action,character){run(async()=>{const r=await req('/api/v6/registrations',true,{event_id:id,action,character});message=r.status==='confirmed'?'Anmeldung bestätigt':r.status==='waitlist'?'Auf der Warteliste':'Abmeldung bestätigt';await load();});}
+refreshButton.onclick=()=>run(load);run(load);setInterval(()=>run(load),30000);
 })();
