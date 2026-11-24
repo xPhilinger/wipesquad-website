@@ -6,6 +6,7 @@
    header.classList.add('ws-rc5-header','ws-rune-header');
    const brand=header.querySelector('.brand');
    if(brand){brand.innerHTML='<img src="assets/wipesquad-wappen.webp" alt=""><span class="ws-brand-name">WIPESQUAD</span>';}
+   if(brand){const label=brand.querySelector('.ws-brand-name'); const img=document.createElement('img'); img.className='ws-original-wordmark'; img.alt='WIPESQUAD'; img.onload=()=>{label.hidden=true;img.hidden=false;}; img.onerror=()=>{img.hidden=true;label.hidden=false;}; img.hidden=true; label.after(img); img.src=new URL('assets/wipesquad-wordmark.webp?v=59',document.baseURI).href;}
    const band=document.createElement('div');band.className='ws-rune-band';band.setAttribute('aria-hidden','true');
    for(let i=0;i<48;i++){const rune=document.createElement('span');rune.textContent=['ᚠ','ᚱ','ᚦ','ᛟ','ᛉ','ᚷ','ᛏ','ᛞ'][i%8];rune.style.setProperty('--rune-delay',`${-(i%9)*.37}s`);band.append(rune);}header.append(band);
    nav.setAttribute('aria-label','Hauptnavigation');
