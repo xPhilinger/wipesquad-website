@@ -648,7 +648,9 @@ html body>header.ws-rune-header .ws-rune-band span {
 @media(prefers-reduced-motion:reduce){html body>header.ws-rune-header .ws-rune-band span{animation:none}}
 
 
-/* RC5.9: real image with visible text fallback */
-html body>header.ws-rune-header .brand .ws-original-wordmark{display:block!important;width:clamp(160px,17vw,270px)!important;height:auto!important;aspect-ratio:948/281;object-fit:contain!important;flex:none;filter:none!important;}
-html body>header.ws-rune-header .brand [hidden]{display:none!important;}
-@media(max-width:900px){html body>header.ws-rune-header .brand .ws-original-wordmark{width:clamp(120px,30vw,200px)!important;height:auto!important;}}
+/* RC5.10 – LifeCraft wordmark */
+@font-face{font-family:LifeCraft;src:url('assets/LifeCraft_Font.ttf') format('truetype');font-display:swap;font-weight:400;font-style:normal}
+html body>header.ws-rune-header .brand .ws-brand-name{font-family:LifeCraft,Georgia,serif!important;font-weight:400!important;font-size:clamp(32px,3vw,48px)!important;letter-spacing:.025em!important;line-height:1.2!important;align-self:center!important;color:#eac38a!important;text-shadow:0 2px 0 #63251d,0 3px 3px #000,0 0 12px #d25a3540!important;-webkit-text-stroke:.35px #a86c39;}
+@supports (background-clip:text){html body>header.ws-rune-header .brand .ws-brand-name{background:linear-gradient(180deg,#fff0bd 8%,#d6a56a 43%,#f4d39a 49%,#a76532 80%,#79372a 100%);background-clip:text;-webkit-background-clip:text;color:transparent!important;text-shadow:none!important;filter:drop-shadow(0 2px 0 #61251e) drop-shadow(0 3px 3px #000) drop-shadow(0 0 5px #b34b3038);}}
+@media(max-width:1050px){html body>header.ws-rune-header .brand .ws-brand-name{font-size:clamp(26px,3.5vw,38px)!important}}
+@media(max-width:480px){html body>header.ws-rune-header .brand .ws-brand-name{font-size:clamp(20px,6vw,30px)!important}}
