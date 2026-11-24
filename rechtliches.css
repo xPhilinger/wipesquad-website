@@ -19,3 +19,20 @@
 .ws-legal-page .ws-legal-toc li{break-inside:avoid;padding:4px 0}
 .ws-legal-page .ws-legal-note{color:#d9c7b4;border-left:3px solid #ad7745;font-size:14px}
 @media(max-width:650px){.ws-legal-page .ws-legal-toc ol{columns:1}.ws-legal-page .ws-legal-content{padding:20px 0 40px}.ws-legal-page .ws-legal{padding-inline:16px}.ws-legal-page .ws-legal-card{scroll-margin-top:125px}}
+
+/* RC5.18: Horde-Farbabstimmung, ausschließlich rechtliche Seiten */
+body.ws-legal-page .ws-legal .ws-legal-card,
+body.ws-legal-page .ws-legal .ws-legal-toc,
+body.ws-legal-page .ws-legal .ws-legal-note{
+ background:linear-gradient(145deg,#281416 0%,#1a1013 48%,#110d10 100%);
+ border-color:#80503a;
+ box-shadow:inset 0 1px 0 #b87b4533,inset 0 0 24px #751b171c,0 8px 24px #0005,0 0 12px #a82b2014;
+}
+body.ws-legal-page .ws-legal h2{color:#f1c58a;text-shadow:0 1px 2px #000,0 0 10px #bd632525}
+body.ws-legal-page .ws-legal h3{color:#e9b977}
+body.ws-legal-page .ws-legal p{color:#e4d8d3}
+body.ws-legal-page .ws-legal a{color:#f0c38a}
+body.ws-legal-page .ws-legal a:hover{color:#ffe0b2}
+body.ws-legal-page .ws-legal address{color:#f0e3dc}
+body.ws-legal-page .ws-contact-mail{border-color:#75432f}
+body.ws-legal-page .ws-legal .ws-legal-note{border-left:3px solid #c78b4d}
