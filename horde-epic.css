@@ -665,3 +665,8 @@ html body>header.ws-rune-header .brand img.ws-brand-wordmark{position:relative;z
 /* RC5.14 – standalone wordmark, subtle embers */
 html body>header.ws-rune-header .brand{gap:0!important;justify-content:flex-start!important}
 html body>header.ws-rune-header .brand .ws-brand-name::before{inset:0;filter:blur(4px) drop-shadow(0 0 3px #ff4800)}
+
+/* RC5.16 – visible subtle ember halo beyond the opaque wordmark */
+html body>header.ws-rune-header .brand .ws-brand-name::before{inset:-3px -4px;filter:blur(5px) drop-shadow(0 0 5px #ff4800);animation:ws-wordmark-embers 7.5s ease-in-out infinite}
+@keyframes ws-wordmark-embers{0%,100%{opacity:.24;transform:scale(1.015)}35%{opacity:.38;transform:scale(1.035)}70%{opacity:.29;transform:scale(1.025)}}
+@media(prefers-reduced-motion:reduce){html body>header.ws-rune-header .brand .ws-brand-name::before{animation:none;opacity:.28;transform:none}}
