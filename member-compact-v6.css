@@ -18,3 +18,8 @@ html body.portal-page main.ws-compact-dashboard > [hidden]{display:none!importan
 html body.portal-page #ws-account-dropdown > #account-main{position:absolute!important;top:100%;left:0;right:0;z-index:101;background:#21171d!important;box-shadow:0 16px 40px #000b;max-height:min(70vh,720px);overflow:auto!important;overscroll-behavior:contain;}
 html body.portal-page main.ws-compact-dashboard > #ws-account-dropdown > #account-main{position:static!important;max-height:none}
 @media(max-width:860px){html body.portal-page main.ws-member-dashboard.ws-compact-dashboard{grid-template-columns:minmax(0,1fr)!important}html body.portal-page main.ws-compact-dashboard > :is(#ws-guild-member-welcome,#raidkalender,#discord-characters-area,#ws-quick-links){grid-column:1!important;grid-row:auto!important}}
+
+/* Explicit grid coordinates override legacy grid-area rules. */
+html body.portal-page > main.ws-member-dashboard.ws-compact-dashboard.ws-verified-layout > section#ws-guild-member-welcome{grid-area:2 / 1 / 3 / 2!important;justify-self:stretch!important;align-self:start!important;margin-inline:0!important;transform:none!important;float:none!important;order:0!important}
+html body.portal-page > main.ws-member-dashboard.ws-compact-dashboard.ws-verified-layout > section#raidkalender{grid-area:2 / 2 / 3 / 3!important;justify-self:stretch!important;align-self:start!important;margin-inline:0!important;transform:none!important;float:none!important;order:1!important}
+@media(max-width:860px){html body.portal-page > main.ws-member-dashboard.ws-compact-dashboard.ws-verified-layout > section#ws-guild-member-welcome,html body.portal-page > main.ws-member-dashboard.ws-compact-dashboard.ws-verified-layout > section#raidkalender{grid-area:auto / 1 / auto / 2!important}}
