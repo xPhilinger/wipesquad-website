@@ -3,6 +3,7 @@
  const header=document.querySelector('body > header');
  const nav=header?.querySelector('.nav nav');
  if(nav){
+   header.classList.add('ws-rc5-header');
    nav.setAttribute('aria-label','Hauptnavigation');
    nav.innerHTML=`
      <a class="ws-home-link" href="index.html">Start</a>
@@ -22,6 +23,16 @@
    // Both existing login methods use sessionStorage on this origin.
    // Keep credentials where the account system expects them; never copy tokens into HTML.
    const authLink=nav.querySelector('.ws-login-link');
+   const icon=(path)=>`<svg class="ws-rc5-icon" viewBox="0 0 24 24" aria-hidden="true">${path}</svg>`;
+   const paths={
+     'gilde.html':'<path d="M12 3l8 3v6c0 5-8 9-8 9s-8-4-8-9V6z"/>',
+     'raidkader.html':'<circle cx="9" cy="8" r="3"/><path d="M3 20v-3a6 6 0 0112 0v3M16 5a3 3 0 010 6m2 3a5 5 0 013 5"/>',
+     'kontakt.html':'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/>',
+     'dashboard.html':'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',
+     'anmeldung.html':'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18m-13 5 3 3 5-5"/>',
+     'raidbot.html':'<path d="m4 3 16 16m0-16L4 19M3 15l6 6m6-18 6 6M3 9l6-6m6 18 6-6"/>'
+   };
+   nav.querySelectorAll('.ws-menu-panel a').forEach(a=>{const p=paths[a.getAttribute('href')];if(p)a.insertAdjacentHTML('afterbegin',icon(p));});
    const updateAuthLink=()=>{
      let signedIn=false;
      try { signedIn=Boolean(sessionStorage.getItem('ws_account_session') || sessionStorage.getItem('ws_session')); }
@@ -29,6 +40,8 @@
      if(!authLink)return;
      authLink.href=signedIn?'mitglied.html':'login.html';
      authLink.textContent=signedIn?'Mein Dashboard':'Login';
+     authLink.insertAdjacentHTML('afterbegin',icon(paths['dashboard.html']));
+     if(location.pathname.split('/').pop()===authLink.getAttribute('href'))authLink.setAttribute('aria-current','page');else authLink.removeAttribute('aria-current');
      authLink.setAttribute('aria-label',signedIn?'Mein Dashboard öffnen':'Anmelden');
    };
    updateAuthLink();
