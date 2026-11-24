@@ -3,7 +3,11 @@
  const header=document.querySelector('body > header');
  const nav=header?.querySelector('.nav nav');
  if(nav){
-   header.classList.add('ws-rc5-header');
+   header.classList.add('ws-rc5-header','ws-rune-header');
+   const brand=header.querySelector('.brand');
+   if(brand){brand.innerHTML='<img src="assets/wipesquad-wappen.webp" alt=""><span class="ws-brand-name">WIPESQUAD</span>';}
+   const band=document.createElement('div');band.className='ws-rune-band';band.setAttribute('aria-hidden','true');
+   for(let i=0;i<48;i++){const rune=document.createElement('span');rune.textContent=['ᚠ','ᚱ','ᚦ','ᛟ','ᛉ','ᚷ','ᛏ','ᛞ'][i%8];rune.style.setProperty('--rune-delay',`${-(i%9)*.37}s`);band.append(rune);}header.append(band);
    nav.setAttribute('aria-label','Hauptnavigation');
    nav.innerHTML=`
      <a class="ws-home-link" href="index.html">Start</a>
