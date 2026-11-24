@@ -7,11 +7,7 @@
   {id:'main',icon:'★',name:'Mein Champion',desc:'Einen Hauptcharakter festgelegt'},
   {id:'three',icon:'♜',name:'Heldenarsenal',desc:'Mindestens drei Charaktere eingetragen'},
   {id:'raid',icon:'✦',name:'Raid-Veteran',desc:'Wird mit einem künftigen Raid-Erfolgssystem freigeschaltet'},
-  {id:'pvp',icon:'♛',name:'Schlachtfeld-Legende',desc:'Wird mit einem künftigen PvP-Erfolgssystem freigeschaltet'},
-  {id:'pvp-fighter',icon:'⚔',name:'PvP-Kämpfer',desc:'Geplantes Abzeichen für PvP-Teilnahmen'},
-  {id:'battleground',icon:'✹',name:'Schlachtfeld-Veteran',desc:'Geplantes Abzeichen für Schlachtfeld-Erfolge'},
-  {id:'raid-champion',icon:'◆',name:'Raid-Champion',desc:'Geplantes Abzeichen für Raid-Erfolge'},
-  {id:'legend',icon:'♜',name:'WIPESQUAD-Legende',desc:'Geplantes Abzeichen für besondere Gildenleistungen'}
+  {id:'pvp',icon:'♛',name:'Schlachtfeld-Legende',desc:'Wird mit einem künftigen PvP-Erfolgssystem freigeschaltet'}
  ];
  const host=document.getElementById('discord-characters-area');
  if(!host)return;

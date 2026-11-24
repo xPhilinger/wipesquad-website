@@ -1,5 +1,19 @@
-WIPESQUAD V5.11 Armory und Abzeichen Fix
-Alle sechs Dateien ins Hauptverzeichnis des GitHub-Pages-Repositories hochladen und vorhandene Dateien ersetzen.
-Keine Python-Dateien oder Datenbank ändern.
-Mit Strg+F5 neu laden.
-Armory und Abzeichen erfordern weiterhin eine aktive Discord-Sitzung (ws_session); bloße Account-Verknüpfung reicht nicht.
+WIPESQUAD – Gildenabzeichen V5.4
+
+INSTALLATION (GitHub Pages, Repo xPhilinger/wipesquad-website):
+1. Vorher Sicherung deiner aktuellen mitglied.html machen.
+2. mitglied.html im Hauptverzeichnis durch diese Datei ersetzen, falls du seit V5.3 keine eigenen HTML-Änderungen gemacht hast.
+   ALTERNATIVE, falls du eigene Änderungen hast: Füge vor </head> ein:
+   <link rel="stylesheet" href="guild-badges.css?v=54">
+   <script src="guild-badges.js?v=54" defer></script>
+3. guild-badges.js und guild-badges.css ins Hauptverzeichnis hochladen.
+4. Nach Deployment mit Strg+F5 neu laden.
+
+Unverändert lassen: mitglied.js, account-portal.js, armory.js, guild-membership.js, Bot/Backend.
+
+VERHALTEN:
+- Abzeichen erscheinen nur, wenn /api/auth/me die Gildenmitgliedschaft bestätigt.
+- Automatisch: Gildenmitglied, erster Charakter, Hauptcharakter, drei Charaktere.
+- Raid-Veteran und Schlachtfeld-Legende sind als gesperrte Vorschau sichtbar.
+- Keine erfundenen Raid-/PvP-Erfolge und keine Änderung an der Datenbank.
+- Der Hauptcharakter wird wie bisher nur in localStorage dieses Browsers gespeichert; sein Abzeichen kann daher auf einem anderen Gerät abweichen.
