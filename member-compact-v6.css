@@ -23,3 +23,17 @@ html body.portal-page main.ws-compact-dashboard > #ws-account-dropdown > #accoun
 html body.portal-page > main.ws-member-dashboard.ws-compact-dashboard.ws-verified-layout > section#ws-guild-member-welcome{grid-area:2 / 1 / 3 / 2!important;justify-self:stretch!important;align-self:start!important;margin-inline:0!important;transform:none!important;float:none!important;order:0!important}
 html body.portal-page > main.ws-member-dashboard.ws-compact-dashboard.ws-verified-layout > section#raidkalender{grid-area:2 / 2 / 3 / 3!important;justify-self:stretch!important;align-self:start!important;margin-inline:0!important;transform:none!important;float:none!important;order:1!important}
 @media(max-width:860px){html body.portal-page > main.ws-member-dashboard.ws-compact-dashboard.ws-verified-layout > section#ws-guild-member-welcome,html body.portal-page > main.ws-member-dashboard.ws-compact-dashboard.ws-verified-layout > section#raidkalender{grid-area:auto / 1 / auto / 2!important}}
+/* Compact account overlay above all dashboard cards. */
+html body.portal-page main.ws-compact-dashboard > #ws-guild-member-welcome:has(#ws-account-dropdown[open]){z-index:2147483000!important;isolation:auto!important;transform:none!important;filter:none!important;contain:none!important;overflow:visible!important}
+html body.portal-page #ws-guild-member-welcome #ws-account-dropdown[open] > #account-main{position:fixed!important;inset:auto!important;left:var(--account-left,12px)!important;top:var(--account-top,80px)!important;width:var(--account-width,360px)!important;max-width:calc(100vw - 24px)!important;max-height:calc(100dvh - var(--account-top,80px) - 12px)!important;margin:0!important;padding:10px!important;z-index:2147483001!important;overflow:auto!important;box-shadow:0 16px 48px #000c!important;font-size:13px!important}
+#ws-account-dropdown #account-main .ws-profile-header{padding:6px!important;margin:0 0 6px!important;border:0!important;background:transparent!important;min-height:0!important}
+#ws-account-dropdown #account-main .ws-profile-header .ws-avatar,#ws-account-dropdown #account-main .ws-profile-header h2{display:none!important}
+#ws-account-dropdown #account-main #account-who{margin:0!important;font-size:13px!important}
+#ws-account-dropdown #account-main :is(.ws-feature-card,.ws-account-link-fold){margin:5px 0!important;padding:0!important;border:1px solid #62404a;border-radius:7px;background:#281b21}
+#ws-account-dropdown #account-main :is(.ws-feature-card,.ws-account-link-fold)>summary{padding:10px!important;font-size:13px!important;min-height:0!important;cursor:pointer}
+#ws-account-dropdown #account-main .ws-link-box{margin:0!important;padding:10px!important;border:0!important}
+#ws-account-dropdown #account-main .ws-link-box h2{display:none!important}
+#ws-account-dropdown #account-main :is(button,.ws-hint-button){font-size:12px!important;padding:8px 10px!important;min-height:0!important}
+#ws-account-dropdown #account-main .ws-account-footer{margin:8px 0 0!important;padding:6px 0 0!important}
+#ws-account-dropdown #account-main :is(p,small){font-size:12px!important}
+#ws-account-dropdown #account-main [hidden]{display:none!important}
