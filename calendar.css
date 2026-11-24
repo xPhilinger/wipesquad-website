@@ -32,3 +32,6 @@
 @media(max-width:550px){#raidkalender .calendar-actions button{flex:1 1 100%}}
 
 #raidkalender[hidden], #calendar-hero-link[hidden] { display: none !important; }
+
+.ws-member-dashboard > #raidkalender {grid-column:1 / -1;grid-row:auto;min-width:0;}
+#raidkalender[hidden]{display:none!important}
