@@ -621,3 +621,11 @@ html body>header.ws-rune-header .nav nav>a:hover,html body>header.ws-rune-header
 @keyframes ws-rune-glow{0%,100%{opacity:.65}50%{opacity:1;text-shadow:0 0 5px #ffbb70,0 0 13px #ff4d18}}
 @media(max-width:900px){html body>header.ws-rune-header .nav{min-height:78px!important;gap:8px!important}html body>header.ws-rune-header .brand img{width:58px!important;height:58px!important}html body>header.ws-rune-header .ws-brand-name{font-size:22px}html body>header.ws-rune-header .nav nav>a:not(.ws-login-link),html body>header.ws-rune-header .nav nav .ws-menu-trigger{justify-content:space-between!important}.ws-rune-band{height:19px;gap:14px}.ws-rune-band span{font-size:14px}}
 @media(prefers-reduced-motion:reduce){.ws-rune-band span{animation:none}}
+
+/* RC5.3 – torn woven war banner */
+.ws-rune-band{height:46px;box-sizing:border-box;position:relative;isolation:isolate;overflow:hidden;align-items:flex-start;padding:8px 14px 0;gap:28px;border:0;background:none;box-shadow:none;filter:drop-shadow(0 4px 4px #0009)}
+.ws-rune-band::before{content:"";position:absolute;inset:0;z-index:-1;background:url("assets/rune-cloth.svg") repeat-x top center;background-size:368px 46px;transform-origin:top center;animation:ws-cloth-sway 7s ease-in-out infinite}
+.ws-rune-band span{font-size:19px;color:#ffb36b;text-shadow:0 0 4px #ff812f,0 0 12px #f04c19;}
+@keyframes ws-cloth-sway{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.94)}}
+@media(max-width:900px){.ws-rune-band{height:36px;padding-top:6px;gap:18px}.ws-rune-band::before{background-size:288px 36px}.ws-rune-band span{font-size:15px}}
+@media(prefers-reduced-motion:reduce){.ws-rune-band::before,.ws-rune-band span{animation:none}}
